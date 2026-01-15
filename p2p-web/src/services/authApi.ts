@@ -112,4 +112,12 @@ export class AuthApiService {
   }
 }
 
+// Convenience functions
+export const login = (data: LoginRequest) => AuthApiService.login(data);
+export const register = (data: RegisterRequest) => AuthApiService.register(data);
+export const logout = (token: string) => AuthApiService.logout(token);
+export const forgotPassword = (email: string) => AuthApiService.forgotPassword(email);
+export const resetPassword = (token: string, password: string) => AuthApiService.resetPassword(token, password);
+export const verifyEmail = (token: string) => AuthApiService.verifyEmail(token);
+
 export default AuthApiService;

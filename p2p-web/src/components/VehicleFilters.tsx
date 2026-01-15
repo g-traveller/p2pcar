@@ -5,7 +5,7 @@ import styles from './VehicleFilters.module.css';
 
 // Filter types
 export type VehicleType = 'all' | 'sedan' | 'suv' | 'mpv' | 'sports' | 'electric';
-export type PriceRange = 'all' | '0-200' | '200-500' | '500-1000' | '1000+';
+export type PriceRange = 'all' | '0-200' | '200-500' | '500+';
 
 export interface VehicleFiltersProps {
   onFiltersChange: (filters: VehicleFilterValues) => void;
@@ -23,17 +23,15 @@ const VEHICLE_TYPES = [
   { value: 'all' as VehicleType, label: '全部车型' },
   { value: 'sedan' as VehicleType, label: '轿车' },
   { value: 'suv' as VehicleType, label: 'SUV' },
-  { value: 'mpv' as VehicleType, label: 'MPV' },
   { value: 'sports' as VehicleType, label: '跑车' },
   { value: 'electric' as VehicleType, label: '电动车' },
 ];
 
 const PRICE_RANGES = [
   { value: 'all' as PriceRange, label: '全部价格' },
-  { value: '0-200' as PriceRange, label: '¥200 以下' },
+  { value: '0-200' as PriceRange, label: '¥200以下' },
   { value: '200-500' as PriceRange, label: '¥200-500' },
-  { value: '500-1000' as PriceRange, label: '¥500-1000' },
-  { value: '1000+' as PriceRange, label: '¥1000 以上' },
+  { value: '500+' as PriceRange, label: '¥500以上' },
 ];
 
 const SEATS_OPTIONS = [4, 5, 6, 7];
@@ -108,8 +106,8 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
 
   return (
     <div className={`${styles.filtersContainer} ${loading ? styles.loading : ''}`}>
-      {/* Header */}
       <div className={styles.filtersHeader}>
+        {/* Left: Filter icon + title */}
         <div className={styles.filterInfo}>
           <svg
             width="20"
@@ -130,63 +128,38 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
             <span className={styles.activeCount}>({getActiveFilterCount()})</span>
           )}
         </div>
-        <div className={styles.filterActions}>
-          {hasActiveFilters && (
+
+        {/* Center: Vehicle type buttons */}
+        <div className={styles.tagGroup}>
+          {VEHICLE_TYPES.map((type) => (
             <button
-              className={styles.resetButton}
-              onClick={handleReset}
+              key={type.value}
+              className={`${styles.tagButton} ${filters.vehicleType === type.value ? styles.active : ''}`}
+              onClick={() => handleVehicleTypeChange(type.value)}
               disabled={loading}
             >
-              清除筛选
+              {type.label}
             </button>
-          )}
-          <button
-            className={styles.toggleButton}
-            onClick={() => setIsExpanded(!isExpanded)}
-            aria-label={isExpanded ? '收起筛选' : '展开筛选'}
-          >
+          ))}
+        </div>
+
+        {/* Right: Price dropdown with actions */}
+        <div className={styles.filterActions}>
+          <div className={styles.selectWrapper}>
             <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
               fill="none"
-              className={`${styles.toggleIcon} ${isExpanded ? styles.expanded : ''}`}
+              className={styles.selectFilterIcon}
             >
               <path
-                d="M4 6l4 4 4-4"
+                d="M5 4h10M3 8h14M4 12h12M6 16h8"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
-                strokeLinejoin="round"
               />
             </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Filters */}
-      <div className={`${styles.filtersContent} ${isExpanded ? styles.expanded : ''}`}>
-        {/* Vehicle Type */}
-        <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>车型</label>
-          <div className={styles.tagGroup}>
-            {VEHICLE_TYPES.map((type) => (
-              <button
-                key={type.value}
-                className={`${styles.tagButton} ${filters.vehicleType === type.value ? styles.active : ''}`}
-                onClick={() => handleVehicleTypeChange(type.value)}
-                disabled={loading}
-              >
-                {type.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Price Range */}
-        <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>价格区间</label>
-          <div className={styles.selectWrapper}>
             <select
               className={styles.select}
               value={filters.priceRange}
@@ -215,40 +188,15 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
               />
             </svg>
           </div>
-        </div>
-
-        {/* Seats */}
-        <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>座位数</label>
-          <div className={styles.chipGroup}>
-            {SEATS_OPTIONS.map((seat) => (
-              <button
-                key={seat}
-                className={`${styles.chipButton} ${filters.seats.includes(seat) ? styles.active : ''}`}
-                onClick={() => handleSeatToggle(seat)}
-                disabled={loading}
-              >
-                {seat}座
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Fuel Type */}
-        <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>燃料类型</label>
-          <div className={styles.chipGroup}>
-            {FUEL_TYPES.map((fuel) => (
-              <button
-                key={fuel}
-                className={`${styles.chipButton} ${filters.fuelTypes.includes(fuel) ? styles.active : ''}`}
-                onClick={() => handleFuelTypeToggle(fuel)}
-                disabled={loading}
-              >
-                {fuel}
-              </button>
-            ))}
-          </div>
+          {hasActiveFilters && (
+            <button
+              className={styles.resetButton}
+              onClick={handleReset}
+              disabled={loading}
+            >
+              清除筛选
+            </button>
+          )}
         </div>
       </div>
     </div>

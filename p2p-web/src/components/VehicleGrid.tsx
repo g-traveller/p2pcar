@@ -27,7 +27,7 @@ export default function VehicleGrid() {
     seats: [],
     fuelTypes: [],
   });
-  const pageSize = 9;
+  const pageSize = 16;
 
   useEffect(() => {
     fetchVehicles();
@@ -51,8 +51,8 @@ export default function VehicleGrid() {
       let maxPrice: number | undefined;
       if (activeFilters.priceRange !== 'all') {
         const range = activeFilters.priceRange;
-        if (range === '1000+') {
-          minPrice = 1000;
+        if (range === '500+') {
+          minPrice = 500;
           // maxPrice remains undefined (no upper limit)
         } else if (range === '0-200') {
           minPrice = 0;

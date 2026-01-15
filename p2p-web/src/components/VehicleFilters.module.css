@@ -1,10 +1,8 @@
 /* Container */
 .filtersContainer {
-  margin-bottom: 24px;
   background: #ffffff;
-  border: 1px solid #E5E7EB;
-  border-radius: 16px;
-  padding: 20px 24px;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 16px 0;
   transition: all 0.3s ease;
 }
 
@@ -18,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 24px;
 }
 
 .filterInfo {
@@ -28,6 +26,8 @@
 }
 
 .filterIcon {
+  width: 20px;
+  height: 20px;
   color: #6B7280;
   flex-shrink: 0;
 }
@@ -35,16 +35,16 @@
 .filterTitle {
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 16px;
-  font-weight: 600;
-  color: #101828;
+  font-weight: 500;
+  color: #364153;
 }
 
 .activeCount {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #1E88E5;
-  background: rgba(30, 136, 229, 0.1);
+  color: #155DFC;
+  background: rgba(21, 93, 252, 0.1);
   padding: 2px 8px;
   border-radius: 12px;
 }
@@ -53,13 +53,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-left: auto;
 }
 
 .resetButton {
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #1E88E5;
+  color: #155DFC;
   background: transparent;
   border: none;
   padding: 6px 12px;
@@ -69,7 +70,7 @@
 }
 
 .resetButton:hover:not(:disabled) {
-  background: rgba(30, 136, 229, 0.1);
+  background: rgba(21, 93, 252, 0.1);
 }
 
 .resetButton:disabled {
@@ -106,9 +107,9 @@
 
 /* Content */
 .filtersContent {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   max-height: 200px;
   overflow: hidden;
   transition: max-height 0.3s ease;
@@ -116,6 +117,7 @@
 
 .filtersContent.expanded {
   max-height: none;
+  flex-wrap: wrap;
 }
 
 .filterSection {
@@ -129,6 +131,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #4A5565;
+  margin-bottom: 4px;
 }
 
 /* Tag Group (Vehicle Type) */
@@ -140,27 +143,29 @@
 
 .tagButton {
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
-  color: #4A5565;
-  background: #F9FAFB;
-  border: 1px solid #E5E7EB;
-  padding: 8px 16px;
-  border-radius: 16px;
+  color: #364153;
+  background: #F3F4F6;
+  border: none;
+  padding: 10px 20px;
+  height: 40px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tagButton:hover:not(:disabled) {
-  background: #F3F4F6;
-  border-color: #D1D5DC;
+  background: #E5E7EB;
   color: #101828;
 }
 
 .tagButton.active {
-  background: #1E88E5;
-  border-color: #1E88E5;
+  background: #155DFC;
   color: #ffffff;
 }
 
@@ -172,32 +177,36 @@
 /* Select Dropdown (Price Range) */
 .selectWrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .select {
-  width: 100%;
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
-  color: #101828;
-  background: #F9FAFB;
+  color: #364153;
+  background: #ffffff;
   border: 1px solid #E5E7EB;
-  padding: 10px 36px 10px 16px;
-  border-radius: 12px;
+  padding: 10px 40px 10px 16px;
+  height: 40px;
+  border-radius: 8px;
   cursor: pointer;
   appearance: none;
   transition: all 0.2s;
   outline: none;
+  min-width: 150px;
 }
 
 .select:hover:not(:disabled) {
-  border-color: #D1D5DC;
-  background: #F3F4F6;
+  border-color: #155DFC;
+  background: #F9FAFB;
 }
 
 .select:focus {
-  border-color: #1E88E5;
-  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+  border-color: #155DFC;
+  box-shadow: 0 0 0 3px rgba(21, 93, 252, 0.1);
 }
 
 .select:disabled {
@@ -212,10 +221,15 @@
 .selectIcon {
   position: absolute;
   right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
   color: #6B7280;
   pointer-events: none;
+}
+
+.selectFilterIcon {
+  width: 20px;
+  height: 20px;
+  color: #6B7280;
+  flex-shrink: 0;
 }
 
 /* Chip Group (Seats & Fuel Type) */
@@ -259,56 +273,43 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .filtersContent {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 768px) {
   .filtersContainer {
-    padding: 16px;
-    margin-bottom: 20px;
+    padding: 12px 0;
   }
 
   .filtersHeader {
-    margin-bottom: 16px;
-  }
-
-  .filterTitle {
-    font-size: 15px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .filtersContent {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .tagGroup,
-  .chipGroup {
-    gap: 6px;
+  .tagGroup {
+    flex-wrap: wrap;
   }
 
-  .tagButton,
-  .chipButton {
-    font-size: 13px;
-    padding: 6px 12px;
+  .tagButton {
+    font-size: 14px;
+    padding: 8px 16px;
+    height: 36px;
   }
 
   .select {
-    font-size: 13px;
-    padding: 8px 32px 8px 12px;
+    font-size: 14px;
+    height: 36px;
+    padding: 8px 36px 8px 12px;
   }
 }
 
 @media (max-width: 480px) {
-  .filtersContainer {
-    padding: 12px;
-    border-radius: 12px;
-  }
-
-  .filterInfo {
-    gap: 6px;
-  }
-
   .filterIcon {
     width: 18px;
     height: 18px;
@@ -328,20 +329,16 @@
     padding: 4px 8px;
   }
 
-  .toggleButton {
-    width: 28px;
-    height: 28px;
-  }
-
-  .filterLabel {
+  .tagButton {
     font-size: 13px;
+    padding: 6px 12px;
+    height: 32px;
   }
 
-  .tagButton,
-  .chipButton {
-    font-size: 12px;
-    padding: 5px 10px;
-    border-radius: 10px;
+  .select {
+    font-size: 13px;
+    height: 32px;
+    padding: 6px 32px 6px 10px;
   }
 }
 
