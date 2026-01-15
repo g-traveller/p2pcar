@@ -1,0 +1,138 @@
+.footer {
+  width: 100%;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e8eaed;
+}
+
+.container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* Columns Layout */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.columnTitle {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #202124;
+  margin: 0;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #5f6368;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #1a73e8;
+}
+
+/* Bottom Section */
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid #e8eaed;
+}
+
+.copyright {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #9aa0a6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .container {
+    padding: 40px 48px 24px;
+  }
+
+  .columns {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 32px 24px 20px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .bottom {
+    padding-top: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 32px 20px 20px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .column {
+    gap: 12px;
+  }
+
+  .bottom {
+    padding-top: 32px;
+  }
+
+  .copyright {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 24px 16px 16px;
+  }
+
+  .link {
+    font-size: 13px;
+  }
+
+  .copyright {
+    font-size: 11px;
+  }
+}

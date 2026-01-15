@@ -1,0 +1,69 @@
+// API Response wrapper
+export interface ApiResponse<T> {
+  code: number;
+  message: string;
+  data: T;
+  timestamp: number;
+}
+
+// Pagination response
+export interface PageResponse<T> {
+  total: number;
+  items: T[];
+  page: number;
+  size: number;
+  totalPages: number;
+}
+
+// Host information from backend
+export interface HostInfo {
+  id: number;
+  name: string;
+  avatar: string | null;
+  trips: number;
+  rating: number;
+  isSuperHost: boolean;
+}
+
+// Vehicle response from backend
+export interface VehicleResponse {
+  id: number;
+  name: string;
+  brand: string;
+  model: string;
+  year: number | null;
+  color: string | null;
+  image: string | null;
+  images: string[];
+  price: number;
+  rating: number;
+  reviewCount: number;
+  location: string;
+  seats: number;
+  transmission: string;
+  fuel: string;
+  description: string | null;
+  instantBook: boolean;
+  host: HostInfo | null;
+  badges: string[];
+  status: string;
+  createdAt: string;
+}
+
+// Vehicle interface for frontend (transformed from backend response)
+export interface Vehicle {
+  id: number;
+  name: string;
+  image: string;
+  rating: number;
+  reviewCount: number;
+  location: string;
+  seats: number;
+  transmission: string;
+  fuel: string;
+  hostName: string;
+  hostInitial: string;
+  trips: number;
+  price: number;
+  badges: string[];
+}

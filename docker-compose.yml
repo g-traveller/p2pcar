@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:16-alpine
+    container_name: p2pcar-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: p2pcar
+      POSTGRES_USER: p2pcar
+      POSTGRES_PASSWORD: p2pcar123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U p2pcar"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - p2pcar-network
+
+  # Redis 缓存
+  redis:
+    image: redis:7-alpine
+    container_name: p2pcar-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass redis123
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - p2pcar-network
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+
+networks:
+  p2pcar-network:
+    driver: bridge

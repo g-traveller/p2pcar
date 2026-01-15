@@ -1,0 +1,170 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/SearchBar.module.css [app-client] (css) */
+.SearchBar-module__sxHF_G__searchBar {
+  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+  width: 100%;
+  min-height: 120px;
+  padding: 24px 0 32px;
+  position: relative;
+}
+
+.SearchBar-module__sxHF_G__container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 128px;
+}
+
+@media (max-width: 1200px) {
+  .SearchBar-module__sxHF_G__container {
+    padding: 0 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .SearchBar-module__sxHF_G__container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .SearchBar-module__sxHF_G__container {
+    padding: 0 24px;
+  }
+
+  .SearchBar-module__sxHF_G__title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .SearchBar-module__sxHF_G__searchBar {
+    padding: 20px 0 24px;
+  }
+
+  .SearchBar-module__sxHF_G__container {
+    padding: 0 16px;
+  }
+
+  .SearchBar-module__sxHF_G__title {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+}
+
+.SearchBar-module__sxHF_G__title {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 24px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.SearchBar-module__sxHF_G__searchCard {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px #0000001a;
+}
+
+.SearchBar-module__sxHF_G__searchFields {
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+  display: flex;
+  position: relative;
+}
+
+.SearchBar-module__sxHF_G__field {
+  flex-direction: column;
+  gap: 4px;
+  width: 280px;
+  display: flex;
+}
+
+.SearchBar-module__sxHF_G__label {
+  color: #666;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.SearchBar-module__sxHF_G__inputContainer {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 13px;
+  transition: border-color .2s;
+  display: flex;
+}
+
+.SearchBar-module__sxHF_G__inputContainer:hover {
+  border-color: #1e88e5;
+}
+
+.SearchBar-module__sxHF_G__inputContainer:focus-within {
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 2px #1e88e51a;
+}
+
+.SearchBar-module__sxHF_G__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.SearchBar-module__sxHF_G__input {
+  color: #333;
+  background: none;
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.SearchBar-module__sxHF_G__input::placeholder {
+  color: #666;
+}
+
+.SearchBar-module__sxHF_G__searchButton {
+  cursor: pointer;
+  background-color: #1e88e5;
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 120px;
+  height: 48px;
+  transition: background-color .2s;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.SearchBar-module__sxHF_G__searchButton:hover {
+  background-color: #1565c0;
+}
+
+.SearchBar-module__sxHF_G__searchIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.SearchBar-module__sxHF_G__searchButton span {
+  color: #fff;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_SearchBar_module_css_bad6b30c._.single.css.map*/

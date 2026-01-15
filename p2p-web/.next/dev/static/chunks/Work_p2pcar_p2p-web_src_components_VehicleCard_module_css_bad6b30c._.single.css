@@ -1,0 +1,247 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/VehicleCard.module.css [app-client] (css) */
+.VehicleCard-module__zCVgeW__card {
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 8px;
+  transition: box-shadow .2s, transform .2s;
+  overflow: hidden;
+  box-shadow: 0 2px 4px #0000001a;
+}
+
+.VehicleCard-module__zCVgeW__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px #00000026;
+}
+
+.VehicleCard-module__zCVgeW__imageContainer {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.VehicleCard-module__zCVgeW__image {
+  object-fit: cover;
+  object-position: center 50%;
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  height: 100%;
+}
+
+.VehicleCard-module__zCVgeW__favoriteButton {
+  cursor: pointer;
+  background-color: #ffffffe6;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  transition: background-color .2s, transform .2s;
+  display: flex;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.VehicleCard-module__zCVgeW__favoriteButton:hover {
+  background-color: #fff;
+  transform: scale(1.1);
+}
+
+.VehicleCard-module__zCVgeW__favoriteButton svg {
+  color: #6b7280;
+}
+
+.VehicleCard-module__zCVgeW__badges {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.VehicleCard-module__zCVgeW__badge {
+  color: #fff;
+  white-space: nowrap;
+  background-color: #1e88e5;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.VehicleCard-module__zCVgeW__content {
+  flex-direction: column;
+  padding: 16px;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__header {
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__name {
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.VehicleCard-module__zCVgeW__rating {
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__ratingValue {
+  color: #333;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.VehicleCard-module__zCVgeW__reviewCount {
+  color: #666;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.VehicleCard-module__zCVgeW__location {
+  color: #666;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__specs {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 12px 0;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__spec {
+  color: #666;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__host {
+  align-items: center;
+  gap: 8px;
+  margin-bottom: auto;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__hostAvatar {
+  color: #1e88e5;
+  background-color: #e3f2fd;
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__hostInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.VehicleCard-module__zCVgeW__hostName {
+  color: #666;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.VehicleCard-module__zCVgeW__hostTrips {
+  color: #999;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.VehicleCard-module__zCVgeW__footer {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__price {
+  flex-direction: column;
+  display: flex;
+}
+
+.VehicleCard-module__zCVgeW__priceValue {
+  color: #1e88e5;
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.VehicleCard-module__zCVgeW__priceUnit {
+  color: #666;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.VehicleCard-module__zCVgeW__bookButton {
+  color: #fff;
+  cursor: pointer;
+  background-color: #1e88e5;
+  border: none;
+  border-radius: 4px;
+  width: 100px;
+  height: 36px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: background-color .2s;
+}
+
+.VehicleCard-module__zCVgeW__bookButton:hover {
+  background-color: #1565c0;
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_VehicleCard_module_css_bad6b30c._.single.css.map*/
