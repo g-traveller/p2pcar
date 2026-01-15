@@ -31,7 +31,7 @@ class AuthController(
 
     @PostMapping("/login")
     fun login(@Valid @RequestBody request: LoginRequest): ResponseEntity<ApiResponse<AuthResponse>> {
-        val (token, user) = userService.login(request.phone, request.password)
+        val (token, user) = userService.login(request.emailOrPhone, request.password)
 
         val response = AuthResponse(
             token = token,
@@ -40,5 +40,18 @@ class AuthController(
         )
 
         return ResponseEntity.ok(ApiResponse.success(response))
+    }
+
+    @PostMapping("/logout")
+    fun logout(): ResponseEntity<ApiResponse<Nothing>> {
+        // In a stateless JWT setup, logout is handled client-side by removing the token
+        // If token blacklisting is needed, implement Redis-based token blacklist
+        return ResponseEntity.ok(ApiResponse(code = 200, message = "Logged out successfully"))
+    }
+
+    @GetMapping("/me")
+    fun getCurrentUser(): ResponseEntity<ApiResponse<UserResponse>> {
+        val user = userService.getCurrentUser()
+        return ResponseEntity.ok(ApiResponse.success(user))
     }
 }

@@ -9,14 +9,31 @@
 -- ============================================
 -- 1. INSERT TEST USERS (HOSTS/OWNERS)
 -- ============================================
+-- BCrypt hashes (strength=10, $2b$ variant) for test passwords:
+--
+-- test@example.com / password123
+-- $2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG
+--
+-- admin@example.com / admin123
+-- $2b$10$dz4ewXMO.g6vuDVNcfAYfuQMtKxaD2.BT50Y2yHi0ukhDc5Yg7uTK
+--
+-- All other users use password123 (same hash as test@example.com)
+
 INSERT INTO users (phone, email, password_hash, name, avatar, role, status, id_card_verified, driver_license_verified, created_at, updated_at)
 VALUES
-    ('13800138001', 'zhang.wei@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIk5ZxZxZxZxZxZxZxZxZxZxZxZxZxZ', '张伟', 'https://i.pravatar.cc/150?u=zhang', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('13800138002', 'li.ming@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIk5ZxZxZxZxZxZxZxZxZxZxZxZxZxZ', '李明', 'https://i.pravatar.cc/150?u=li', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('13800138003', 'wang.fang@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIk5ZxZxZxZxZxZxZxZxZxZxZxZxZxZ', '王芳', 'https://i.pravatar.cc/150?u=wang', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('13800138004', 'liu.qiang@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIk5ZxZxZxZxZxZxZxZxZxZxZxZxZxZ', '刘强', 'https://i.pravatar.cc/150?u=liu', 'OWNER', 'ACTIVE', false, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('13800138005', 'chen.ying@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIk5ZxZxZxZxZxZxZxZxZxZxZxZxZxZ', '陈颖', 'https://i.pravatar.cc/150?u=chen', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('13800138006', 'zhao.lei@example.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIk5ZxZxZxZxZxZxZxZxZxZxZxZxZxZ', '赵雷', 'https://i.pravatar.cc/150?u=zhao', 'RENTER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    -- Test user for email login (password: password123)
+    ('13900000001', 'test@example.com', '$2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG', '测试用户', 'https://i.pravatar.cc/150?u=test', 'RENTER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+    -- Admin user (password: admin123)
+    ('13900000002', 'admin@example.com', '$2b$10$dz4ewXMO.g6vuDVNcfAYfuQMtKxaD2.BT50Y2yHi0ukhDc5Yg7uTK', '管理员', 'https://i.pravatar.cc/150?u=admin', 'ADMIN', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+
+    -- Additional test users (vehicle owners) - all use password123
+    ('13800138001', 'zhang.wei@example.com', '$2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG', '张伟', 'https://i.pravatar.cc/150?u=zhang', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('13800138002', 'li.ming@example.com', '$2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG', '李明', 'https://i.pravatar.cc/150?u=li', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('13800138003', 'wang.fang@example.com', '$2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG', '王芳', 'https://i.pravatar.cc/150?u=wang', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('13800138004', 'liu.qiang@example.com', '$2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG', '刘强', 'https://i.pravatar.cc/150?u=liu', 'OWNER', 'ACTIVE', false, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('13800138005', 'chen.ying@example.com', '$2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG', '陈颖', 'https://i.pravatar.cc/150?u=chen', 'OWNER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('13800138006', 'zhao.lei@example.com', '$2b$10$/ID1j24bJi.1Ygytd3fsxuwODLlkPHfZtP6EhwXgHLSz0Szb.IZTG', '赵雷', 'https://i.pravatar.cc/150?u=zhao', 'RENTER', 'ACTIVE', true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 ON CONFLICT (phone) DO NOTHING;
 
 -- ============================================

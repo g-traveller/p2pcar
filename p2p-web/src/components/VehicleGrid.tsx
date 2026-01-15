@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import VehicleCard from './VehicleCard';
+import VehicleFilters, { VehicleFilterValues } from './VehicleFilters';
 import { searchVehicles } from '@/services/vehicleApi';
 import styles from './VehicleGrid.module.css';
 
@@ -14,11 +15,23 @@ export default function VehicleGrid() {
   const [total, setTotal] = useState(0);
   const [sortBy, setSortBy] = useState<SortOption>('recommended');
   const [currentPage, setCurrentPage] = useState(0);
-  const pageSize = 20;
+  const [filters, setFilters] = useState<VehicleFilterValues>({
+    vehicleType: 'all',
+    priceRange: 'all',
+    seats: [],
+    fuelTypes: [],
+  });
+  const [activeFilters, setActiveFilters] = useState<VehicleFilterValues>({
+    vehicleType: 'all',
+    priceRange: 'all',
+    seats: [],
+    fuelTypes: [],
+  });
+  const pageSize = 9;
 
   useEffect(() => {
     fetchVehicles();
-  }, [sortBy, currentPage]);
+  }, [sortBy, currentPage, activeFilters]);
 
   const fetchVehicles = async () => {
     try {
@@ -33,7 +46,33 @@ export default function VehicleGrid() {
         'rating': 'rating_desc'
       };
 
+      // Map price range to min/max price
+      let minPrice: number | undefined;
+      let maxPrice: number | undefined;
+      if (activeFilters.priceRange !== 'all') {
+        const range = activeFilters.priceRange;
+        if (range === '1000+') {
+          minPrice = 1000;
+          // maxPrice remains undefined (no upper limit)
+        } else if (range === '0-200') {
+          minPrice = 0;
+          maxPrice = 200;
+        } else {
+          const [min, max] = range.split('-').map(p => parseInt(p));
+          minPrice = min;
+          maxPrice = max;
+        }
+      }
+
+      // Map vehicle type to backend enum
+      const vehicleType = activeFilters.vehicleType === 'all' ? undefined : activeFilters.vehicleType.toUpperCase();
+
       const { vehicles: fetchedVehicles, total: totalCount } = await searchVehicles({
+        vehicleType,
+        minPrice,
+        maxPrice,
+        seats: activeFilters.seats.length > 0 ? activeFilters.seats : undefined,
+        fuelType: activeFilters.fuelTypes.length > 0 ? activeFilters.fuelTypes : undefined,
         sortBy: sortByMap[sortBy],
         page: currentPage,
         size: pageSize
@@ -59,6 +98,12 @@ export default function VehicleGrid() {
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value as SortOption);
     setCurrentPage(0);
+  };
+
+  const handleFiltersChange = (newFilters: VehicleFilterValues) => {
+    setFilters(newFilters);
+    setActiveFilters(newFilters);
+    setCurrentPage(0); // Reset to first page when filters change
   };
 
   const renderPagination = () => {
@@ -129,6 +174,7 @@ export default function VehicleGrid() {
             <span className={styles.count}>(加载中...)</span>
           </h2>
         </div>
+        <VehicleFilters onFiltersChange={handleFiltersChange} loading={true} />
         <div className={styles.loadingContainer}>
           <div className={styles.spinner}></div>
           <p className={styles.loadingText}>正在加载车辆数据...</p>
@@ -146,6 +192,7 @@ export default function VehicleGrid() {
             <span className={styles.count}>(0)</span>
           </h2>
         </div>
+        <VehicleFilters onFiltersChange={handleFiltersChange} loading={false} />
         <div className={styles.errorContainer}>
           <p className={styles.errorText}>{error}</p>
           <button onClick={fetchVehicles} className={styles.retryButton}>
@@ -171,8 +218,10 @@ export default function VehicleGrid() {
             <option value="rating">评分最高</option>
           </select>
         </div>
+        <VehicleFilters onFiltersChange={handleFiltersChange} loading={false} />
         <div className={styles.emptyContainer}>
           <p className={styles.emptyText}>暂无可用车辆</p>
+          <p className={styles.emptySubtext}>请尝试调整筛选条件</p>
         </div>
       </div>
     );
@@ -192,6 +241,7 @@ export default function VehicleGrid() {
           <option value="rating">评分最高</option>
         </select>
       </div>
+      <VehicleFilters onFiltersChange={handleFiltersChange} loading={false} />
       <div className={styles.grid}>
         {vehicles.map((vehicle) => (
           <VehicleCard key={vehicle.id} vehicle={vehicle} />

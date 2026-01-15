@@ -261,6 +261,10 @@
     visibility: visible;
   }
 
+  .static {
+    position: static;
+  }
+
   .grid {
     display: grid;
   }

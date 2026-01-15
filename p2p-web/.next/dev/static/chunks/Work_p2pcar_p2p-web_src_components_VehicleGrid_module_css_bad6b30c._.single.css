@@ -171,6 +171,13 @@
   font-size: 18px;
 }
 
+.VehicleGrid-module__7DL0oW__emptySubtext {
+  color: #999;
+  margin: 8px 0 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
 .VehicleGrid-module__7DL0oW__pagination {
   justify-content: center;
   align-items: center;

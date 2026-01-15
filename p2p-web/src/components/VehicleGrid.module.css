@@ -173,6 +173,13 @@
   margin: 0;
 }
 
+.emptySubtext {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  color: #999999;
+  margin: 8px 0 0 0;
+}
+
 /* Pagination */
 .pagination {
   display: flex;

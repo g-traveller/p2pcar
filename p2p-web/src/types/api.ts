@@ -67,3 +67,36 @@ export interface Vehicle {
   price: number;
   badges: string[];
 }
+
+// Auth interfaces
+export interface LoginRequest {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+
+export interface LoginResponse {
+  token: string;
+  user: {
+    id: number;
+    email: string;
+    name: string;
+    avatar?: string;
+    phone?: string;
+  };
+}
+
+export interface RegisterRequest {
+  email: string;
+  password: string;
+  name: string;
+  phone?: string;
+}
+
+export interface AuthUser {
+  id: number;
+  email: string;
+  name: string;
+  avatar?: string;
+  phone?: string;
+}

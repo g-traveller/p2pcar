@@ -62,11 +62,12 @@ export async function searchVehicles(params?: {
   location?: string;
   startDate?: string;
   endDate?: string;
+  vehicleType?: string;
   minPrice?: number;
   maxPrice?: number;
-  seats?: number;
+  seats?: number | number[];
   transmission?: string;
-  fuelType?: string;
+  fuelType?: string | string[];
   brand?: string;
   sortBy?: string;
   page?: number;
@@ -79,11 +80,39 @@ export async function searchVehicles(params?: {
     if (params?.location) queryParams.append('location', params.location);
     if (params?.startDate) queryParams.append('startDate', params.startDate);
     if (params?.endDate) queryParams.append('endDate', params.endDate);
+    if (params?.vehicleType) queryParams.append('vehicleType', params.vehicleType);
     if (params?.minPrice !== undefined) queryParams.append('minPrice', params.minPrice.toString());
     if (params?.maxPrice !== undefined) queryParams.append('maxPrice', params.maxPrice.toString());
-    if (params?.seats !== undefined) queryParams.append('seats', params.seats.toString());
+
+    // Handle array parameters for seats
+    if (params?.seats !== undefined) {
+      if (Array.isArray(params.seats)) {
+        params.seats.forEach(seat => queryParams.append('seats', seat.toString()));
+      } else {
+        queryParams.append('seats', params.seats.toString());
+      }
+    }
+
     if (params?.transmission) queryParams.append('transmission', params.transmission);
-    if (params?.fuelType) queryParams.append('fuelType', params.fuelType);
+
+    // Handle array parameters for fuelType
+    if (params?.fuelType !== undefined) {
+      if (Array.isArray(params.fuelType)) {
+        params.fuelType.forEach(fuel => {
+          // Map Chinese fuel types to backend enum values
+          const fuelTypeMap: Record<string, string> = {
+            '汽油': 'PETROL',
+            '电动': 'ELECTRIC',
+            '混动': 'HYBRID'
+          };
+          const backendFuelType = fuelTypeMap[fuel] || fuel;
+          queryParams.append('fuelType', backendFuelType);
+        });
+      } else {
+        queryParams.append('fuelType', params.fuelType);
+      }
+    }
+
     if (params?.brand) queryParams.append('brand', params.brand);
     if (params?.sortBy) queryParams.append('sortBy', params.sortBy);
     queryParams.append('page', (params?.page || 0).toString());

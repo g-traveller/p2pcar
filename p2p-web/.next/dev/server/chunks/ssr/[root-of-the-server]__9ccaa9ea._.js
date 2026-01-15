@@ -515,11 +515,35 @@ async function searchVehicles(params) {
         if (params?.location) queryParams.append('location', params.location);
         if (params?.startDate) queryParams.append('startDate', params.startDate);
         if (params?.endDate) queryParams.append('endDate', params.endDate);
+        if (params?.vehicleType) queryParams.append('vehicleType', params.vehicleType);
         if (params?.minPrice !== undefined) queryParams.append('minPrice', params.minPrice.toString());
         if (params?.maxPrice !== undefined) queryParams.append('maxPrice', params.maxPrice.toString());
-        if (params?.seats !== undefined) queryParams.append('seats', params.seats.toString());
+        // Handle array parameters for seats
+        if (params?.seats !== undefined) {
+            if (Array.isArray(params.seats)) {
+                params.seats.forEach((seat)=>queryParams.append('seats', seat.toString()));
+            } else {
+                queryParams.append('seats', params.seats.toString());
+            }
+        }
         if (params?.transmission) queryParams.append('transmission', params.transmission);
-        if (params?.fuelType) queryParams.append('fuelType', params.fuelType);
+        // Handle array parameters for fuelType
+        if (params?.fuelType !== undefined) {
+            if (Array.isArray(params.fuelType)) {
+                params.fuelType.forEach((fuel)=>{
+                    // Map Chinese fuel types to backend enum values
+                    const fuelTypeMap = {
+                        '汽油': 'PETROL',
+                        '电动': 'ELECTRIC',
+                        '混动': 'HYBRID'
+                    };
+                    const backendFuelType = fuelTypeMap[fuel] || fuel;
+                    queryParams.append('fuelType', backendFuelType);
+                });
+            } else {
+                queryParams.append('fuelType', params.fuelType);
+            }
+        }
         if (params?.brand) queryParams.append('brand', params.brand);
         if (params?.sortBy) queryParams.append('sortBy', params.sortBy);
         queryParams.append('page', (params?.page || 0).toString());
@@ -642,12 +666,25 @@ function VehicleGrid() {
     const [total, setTotal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
     const [sortBy, setSortBy] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('recommended');
     const [currentPage, setCurrentPage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
-    const pageSize = 20;
+    const [filters, setFilters] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
+        vehicleType: 'all',
+        priceRange: 'all',
+        seats: [],
+        fuelTypes: []
+    });
+    const [activeFilters, setActiveFilters] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
+        vehicleType: 'all',
+        priceRange: 'all',
+        seats: [],
+        fuelTypes: []
+    });
+    const pageSize = 9;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         fetchVehicles();
     }, [
         sortBy,
-        currentPage
+        currentPage,
+        activeFilters
     ]);
     const fetchVehicles = async ()=>{
         try {
@@ -660,7 +697,22 @@ function VehicleGrid() {
                 'price-high': 'price_desc',
                 'rating': 'rating_desc'
             };
+            // Map price range to min/max price
+            let minPrice;
+            let maxPrice;
+            if (activeFilters.priceRange !== 'all') {
+                const [min, max] = activeFilters.priceRange.split('-').map((p)=>parseInt(p.replace('+', '')));
+                minPrice = min;
+                maxPrice = max;
+            }
+            // Map vehicle type to backend enum
+            const vehicleType = activeFilters.vehicleType === 'all' ? undefined : activeFilters.vehicleType.toUpperCase();
             const { vehicles: fetchedVehicles, total: totalCount } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$services$2f$vehicleApi$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["searchVehicles"])({
+                vehicleType,
+                minPrice,
+                maxPrice,
+                seats: activeFilters.seats.length > 0 ? activeFilters.seats : undefined,
+                fuelType: activeFilters.fuelTypes.length > 0 ? activeFilters.fuelTypes : undefined,
                 sortBy: sortByMap[sortBy],
                 page: currentPage,
                 size: pageSize
@@ -685,6 +737,11 @@ function VehicleGrid() {
     const handleSortChange = (e)=>{
         setSortBy(e.target.value);
         setCurrentPage(0);
+    };
+    const handleFiltersChange = (newFilters)=>{
+        setFilters(newFilters);
+        setActiveFilters(newFilters);
+        setCurrentPage(0); // Reset to first page when filters change
     };
     const renderPagination = ()=>{
         if (totalPages <= 1) return null;
@@ -715,7 +772,7 @@ function VehicleGrid() {
                     children: "上一页"
                 }, void 0, false, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 88,
+                    lineNumber: 124,
                     columnNumber: 9
                 }, this),
                 pages.map((page, index)=>{
@@ -725,7 +782,7 @@ function VehicleGrid() {
                             children: "..."
                         }, `ellipsis-${index}`, false, {
                             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                            lineNumber: 98,
+                            lineNumber: 134,
                             columnNumber: 20
                         }, this);
                     }
@@ -736,7 +793,7 @@ function VehicleGrid() {
                         children: pageNumber + 1
                     }, pageNumber, false, {
                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                        lineNumber: 102,
+                        lineNumber: 138,
                         columnNumber: 13
                     }, this);
                 }),
@@ -747,13 +804,13 @@ function VehicleGrid() {
                     children: "下一页"
                 }, void 0, false, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 112,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-            lineNumber: 87,
+            lineNumber: 123,
             columnNumber: 7
         }, this);
     };
@@ -772,18 +829,18 @@ function VehicleGrid() {
                                 children: "(加载中...)"
                             }, void 0, false, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                lineNumber: 129,
+                                lineNumber: 165,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                        lineNumber: 127,
+                        lineNumber: 163,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 126,
+                    lineNumber: 162,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -793,7 +850,7 @@ function VehicleGrid() {
                             className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleGrid$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].spinner
                         }, void 0, false, {
                             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                            lineNumber: 133,
+                            lineNumber: 169,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -801,19 +858,19 @@ function VehicleGrid() {
                             children: "正在加载车辆数据..."
                         }, void 0, false, {
                             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                            lineNumber: 134,
+                            lineNumber: 170,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 132,
+                    lineNumber: 168,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-            lineNumber: 125,
+            lineNumber: 161,
             columnNumber: 7
         }, this);
     }
@@ -832,18 +889,18 @@ function VehicleGrid() {
                                 children: "(0)"
                             }, void 0, false, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                lineNumber: 146,
+                                lineNumber: 182,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                        lineNumber: 144,
+                        lineNumber: 180,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 143,
+                    lineNumber: 179,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -854,7 +911,7 @@ function VehicleGrid() {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                            lineNumber: 150,
+                            lineNumber: 186,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -863,19 +920,19 @@ function VehicleGrid() {
                             children: "重新加载"
                         }, void 0, false, {
                             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                            lineNumber: 151,
+                            lineNumber: 187,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 149,
+                    lineNumber: 185,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-            lineNumber: 142,
+            lineNumber: 178,
             columnNumber: 7
         }, this);
     }
@@ -895,13 +952,13 @@ function VehicleGrid() {
                                     children: "(0)"
                                 }, void 0, false, {
                                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                    lineNumber: 165,
+                                    lineNumber: 201,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                            lineNumber: 163,
+                            lineNumber: 199,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -914,7 +971,7 @@ function VehicleGrid() {
                                     children: "推荐排序"
                                 }, void 0, false, {
                                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                    lineNumber: 168,
+                                    lineNumber: 204,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -922,7 +979,7 @@ function VehicleGrid() {
                                     children: "价格从低到高"
                                 }, void 0, false, {
                                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                    lineNumber: 169,
+                                    lineNumber: 205,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -930,7 +987,7 @@ function VehicleGrid() {
                                     children: "价格从高到低"
                                 }, void 0, false, {
                                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                    lineNumber: 170,
+                                    lineNumber: 206,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -938,19 +995,19 @@ function VehicleGrid() {
                                     children: "评分最高"
                                 }, void 0, false, {
                                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                    lineNumber: 171,
+                                    lineNumber: 207,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                            lineNumber: 167,
+                            lineNumber: 203,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 162,
+                    lineNumber: 198,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -960,18 +1017,18 @@ function VehicleGrid() {
                         children: "暂无可用车辆"
                     }, void 0, false, {
                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                        lineNumber: 175,
+                        lineNumber: 211,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                    lineNumber: 174,
+                    lineNumber: 210,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-            lineNumber: 161,
+            lineNumber: 197,
             columnNumber: 7
         }, this);
     }
@@ -994,13 +1051,13 @@ function VehicleGrid() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                lineNumber: 186,
+                                lineNumber: 222,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                        lineNumber: 184,
+                        lineNumber: 220,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1013,7 +1070,7 @@ function VehicleGrid() {
                                 children: "推荐排序"
                             }, void 0, false, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                lineNumber: 189,
+                                lineNumber: 225,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1021,7 +1078,7 @@ function VehicleGrid() {
                                 children: "价格从低到高"
                             }, void 0, false, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                lineNumber: 190,
+                                lineNumber: 226,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1029,7 +1086,7 @@ function VehicleGrid() {
                                 children: "价格从高到低"
                             }, void 0, false, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                lineNumber: 191,
+                                lineNumber: 227,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1037,19 +1094,19 @@ function VehicleGrid() {
                                 children: "评分最高"
                             }, void 0, false, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                                lineNumber: 192,
+                                lineNumber: 228,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                        lineNumber: 188,
+                        lineNumber: 224,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                lineNumber: 183,
+                lineNumber: 219,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1058,19 +1115,19 @@ function VehicleGrid() {
                         vehicle: vehicle
                     }, vehicle.id, false, {
                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                        lineNumber: 197,
+                        lineNumber: 233,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-                lineNumber: 195,
+                lineNumber: 231,
                 columnNumber: 7
             }, this),
             renderPagination()
         ]
     }, void 0, true, {
         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.tsx",
-        lineNumber: 182,
+        lineNumber: 218,
         columnNumber: 5
     }, this);
 }

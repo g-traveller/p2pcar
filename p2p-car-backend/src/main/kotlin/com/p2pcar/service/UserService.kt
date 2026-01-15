@@ -59,17 +59,25 @@ class UserService(
         return token to toResponse(savedUser)
     }
 
-    fun login(phone: String, password: String): Pair<String, UserResponse> {
+    fun login(emailOrPhone: String, password: String): Pair<String, UserResponse> {
+        // Determine if input is email or phone
+        val isEmail = emailOrPhone.contains("@")
+
         val authentication = authenticationManager.authenticate(
-            UsernamePasswordAuthenticationToken(phone, password)
+            UsernamePasswordAuthenticationToken(emailOrPhone, password)
         )
 
         val userPrincipal = authentication.principal as UserPrincipal
         val token = jwtTokenProvider.generateToken(authentication)
         val refreshToken = jwtTokenProvider.generateRefreshToken(authentication)
 
-        val user = userRepository.findByPhone(phone)
-            .orElseThrow { BusinessException(ErrorCode.USER_NOT_FOUND) }
+        val user = if (isEmail) {
+            userRepository.findByEmail(emailOrPhone)
+                .orElseThrow { BusinessException(ErrorCode.USER_NOT_FOUND) }
+        } else {
+            userRepository.findByPhone(emailOrPhone)
+                .orElseThrow { BusinessException(ErrorCode.USER_NOT_FOUND) }
+        }
 
         user.updatedAt = java.time.LocalDateTime.now()
         userRepository.save(user)

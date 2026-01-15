@@ -16,8 +16,14 @@ class CustomUserDetailsService(
 
     @Transactional(readOnly = true)
     override fun loadUserByUsername(username: String): UserDetails {
-        val user = userRepository.findByPhone(username)
-            .orElseThrow { UsernameNotFoundException("User not found with phone: $username") }
+        // Check if username is email or phone
+        val user = if (username.contains("@")) {
+            userRepository.findByEmail(username)
+                .orElseThrow { UsernameNotFoundException("User not found with email: $username") }
+        } else {
+            userRepository.findByPhone(username)
+                .orElseThrow { UsernameNotFoundException("User not found with phone: $username") }
+        }
 
         if (user.status == UserStatus.DELETED) {
             throw UsernameNotFoundException("User account has been deleted")

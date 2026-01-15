@@ -1,0 +1,360 @@
+/* Container */
+.filtersContainer {
+  margin-bottom: 24px;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 20px 24px;
+  transition: all 0.3s ease;
+}
+
+.filtersContainer.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Header */
+.filtersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filterInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterIcon {
+  color: #6B7280;
+  flex-shrink: 0;
+}
+
+.filterTitle {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #101828;
+}
+
+.activeCount {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1E88E5;
+  background: rgba(30, 136, 229, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.filterActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.resetButton {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1E88E5;
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 6px;
+}
+
+.resetButton:hover:not(:disabled) {
+  background: rgba(30, 136, 229, 0.1);
+}
+
+.resetButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggleButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #6B7280;
+}
+
+.toggleButton:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DC;
+}
+
+.toggleIcon {
+  transition: transform 0.3s ease;
+}
+
+.toggleIcon.expanded {
+  transform: rotate(180deg);
+}
+
+/* Content */
+.filtersContent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.filtersContent.expanded {
+  max-height: none;
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filterLabel {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4A5565;
+}
+
+/* Tag Group (Vehicle Type) */
+.tagGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagButton {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4A5565;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  padding: 8px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tagButton:hover:not(:disabled) {
+  background: #F3F4F6;
+  border-color: #D1D5DC;
+  color: #101828;
+}
+
+.tagButton.active {
+  background: #1E88E5;
+  border-color: #1E88E5;
+  color: #ffffff;
+}
+
+.tagButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Select Dropdown (Price Range) */
+.selectWrapper {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #101828;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  padding: 10px 36px 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.select:hover:not(:disabled) {
+  border-color: #D1D5DC;
+  background: #F3F4F6;
+}
+
+.select:focus {
+  border-color: #1E88E5;
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+}
+
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.select option {
+  background: #ffffff;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6B7280;
+  pointer-events: none;
+}
+
+/* Chip Group (Seats & Fuel Type) */
+.chipGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chipButton {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4A5565;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 60px;
+}
+
+.chipButton:hover:not(:disabled) {
+  background: #F9FAFB;
+  border-color: #1E88E5;
+  color: #1E88E5;
+}
+
+.chipButton.active {
+  background: #1E88E5;
+  border-color: #1E88E5;
+  color: #ffffff;
+}
+
+.chipButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .filtersContent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .filtersContainer {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .filtersHeader {
+    margin-bottom: 16px;
+  }
+
+  .filterTitle {
+    font-size: 15px;
+  }
+
+  .filtersContent {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tagGroup,
+  .chipGroup {
+    gap: 6px;
+  }
+
+  .tagButton,
+  .chipButton {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .select {
+    font-size: 13px;
+    padding: 8px 32px 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filtersContainer {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .filterInfo {
+    gap: 6px;
+  }
+
+  .filterIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .filterTitle {
+    font-size: 14px;
+  }
+
+  .activeCount {
+    font-size: 12px;
+    padding: 2px 6px;
+  }
+
+  .resetButton {
+    font-size: 13px;
+    padding: 4px 8px;
+  }
+
+  .toggleButton {
+    width: 28px;
+    height: 28px;
+  }
+
+  .filterLabel {
+    font-size: 13px;
+  }
+
+  .tagButton,
+  .chipButton {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+}
+
+/* Animation for filter changes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.filtersContainer.updating {
+  animation: pulse 0.5s ease;
+}

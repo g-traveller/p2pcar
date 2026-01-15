@@ -1,0 +1,482 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/LoginForm.module.css [app-client] (css) */
+.LoginForm-module__1certW__container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.LoginForm-module__1certW__leftPanel {
+  background-color: #fff;
+  flex-direction: column;
+  width: 50%;
+  padding: 32px 64px;
+  display: flex;
+  position: relative;
+}
+
+.LoginForm-module__1certW__rightPanel {
+  background: linear-gradient(135deg, #155dfc 0%, #193cb8 100%);
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 64px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.LoginForm-module__1certW__backButton {
+  color: #6a7282;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color .2s;
+  display: flex;
+}
+
+.LoginForm-module__1certW__backButton:hover {
+  color: #155dfc;
+}
+
+.LoginForm-module__1certW__logo {
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__logoText {
+  color: #155dfc;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.LoginForm-module__1certW__titleSection {
+  margin-bottom: 40px;
+}
+
+.LoginForm-module__1certW__title {
+  color: #101828;
+  margin-bottom: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.LoginForm-module__1certW__subtitle {
+  color: #4a5565;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+}
+
+.LoginForm-module__1certW__form {
+  flex-direction: column;
+  gap: 24px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__inputGroup {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__label {
+  color: #101828;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.LoginForm-module__1certW__inputWrapper {
+  background-color: #fff;
+  border: 1px solid #d1d5dc;
+  border-radius: 10px;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 16px;
+  transition: border-color .2s, box-shadow .2s;
+  display: flex;
+}
+
+.LoginForm-module__1certW__inputWrapper:hover {
+  border-color: #155dfc;
+}
+
+.LoginForm-module__1certW__inputWrapper:focus-within {
+  border-color: #155dfc;
+  box-shadow: 0 0 0 3px #155dfc1a;
+}
+
+.LoginForm-module__1certW__inputIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.LoginForm-module__1certW__input {
+  color: #101828;
+  background: none;
+  border: none;
+  outline: none;
+  flex: 1;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.LoginForm-module__1certW__input::placeholder {
+  color: #9ca3af;
+}
+
+.LoginForm-module__1certW__input:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.LoginForm-module__1certW__togglePassword {
+  cursor: pointer;
+  color: #6a7282;
+  background: none;
+  border: none;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  transition: color .2s;
+  display: flex;
+}
+
+.LoginForm-module__1certW__togglePassword:hover {
+  color: #155dfc;
+}
+
+.LoginForm-module__1certW__formActions {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.LoginForm-module__1certW__checkboxLabel {
+  color: #4a5565;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__checkbox {
+  cursor: pointer;
+  accent-color: #155dfc;
+  width: 16px;
+  height: 16px;
+}
+
+.LoginForm-module__1certW__forgotLink {
+  color: #155dfc;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.LoginForm-module__1certW__forgotLink:hover {
+  color: #1447e6;
+  text-decoration: underline;
+}
+
+.LoginForm-module__1certW__error {
+  color: #dc2626;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.LoginForm-module__1certW__submitButton {
+  color: #fff;
+  cursor: pointer;
+  background-color: #155dfc;
+  border: none;
+  border-radius: 10px;
+  height: 48px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color .2s;
+}
+
+.LoginForm-module__1certW__submitButton:hover:not(:disabled) {
+  background-color: #1447e6;
+}
+
+.LoginForm-module__1certW__submitButton:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.LoginForm-module__1certW__divider {
+  align-items: center;
+  margin: 24px 0;
+  display: flex;
+}
+
+.LoginForm-module__1certW__divider:before, .LoginForm-module__1certW__divider:after {
+  content: "";
+  background-color: #e5e7eb;
+  flex: 1;
+  height: 1px;
+}
+
+.LoginForm-module__1certW__divider span {
+  color: #9ca3af;
+  padding: 0 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.LoginForm-module__1certW__socialButtons {
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__socialButton {
+  color: #101828;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #d1d5dc;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color .2s, border-color .2s;
+  display: flex;
+}
+
+.LoginForm-module__1certW__socialButton:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #155dfc;
+}
+
+.LoginForm-module__1certW__socialButton:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.LoginForm-module__1certW__registerLink {
+  text-align: center;
+  color: #4a5565;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.LoginForm-module__1certW__registerLink a {
+  color: #155dfc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.LoginForm-module__1certW__registerLink a:hover {
+  text-decoration: underline;
+}
+
+.LoginForm-module__1certW__decorativeCircle1 {
+  background-color: #ffffff0d;
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: -200px;
+  right: -200px;
+}
+
+.LoginForm-module__1certW__decorativeCircle2 {
+  background-color: #ffffff0d;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  bottom: -150px;
+  left: -150px;
+}
+
+.LoginForm-module__1certW__decorativeCircle3 {
+  background-color: #ffffff08;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.LoginForm-module__1certW__heroContent {
+  z-index: 1;
+  max-width: 480px;
+  position: relative;
+}
+
+.LoginForm-module__1certW__heroTitle {
+  color: #fff;
+  margin-bottom: 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.LoginForm-module__1certW__heroSubtitle {
+  color: #dbeafe;
+  margin-bottom: 48px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+}
+
+.LoginForm-module__1certW__features {
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 48px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__feature {
+  gap: 16px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__featureIcon {
+  background-color: #fff3;
+  border-radius: 12px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__featureText {
+  flex: 1;
+}
+
+.LoginForm-module__1certW__featureTitle {
+  color: #fff;
+  margin-bottom: 4px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.LoginForm-module__1certW__featureDescription {
+  color: #dbeafe;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.LoginForm-module__1certW__stats {
+  border-top: 1px solid #fff3;
+  gap: 48px;
+  padding-top: 32px;
+  display: flex;
+}
+
+.LoginForm-module__1certW__stat {
+  text-align: center;
+}
+
+.LoginForm-module__1certW__statValue {
+  color: #fff;
+  margin-bottom: 4px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.LoginForm-module__1certW__statLabel {
+  color: #dbeafe;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .LoginForm-module__1certW__leftPanel {
+    padding: 24px 32px;
+  }
+
+  .LoginForm-module__1certW__rightPanel {
+    padding: 32px;
+  }
+
+  .LoginForm-module__1certW__heroTitle {
+    font-size: 28px;
+  }
+
+  .LoginForm-module__1certW__heroSubtitle {
+    font-size: 16px;
+  }
+
+  .LoginForm-module__1certW__stats {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .LoginForm-module__1certW__container {
+    flex-direction: column;
+  }
+
+  .LoginForm-module__1certW__leftPanel {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .LoginForm-module__1certW__rightPanel {
+    display: none;
+  }
+
+  .LoginForm-module__1certW__title {
+    font-size: 24px;
+  }
+
+  .LoginForm-module__1certW__subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .LoginForm-module__1certW__leftPanel {
+    padding: 16px;
+  }
+
+  .LoginForm-module__1certW__logoText {
+    font-size: 20px;
+  }
+
+  .LoginForm-module__1certW__title {
+    font-size: 22px;
+  }
+
+  .LoginForm-module__1certW__socialButtons {
+    gap: 8px;
+  }
+
+  .LoginForm-module__1certW__socialButton {
+    padding: 0 12px;
+  }
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_LoginForm_module_c5b4e361.css.map*/
