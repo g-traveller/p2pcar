@@ -1,4 +1,4 @@
-import { LoginRequest, LoginResponse, RegisterRequest, ApiResponse } from '@/types/api';
+import { LoginRequest, LoginResponse, RegisterRequest, ApiResponse, SendVerificationCodeRequest, SendVerificationCodeResponse } from '@/types/api';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
@@ -110,6 +110,25 @@ export class AuthApiService {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   }
+
+  /**
+   * Send verification code
+   */
+  static async sendVerificationCode(data: SendVerificationCodeRequest): Promise<ApiResponse<SendVerificationCodeResponse>> {
+    const response = await fetch(`${this.baseUrl}/send-verification-code`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  }
 }
 
 // Convenience functions
@@ -119,5 +138,6 @@ export const logout = (token: string) => AuthApiService.logout(token);
 export const forgotPassword = (email: string) => AuthApiService.forgotPassword(email);
 export const resetPassword = (token: string, password: string) => AuthApiService.resetPassword(token, password);
 export const verifyEmail = (token: string) => AuthApiService.verifyEmail(token);
+export const sendVerificationCode = (data: SendVerificationCodeRequest) => AuthApiService.sendVerificationCode(data);
 
 export default AuthApiService;

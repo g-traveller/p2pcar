@@ -87,10 +87,22 @@ export interface LoginResponse {
 }
 
 export interface RegisterRequest {
-  email: string;
+  email?: string;
+  phone?: string;
   password: string;
   name: string;
+  verificationCode: string;
+}
+
+export interface SendVerificationCodeRequest {
+  type: 'phone' | 'email';
   phone?: string;
+  email?: string;
+}
+
+export interface SendVerificationCodeResponse {
+  message: string;
+  expiresAt: number;
 }
 
 export interface AuthUser {

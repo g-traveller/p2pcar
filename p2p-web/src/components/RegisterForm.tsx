@@ -3,52 +3,72 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './RegisterForm.module.css';
+import { sendVerificationCode } from '@/services/authApi';
+import { RegisterRequest } from '@/types/api';
 
 interface RegisterFormProps {
-  onRegister?: (data: RegisterData) => Promise<void>;
+  onRegister?: (data: RegisterRequest) => Promise<void>;
 }
 
-export interface RegisterData {
+interface FormData {
   name: string;
-  email: string;
-  phone: string;
+  account: string; // Combined field for phone or email
   password: string;
   confirmPassword: string;
+  verificationCode: string;
   agreeToTerms: boolean;
 }
 
 export default function RegisterForm({ onRegister }: RegisterFormProps) {
-  const [formData, setFormData] = useState<RegisterData>({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
-    email: '',
-    phone: '',
+    account: '',
     password: '',
     confirmPassword: '',
+    verificationCode: '',
     agreeToTerms: false,
   });
 
-  const [errors, setErrors] = useState<Partial<Record<keyof RegisterData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+
+  // Detect if input is phone or email
+  const getAccountType = (account: string): 'phone' | 'email' | null => {
+    if (!account.trim()) return null;
+    // Check if it's a phone number (starts with 1 and 11 digits)
+    if (/^1[3-9]\d{9}$/.test(account.trim())) {
+      return 'phone';
+    }
+    // Check if it's an email
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(account.trim())) {
+      return 'email';
+    }
+    return null;
+  };
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<Record<keyof RegisterData, string>> = {};
+    const newErrors: Partial<Record<keyof FormData, string>> = {};
 
     if (!formData.name.trim()) {
       newErrors.name = '请输入您的姓名';
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = '请输入您的邮箱';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = '请输入有效的邮箱地址';
+    if (!formData.account.trim()) {
+      newErrors.account = '请输入您的手机号或邮箱';
+    } else {
+      const accountType = getAccountType(formData.account);
+      if (!accountType) {
+        newErrors.account = '请输入有效的手机号或邮箱地址';
+      }
     }
 
-    if (!formData.phone.trim()) {
-      newErrors.phone = '请输入您的手机号';
-    } else if (!/^1[3-9]\d{9}$/.test(formData.phone)) {
-      newErrors.phone = '请输入有效的手机号码';
+    if (!formData.verificationCode.trim()) {
+      newErrors.verificationCode = '请输入验证码';
+    } else if (formData.verificationCode.length !== 6) {
+      newErrors.verificationCode = '请输入6位验证码';
     }
 
     if (!formData.password) {
@@ -80,8 +100,18 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
 
     setLoading(true);
     try {
+      const accountType = getAccountType(formData.account);
+
+      // Convert to API format
+      const registerData: RegisterRequest = {
+        name: formData.name,
+        password: formData.password,
+        verificationCode: formData.verificationCode,
+        ...(accountType === 'phone' ? { phone: formData.account } : { email: formData.account }),
+      };
+
       if (onRegister) {
-        await onRegister(formData);
+        await onRegister(registerData);
       }
     } catch (error) {
       console.error('Registration failed:', error);
@@ -90,11 +120,50 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
     }
   };
 
-  const handleChange = (field: keyof RegisterData, value: string | boolean) => {
+  const handleChange = (field: keyof FormData, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+  };
+
+  const handleSendVerificationCode = async () => {
+    // Validate account field first
+    const account = formData.account.trim();
+    const accountType = getAccountType(account);
+
+    if (!account) {
+      setErrors(prev => ({ ...prev, account: '请输入您的手机号或邮箱' }));
+      return;
+    }
+
+    if (!accountType) {
+      setErrors(prev => ({ ...prev, account: '请输入有效的手机号或邮箱地址' }));
+      return;
+    }
+
+    try {
+      // Call API to send verification code
+      await sendVerificationCode({
+        type: accountType,
+        [accountType]: account,
+      });
+
+      // Start countdown
+      setCountdown(60);
+      const timer = setInterval(() => {
+        setCountdown(prev => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } catch (error) {
+      console.error('Failed to send verification code:', error);
+      setErrors(prev => ({ ...prev, verificationCode: '发送验证码失败，请稍后重试' }));
     }
   };
 
@@ -137,42 +206,53 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
             {errors.name && <span className={styles.errorText}>{errors.name}</span>}
           </div>
 
-          {/* Email Field */}
+          {/* Phone/Email Field */}
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>邮箱地址</label>
-            <div className={styles.inputContainer}>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={styles.inputIcon}>
-                <path d="M2 5L10 11L18 5" stroke="rgba(10, 10, 10, 0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <rect x="1" y="3" width="18" height="14" rx="2" stroke="rgba(10, 10, 10, 0.5)" strokeWidth="1.5"/>
-              </svg>
-              <input
-                type="email"
-                className={styles.input}
-                placeholder="请输入您的邮箱"
-                value={formData.email}
-                onChange={(e) => handleChange('email', e.target.value)}
-              />
-            </div>
-            {errors.email && <span className={styles.errorText}>{errors.email}</span>}
-          </div>
-
-          {/* Phone Field */}
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>手机号码</label>
+            <label className={styles.label}>手机号/邮箱</label>
             <div className={styles.inputContainer}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={styles.inputIcon}>
                 <path d="M4 4H16C17.1046 4 18 4.89543 18 6V14C18 15.1046 17.1046 16 16 16H4C2.89543 16 2 15.1046 2 14V6C2 4.89543 2.89543 4 4 4Z" stroke="rgba(10, 10, 10, 0.5)" strokeWidth="1.5"/>
-                <path d="M2 7L10 12L18 7" stroke="rgba(10, 10, 10, 0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 5L10 11L18 5" stroke="rgba(10, 10, 10, 0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               <input
-                type="tel"
+                type="text"
                 className={styles.input}
-                placeholder="请输入您的手机号"
-                value={formData.phone}
-                onChange={(e) => handleChange('phone', e.target.value)}
+                placeholder="请输入您的手机号或邮箱"
+                value={formData.account}
+                onChange={(e) => handleChange('account', e.target.value)}
               />
             </div>
-            {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
+            {errors.account && <span className={styles.errorText}>{errors.account}</span>}
+          </div>
+
+          {/* Verification Code Field */}
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>验证码</label>
+            <div className={styles.verificationContainer}>
+              <div className={styles.inputContainer}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={styles.inputIcon}>
+                  <path d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2Z" stroke="rgba(10, 10, 10, 0.5)" strokeWidth="1.5"/>
+                  <path d="M10 6V10L13 13" stroke="rgba(10, 10, 10, 0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="请输入验证码"
+                  value={formData.verificationCode}
+                  onChange={(e) => handleChange('verificationCode', e.target.value)}
+                  maxLength={6}
+                />
+              </div>
+              <button
+                type="button"
+                className={styles.sendCodeButton}
+                onClick={handleSendVerificationCode}
+                disabled={countdown > 0}
+              >
+                {countdown > 0 ? `${countdown}秒` : '获取验证码'}
+              </button>
+            </div>
+            {errors.verificationCode && <span className={styles.errorText}>{errors.verificationCode}</span>}
           </div>
 
           {/* Password Field */}
@@ -285,21 +365,19 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
 
           {/* Social Login Buttons */}
           <button type="button" className={styles.socialButton}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M19.6 10.23c0-3.22-1.17-5.88-3.13-7.55l.02-.03C14.52 1.1 12.46 0 10 0 7.54 0 5.48 1.1 3.51 2.65l.02.03C1.57 4.35.4 7.01.4 10.23c0 3.22 1.17 5.88 3.13 7.55l-.02.03C5.48 19.65 7.54 20.8 10 20.8c2.46 0 4.52-1.15 6.49-2.72l-.02-.03c1.96-1.67 3.13-4.33 3.13-7.55v-.27z" fill="#EA4335"/>
-              <path d="M10 20.8c2.46 0 4.52-1.15 6.49-2.72v-4.2H10v3.12h3.87c-.24 1.39-.81 2.49-1.72 3.23v2.52h2.77c1.6-1.48 2.53-3.64 2.53-6.15v-.8h-8.45z" fill="#4285F4"/>
-              <path d="M10 20.8c2.46 0 4.52-1.15 6.49-2.72v-4.2H10v3.12h3.87c-.24 1.39-.81 2.49-1.72 3.23v2.52h2.77c1.6-1.48 2.53-3.64 2.53-6.15v-.8h-8.45z" fill="#34A853"/>
-              <path d="M10 20.8v-4.2h6.49c1.6-1.48 2.53-3.64 2.53-6.15 0-2.51-.93-4.67-2.53-6.15H10v16.5z" fill="#FBBC05"/>
-              <path d="M10 20.8v-4.2h6.49c1.6-1.48 2.53-3.64 2.53-6.15 0-2.51-.93-4.67-2.53-6.15H10v16.5z" fill="#EA4335"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M11.176 14.429c-2.665 0-4.826-1.8-4.826-4.018 0-2.22 2.159-4.02 4.824-4.02S16 8.191 16 10.411c0 1.21-.65 2.301-1.666 3.036a.32.32 0 0 0-.12.366l.218.81a.6.6 0 0 1 .029.117.166.166 0 0 1-.162.162.2.2 0 0 1-.092-.03l-1.057-.61a.5.5 0 0 0-.256-.074.5.5 0 0 0-.142.021 5.7 5.7 0 0 1-1.576.22M9.064 9.542a.647.647 0 1 0 .557-1 .645.645 0 0 0-.646.647.6.6 0 0 0 .09.353Zm3.232.001a.646.646 0 1 0 .546-1 .645.645 0 0 0-.644.644.63.63 0 0 0 .098.356"/>
+              <path d="M0 6.826c0 1.455.781 2.765 2.001 3.656a.385.385 0 0 1 .143.439l-.161.6-.1.373a.5.5 0 0 0-.032.14.19.19 0 0 0 .193.193q.06 0 .111-.029l1.268-.733a.6.6 0 0 1 .308-.088q.088 0 .171.025a6.8 6.8 0 0 0 1.625.26 4.5 4.5 0 0 1-.177-1.251c0-2.936 2.785-5.02 5.824-5.02l.15.002C10.587 3.429 8.392 2 5.796 2 2.596 2 0 4.16 0 6.826m4.632-1.555a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0m3.875 0a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0"/>
             </svg>
-            <span>使用 Google 继续</span>
+            <span>使用微信继续</span>
           </button>
 
           <button type="button" className={styles.socialButton}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M20 10.038C20 4.493 15.522 0 10 0S0 4.493 0 10.038C0 15.07 3.705 19.195 8.438 20v-7.03H5.898v-2.932h2.54V7.45c0-2.51 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.47h-1.26c-.98 0-1.285.61-1.285 1.24v1.51h2.77l-.443 2.932h-2.327V20C15.295 19.195 20 15.07 20 10.038z" fill="#1877F2"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M2.541 0H13.5a2.55 2.55 0 0 1 2.54 2.563v8.297c-.006 0-.531-.046-2.978-.813-.412-.14-.916-.327-1.479-.536q-.456-.17-.957-.353a13 13 0 0 0 1.325-3.373H8.822V4.649h3.831v-.634h-3.83V2.121H7.26c-.274 0-.274.273-.274.273v1.621H3.11v.634h3.875v1.136h-3.2v.634H9.99c-.227.789-.532 1.53-.894 2.202-2.013-.67-4.161-1.212-5.51-.878-.864.214-1.42.597-1.746.998-1.499 1.84-.424 4.633 2.741 4.633 1.872 0 3.675-1.053 5.072-2.787 2.08 1.008 6.37 2.738 6.387 2.745v.105A2.55 2.55 0 0 1 13.5 16H2.541A2.55 2.55 0 0 1 0 13.437V2.563A2.55 2.55 0 0 1 2.541 0"/>
+              <path d="M2.309 9.27c-1.22 1.073-.49 3.034 1.978 3.034 1.434 0 2.868-.925 3.994-2.406-1.602-.789-2.959-1.353-4.425-1.207-.397.04-1.14.217-1.547.58Z"/>
             </svg>
-            <span>使用 Facebook 继续</span>
+            <span>使用支付宝继续</span>
           </button>
 
           {/* Login Link */}
