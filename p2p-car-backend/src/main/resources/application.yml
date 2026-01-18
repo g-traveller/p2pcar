@@ -55,6 +55,10 @@ spring:
     redis:
       time-to-live: 600000
 
+  # Mail Configuration (optional - for email verification)
+  # Disabled by default - verification codes will be logged only
+  # To enable: set MAIL_ENABLED=true and provide MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD
+
 # JWT Configuration
 jwt:
   secret: ${JWT_SECRET:zWT9vTSnoaXCXZUPNWYOnUDOWD/ii9sNmr/ZUWYu9lgVAd2tf2zkyVmONo+DJH+nviKW39IQpl5NO1+055YNAg==}
@@ -75,6 +79,8 @@ file:
 
 # Application Configuration
 app:
+  mail:
+    enabled: ${MAIL_ENABLED:false}
   cors:
     allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:3001}
     allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH

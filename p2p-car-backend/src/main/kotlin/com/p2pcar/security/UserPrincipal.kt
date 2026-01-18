@@ -7,7 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails
 
 data class UserPrincipal(
     val id: Long,
-    val phone: String,
+    val phone: String?,
+    val email: String?,
     private val userPassword: String,
     val name: String,
     val role: String,
@@ -20,7 +21,7 @@ data class UserPrincipal(
 
     override fun getPassword(): String = userPassword
 
-    override fun getUsername(): String = phone
+    override fun getUsername(): String = phone ?: email ?: ""
 
     override fun isAccountNonExpired(): Boolean = true
 
@@ -35,6 +36,7 @@ data class UserPrincipal(
             return UserPrincipal(
                 id = user.id!!,
                 phone = user.phone,
+                email = user.email,
                 userPassword = user.passwordHash,
                 name = user.name,
                 role = user.role.name,

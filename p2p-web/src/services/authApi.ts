@@ -18,7 +18,8 @@ export class AuthApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
     }
 
     return response.json();
@@ -37,7 +38,8 @@ export class AuthApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
     }
 
     return response.json();
@@ -56,7 +58,8 @@ export class AuthApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
     }
   }
 
@@ -73,7 +76,8 @@ export class AuthApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
     }
   }
 
@@ -90,7 +94,8 @@ export class AuthApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
     }
   }
 
@@ -107,7 +112,8 @@ export class AuthApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
     }
   }
 
@@ -124,10 +130,50 @@ export class AuthApiService {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
     }
 
     return response.json();
+  }
+
+  /**
+   * Extract error data from failed response
+   */
+  private static async extractErrorData(response: Response): Promise<never> {
+    let errorData: any = {
+      code: response.status,
+      message: `HTTP error! status: ${response.status}`,
+      response: {
+        status: response.status,
+        data: null
+      }
+    };
+
+    try {
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const json = await response.json();
+        errorData = {
+          ...errorData,
+          ...json,
+          response: {
+            ...errorData.response,
+            data: json
+          }
+        };
+      } else {
+        const text = await response.text();
+        errorData.message = text || errorData.message;
+      }
+    } catch (e) {
+      // If parsing fails, use default error data
+    }
+
+    const error = new Error(errorData.message || 'Request failed') as any;
+    error.response = errorData.response;
+    error.code = errorData.code;
+    throw error;
   }
 }
 

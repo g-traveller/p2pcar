@@ -27,22 +27,46 @@ class UserService(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
     private val jwtTokenProvider: JwtTokenProvider,
-    private val authenticationManager: AuthenticationManager
+    private val authenticationManager: AuthenticationManager,
+    private val verificationCodeService: VerificationCodeService
 ) {
 
     fun register(request: RegisterRequest): Pair<String, UserResponse> {
-        ValidationUtil.checkPhoneNumber(request.phone)
-        ValidationUtil.checkPassword(request.password)
+        // Determine if registering with phone or email
+        val isPhoneRegistration = !request.phone.isNullOrBlank()
 
-        if (userRepository.existsByPhone(request.phone)) {
-            throw BusinessException(ErrorCode.USER_EXISTS)
+        when {
+            isPhoneRegistration -> {
+                ValidationUtil.checkPhoneNumber(request.phone!!)
+                if (userRepository.existsByPhone(request.phone)) {
+                    throw BusinessException(ErrorCode.PHONE_ALREADY_REGISTERED)
+                }
+                verificationCodeService.verifyCode("phone", request.phone, request.code)
+            }
+            !request.email.isNullOrBlank() -> {
+                if (userRepository.existsByEmail(request.email)) {
+                    throw BusinessException(ErrorCode.EMAIL_ALREADY_REGISTERED)
+                }
+                verificationCodeService.verifyCode("email", request.email, request.code)
+            }
+            else -> {
+                throw BusinessException(ErrorCode.BAD_REQUEST, "请提供手机号或邮箱")
+            }
         }
 
-        // TODO: Verify verification code from Redis
-        // verifyCode(request.phone, request.code)
+        ValidationUtil.checkPassword(request.password)
+
+        // Validate name
+        if (request.name.length < 2) {
+            throw BusinessException(ErrorCode.NAME_TOO_SHORT)
+        }
+        if (request.name.length > 50) {
+            throw BusinessException(ErrorCode.NAME_TOO_LONG)
+        }
 
         val user = User(
-            phone = request.phone,
+            phone = if (isPhoneRegistration) request.phone else null,
+            email = if (!isPhoneRegistration) request.email else null,
             passwordHash = passwordEncoder.encode(request.password),
             name = request.name,
             role = try { UserRole.valueOf(request.role.uppercase()) } catch (e: Exception) { UserRole.RENTER },
@@ -50,9 +74,12 @@ class UserService(
         )
 
         val savedUser = userRepository.save(user)
+
+        // Generate token using phone or email
+        val identifier = if (isPhoneRegistration) savedUser.phone else savedUser.email
         val token = jwtTokenProvider.generateTokenFromUserId(
             savedUser.id!!,
-            savedUser.phone,
+            identifier!!,
             savedUser.role.name
         )
 

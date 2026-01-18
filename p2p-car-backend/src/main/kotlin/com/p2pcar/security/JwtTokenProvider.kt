@@ -25,6 +25,7 @@ class JwtTokenProvider(
         return Jwts.builder()
             .setSubject(userPrincipal.id.toString())
             .claim("phone", userPrincipal.phone)
+            .claim("email", userPrincipal.email)
             .claim("role", userPrincipal.role)
             .setIssuedAt(now)
             .setExpiration(expiryDate)
@@ -32,13 +33,16 @@ class JwtTokenProvider(
             .compact()
     }
 
-    fun generateTokenFromUserId(userId: Long, phone: String, role: String): String {
+    fun generateTokenFromUserId(userId: Long, identifier: String, role: String): String {
         val now = Date()
         val expiryDate = Date(now.time + jwtExpiration)
 
+        val isEmail = identifier.contains("@")
+
         return Jwts.builder()
             .setSubject(userId.toString())
-            .claim("phone", phone)
+            .claim("phone", if (isEmail) null else identifier)
+            .claim("email", if (isEmail) identifier else null)
             .claim("role", role)
             .setIssuedAt(now)
             .setExpiration(expiryDate)

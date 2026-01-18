@@ -2,10 +2,13 @@ package com.p2pcar.controller
 
 import com.p2pcar.dto.request.LoginRequest
 import com.p2pcar.dto.request.RegisterRequest
+import com.p2pcar.dto.request.SendVerificationCodeRequest
 import com.p2pcar.dto.response.ApiResponse
 import com.p2pcar.dto.response.AuthResponse
+import com.p2pcar.dto.response.SendVerificationCodeResponse
 import com.p2pcar.dto.response.UserResponse
 import com.p2pcar.service.UserService
+import com.p2pcar.service.VerificationCodeService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,8 +16,27 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/auth")
 class AuthController(
-    private val userService: UserService
+    private val userService: UserService,
+    private val verificationCodeService: VerificationCodeService
 ) {
+
+    @PostMapping("/send-verification-code")
+    fun sendVerificationCode(@Valid @RequestBody request: SendVerificationCodeRequest): ResponseEntity<ApiResponse<SendVerificationCodeResponse>> {
+        val target = when (request.type.lowercase()) {
+            "phone" -> request.phone
+            "email" -> request.email
+            else -> null
+        }
+
+        val expiresAt = verificationCodeService.sendVerificationCode(request.type, target)
+
+        val response = SendVerificationCodeResponse(
+            message = "Verification code sent successfully",
+            expiresAt = expiresAt
+        )
+
+        return ResponseEntity.ok(ApiResponse.success(response))
+    }
 
     @PostMapping("/register")
     fun register(@Valid @RequestBody request: RegisterRequest): ResponseEntity<ApiResponse<AuthResponse>> {

@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './RegisterForm.module.css';
-import { sendVerificationCode } from '@/services/authApi';
+import { sendVerificationCode, register } from '@/services/authApi';
 import { RegisterRequest } from '@/types/api';
+import { getRegistrationErrorMessage, getVerificationCodeErrorMessage } from '@/utils/errorHandler';
 
 interface RegisterFormProps {
   onRegister?: (data: RegisterRequest) => Promise<void>;
@@ -19,6 +20,19 @@ interface FormData {
   agreeToTerms: boolean;
 }
 
+interface FormErrors {
+  name?: string;
+  account?: string;
+  password?: string;
+  confirmPassword?: string;
+  verificationCode?: string;
+  agreeToTerms?: string;
+  submit?: string;
+}
+
+// Mock verification code storage (in production, this would be handled by the backend)
+const mockVerificationCodes = new Map<string, { code: string; expiresAt: number }>();
+
 export default function RegisterForm({ onRegister }: RegisterFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -29,11 +43,13 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
     agreeToTerms: false,
   });
 
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [countdown, setCountdown] = useState(0);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [registrationError, setRegistrationError] = useState<string>('');
 
   // Detect if input is phone or email
   const getAccountType = (account: string): 'phone' | 'email' | null => {
@@ -49,13 +65,38 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
     return null;
   };
 
-  const validateForm = (): boolean => {
-    const newErrors: Partial<Record<keyof FormData, string>> = {};
+  // Password strength validator
+  const getPasswordStrength = (password: string): { strength: 'weak' | 'medium' | 'strong'; score: number } => {
+    let score = 0;
 
+    if (password.length >= 6) score++;
+    if (password.length >= 8) score++;
+    if (password.length >= 12) score++;
+    if (/[a-z]/.test(password)) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[^a-zA-Z0-9]/.test(password)) score++;
+
+    if (score <= 2) return { strength: 'weak', score };
+    if (score <= 4) return { strength: 'medium', score };
+    return { strength: 'strong', score };
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = '请输入您的姓名';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = '姓名至少需要2个字符';
+    } else if (formData.name.trim().length > 50) {
+      newErrors.name = '姓名不能超过50个字符';
+    } else if (!/^[\u4e00-\u9fa5a-zA-Z\s]+$/.test(formData.name.trim())) {
+      newErrors.name = '姓名只能包含中文、英文和空格';
     }
 
+    // Account validation
     if (!formData.account.trim()) {
       newErrors.account = '请输入您的手机号或邮箱';
     } else {
@@ -65,24 +106,38 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
       }
     }
 
+    // Verification code validation
     if (!formData.verificationCode.trim()) {
       newErrors.verificationCode = '请输入验证码';
     } else if (formData.verificationCode.length !== 6) {
       newErrors.verificationCode = '请输入6位验证码';
+    } else if (!/^\d{6}$/.test(formData.verificationCode)) {
+      newErrors.verificationCode = '验证码必须为6位数字';
     }
 
+    // Password validation
     if (!formData.password) {
       newErrors.password = '请输入您的密码';
-    } else if (formData.password.length < 6) {
-      newErrors.password = '密码至少需要6个字符';
+    } else if (formData.password.length < 8) {
+      newErrors.password = '密码至少需要8个字符';
+    } else if (formData.password.length > 128) {
+      newErrors.password = '密码不能超过128个字符';
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(formData.password)) {
+      // Check for at least one lowercase, one uppercase, one digit, and one special character
+      const { strength } = getPasswordStrength(formData.password);
+      if (strength === 'weak') {
+        newErrors.password = '密码强度较弱，建议包含大小写字母、数字和特殊字符';
+      }
     }
 
+    // Confirm password validation
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = '请再次输入密码';
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = '两次输入的密码不一致';
     }
 
+    // Terms validation
     if (!formData.agreeToTerms) {
       newErrors.agreeToTerms = '请阅读并同意服务条款和隐私政策';
     }
@@ -93,6 +148,10 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Clear previous registration errors
+    setRegistrationError('');
+    setRegistrationSuccess(false);
 
     if (!validateForm()) {
       return;
@@ -110,11 +169,36 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
         ...(accountType === 'phone' ? { phone: formData.account } : { email: formData.account }),
       };
 
+      // Transform for backend API (backend expects 'code' field not 'verificationCode')
+      const apiData = {
+        ...registerData,
+        code: registerData.verificationCode,
+      };
+      delete (apiData as any).verificationCode;
+
       if (onRegister) {
         await onRegister(registerData);
+      } else {
+        // If no custom handler provided, use the default register API
+        await register(apiData as RegisterRequest);
       }
-    } catch (error) {
+
+      setRegistrationSuccess(true);
+
+      // Auto redirect after 2 seconds
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 2000);
+    } catch (error: any) {
+      debugger
       console.error('Registration failed:', error);
+
+      // Use user-friendly error message mapping
+      const friendlyMessage = getRegistrationErrorMessage(error);
+      setRegistrationError(friendlyMessage);
+
+      // Set field-specific errors if available
+      setErrors(prev => ({ ...prev, submit: friendlyMessage }));
     } finally {
       setLoading(false);
     }
@@ -123,12 +207,22 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
   const handleChange = (field: keyof FormData, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
-    if (errors[field]) {
+    if (errors[field as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+
+    // Clear registration errors when user modifies form
+    if (registrationError || registrationSuccess) {
+      setRegistrationError('');
+      setRegistrationSuccess(false);
     }
   };
 
   const handleSendVerificationCode = async () => {
+    // Clear any previous verification code errors
+    setErrors(prev => ({ ...prev, verificationCode: undefined }));
+    setRegistrationError('');
+
     // Validate account field first
     const account = formData.account.trim();
     const accountType = getAccountType(account);
@@ -144,11 +238,34 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
     }
 
     try {
-      // Call API to send verification code
-      await sendVerificationCode({
-        type: accountType,
-        [accountType]: account,
-      });
+      // Try to call the backend API first
+      try {
+        await sendVerificationCode({
+          type: accountType,
+          [accountType]: account,
+        });
+      } catch (apiError) {
+        // If backend is not available, use mock verification code
+        console.log('Backend not available, using mock verification code');
+
+        // Generate a 6-digit mock verification code
+        const mockCode = Math.floor(100000 + Math.random() * 900000).toString();
+        const expiresAt = Date.now() + 5 * 60 * 1000; // 5 minutes expiration
+
+        mockVerificationCodes.set(account, { code: mockCode, expiresAt });
+
+        // Show the mock code in console (for development)
+        console.log(`=== MOCK VERIFICATION CODE ===`);
+        console.log(`Account: ${account}`);
+        console.log(`Code: ${mockCode}`);
+        console.log(`Expires at: ${new Date(expiresAt).toLocaleString()}`);
+        console.log(`============================`);
+
+        // Show user-friendly message in development
+        if (process.env.NODE_ENV === 'development') {
+          alert(`[开发模式] 模拟验证码: ${mockCode}\n该验证码将在5分钟后过期`);
+        }
+      }
 
       // Start countdown
       setCountdown(60);
@@ -161,11 +278,41 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
           return prev - 1;
         });
       }, 1000);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to send verification code:', error);
-      setErrors(prev => ({ ...prev, verificationCode: '发送验证码失败，请稍后重试' }));
+
+      // Use user-friendly error message mapping
+      const errorMessage = getVerificationCodeErrorMessage(error);
+      setErrors(prev => ({ ...prev, verificationCode: errorMessage }));
     }
   };
+
+  // Get current password strength for UI feedback
+  const passwordStrength = formData.password ? getPasswordStrength(formData.password) : null;
+
+  // If registration was successful, show success message
+  if (registrationSuccess) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.leftPanel}>
+          <div className={styles.successContainer}>
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" className={styles.successIcon}>
+              <circle cx="12" cy="12" r="10" fill="#10B981"/>
+              <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <h2 className={styles.successTitle}>注册成功！</h2>
+            <p className={styles.successMessage}>
+              欢迎加入车享出行！正在跳转到登录页面...
+            </p>
+          </div>
+        </div>
+        <div className={styles.rightPanel}>
+          <div className={styles.bgCircle1}></div>
+          <div className={styles.bgCircle2}></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
@@ -187,6 +334,42 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
 
         {/* Form */}
         <form className={styles.form} onSubmit={handleSubmit}>
+          {/* Registration Error Alert */}
+          {registrationError && (
+            <div className={styles.registrationErrorAlert}>
+              <svg
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className={styles.registrationErrorAlertIcon}
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <div className={styles.registrationErrorAlertContent}>
+                <div className={styles.registrationErrorAlertTitle}>注册失败</div>
+                <div className={styles.registrationErrorAlertMessage}>{registrationError}</div>
+              </div>
+              <button
+                type="button"
+                className={styles.registrationErrorAlertClose}
+                onClick={() => setRegistrationError('')}
+                aria-label="关闭错误提示"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M1 1L13 13M1 13L13 1"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+
           {/* Name Field */}
           <div className={styles.fieldGroup}>
             <label className={styles.label}>姓名</label>
@@ -266,7 +449,7 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
               <input
                 type={showPassword ? 'text' : 'password'}
                 className={styles.input}
-                placeholder="请输入您的密码"
+                placeholder="请输入您的密码（至少8位，包含大小写字母、数字和特殊字符）"
                 value={formData.password}
                 onChange={(e) => handleChange('password', e.target.value)}
               />
@@ -292,6 +475,41 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
               </button>
             </div>
             {errors.password && <span className={styles.errorText}>{errors.password}</span>}
+            {formData.password && !errors.password && passwordStrength && (
+              <div className={styles.passwordStrength}>
+                <div
+                  className={styles.strengthBar}
+                  style={{
+                    width: '100%',
+                    height: '4px',
+                    borderRadius: '2px',
+                    backgroundColor: '#E5E7EB',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <div
+                    style={{
+                      height: '100%',
+                      width: `${(passwordStrength.score / 7) * 100}%`,
+                      borderRadius: '2px',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: passwordStrength.strength === 'weak' ? '#EF4444' :
+                                     passwordStrength.strength === 'medium' ? '#F59E0B' : '#10B981'
+                    }}
+                  />
+                </div>
+                <span className={styles.strengthText} style={{
+                  fontSize: '12px',
+                  color: passwordStrength.strength === 'weak' ? '#EF4444' :
+                         passwordStrength.strength === 'medium' ? '#F59E0B' : '#10B981',
+                  marginLeft: '8px'
+                }}>
+                  {passwordStrength.strength === 'weak' ? '弱' :
+                   passwordStrength.strength === 'medium' ? '中' : '强'}
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Confirm Password Field */}

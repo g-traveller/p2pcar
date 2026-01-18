@@ -32,5 +32,5 @@ data class UserSummary(
     val id: Long,
     val name: String,
     val avatar: String?,
-    val phone: String
+    val phone: String?
 )

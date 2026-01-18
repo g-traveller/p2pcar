@@ -3,11 +3,14 @@ package com.p2pcar.dto.request
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
+import jakarta.validation.constraints.Email
 
 data class RegisterRequest(
-    @field:NotBlank(message = "Phone number is required")
     @field:Pattern(regexp = "^1[3-9]\\d{9}$", message = "Invalid phone number format")
-    val phone: String,
+    val phone: String? = null,
+
+    @field:Email(message = "Invalid email format")
+    val email: String? = null,
 
     @field:NotBlank(message = "Password is required")
     @field:Size(min = 6, max = 50, message = "Password must be between 6 and 50 characters")
@@ -22,4 +25,14 @@ data class RegisterRequest(
     val name: String,
 
     val role: String = "RENTER"
-)
+) {
+    init {
+        // Validate that either phone or email is provided
+        if (phone.isNullOrBlank() && email.isNullOrBlank()) {
+            throw IllegalArgumentException("Either phone or email must be provided")
+        }
+        if (!phone.isNullOrBlank() && !email.isNullOrBlank()) {
+            throw IllegalArgumentException("Only one of phone or email should be provided")
+        }
+    }
+}

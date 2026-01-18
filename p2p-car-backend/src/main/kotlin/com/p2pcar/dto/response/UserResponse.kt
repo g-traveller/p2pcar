@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 data class UserResponse(
     val id: Long,
-    val phone: String,
+    val phone: String?,
     val email: String?,
     val name: String,
     val avatar: String?,

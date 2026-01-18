@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 @Entity
 @Table(name = "users", indexes = [
     Index(name = "idx_users_phone", columnList = "phone"),
+    Index(name = "idx_users_email", columnList = "email"),
     Index(name = "idx_users_status", columnList = "status")
 ])
 data class User(
@@ -13,8 +14,8 @@ data class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column(nullable = false, unique = true, length = 20)
-    var phone: String,
+    @Column(unique = true, length = 20)
+    var phone: String? = null,
 
     @Column(unique = true, length = 100)
     var email: String? = null,

@@ -26,9 +26,11 @@ class GlobalExceptionHandler {
         request: HttpServletRequest
     ): ResponseEntity<ApiResponse<Nothing>> {
         logger.warn("Business exception: ${ex.message} at ${request.requestURI}")
+        // Use HTTP status from ErrorCode enum
+        val httpStatus = HttpStatus.valueOf(ex.errorCode.httpStatus)
         return ResponseEntity(
             ApiResponse.error(ex.code, ex.message ?: ex.errorCode.message),
-            HttpStatus.valueOf(ex.code)
+            httpStatus
         )
     }
 
