@@ -1,18 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import styles from './RegisterForm.module.css';
 import { sendVerificationCode, register } from '@/services/authApi';
 import { RegisterRequest } from '@/types/api';
 import { getRegistrationErrorMessage, getVerificationCodeErrorMessage } from '@/utils/errorHandler';
+import { useWeChatOAuth } from '@/hooks/useWeChatOAuth';
 
 interface RegisterFormProps {
   onRegister?: (data: RegisterRequest) => Promise<void>;
 }
 
 interface FormData {
-  name: string;
+  name: string; // 昵称
   account: string; // Combined field for phone or email
   password: string;
   confirmPassword: string;
@@ -34,6 +36,8 @@ interface FormErrors {
 const mockVerificationCodes = new Map<string, { code: string; expiresAt: number }>();
 
 export default function RegisterForm({ onRegister }: RegisterFormProps) {
+  const searchParams = useSearchParams();
+  const { initiateOAuth, handleCallback, isLoading: isOAuthLoading } = useWeChatOAuth();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     account: '',
@@ -50,6 +54,26 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
   const [countdown, setCountdown] = useState(0);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [registrationError, setRegistrationError] = useState<string>('');
+
+  // Handle WeChat OAuth callback
+  useEffect(() => {
+    const code = searchParams.get('code');
+    const state = searchParams.get('state');
+
+    if (code && state) {
+      const handleOAuthCallback = async () => {
+        try {
+          await handleCallback(code, state);
+          // Redirect to home page after successful login
+          window.location.href = '/';
+        } catch (err) {
+          setRegistrationError(err instanceof Error ? err.message : '微信登录失败');
+        }
+      };
+
+      handleOAuthCallback();
+    }
+  }, [searchParams, handleCallback]);
 
   // Detect if input is phone or email
   const getAccountType = (account: string): 'phone' | 'email' | null => {
@@ -85,15 +109,15 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Name validation
+    // Nickname validation
     if (!formData.name.trim()) {
-      newErrors.name = '请输入您的姓名';
+      newErrors.name = '请输入您的昵称';
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = '姓名至少需要2个字符';
+      newErrors.name = '昵称至少需要2个字符';
     } else if (formData.name.trim().length > 50) {
-      newErrors.name = '姓名不能超过50个字符';
-    } else if (!/^[\u4e00-\u9fa5a-zA-Z\s]+$/.test(formData.name.trim())) {
-      newErrors.name = '姓名只能包含中文、英文和空格';
+      newErrors.name = '昵称不能超过50个字符';
+    } else if (!/^[\u4e00-\u9fa5a-zA-Z0-9_\s]+$/.test(formData.name.trim())) {
+      newErrors.name = '昵称只能包含中文、英文、数字、下划线和空格';
     }
 
     // Account validation
@@ -190,7 +214,6 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
         window.location.href = '/login';
       }, 2000);
     } catch (error: any) {
-      debugger
       console.error('Registration failed:', error);
 
       // Use user-friendly error message mapping
@@ -201,6 +224,19 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
       setErrors(prev => ({ ...prev, submit: friendlyMessage }));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSocialLogin = async (provider: 'wechat' | 'alipay') => {
+    if (provider === 'wechat') {
+      try {
+        await initiateOAuth();
+      } catch (err) {
+        setRegistrationError(err instanceof Error ? err.message : '微信登录失败');
+      }
+    } else {
+      // TODO: Implement Alipay login
+      console.log(`Social login with ${provider}`);
     }
   };
 
@@ -372,7 +408,7 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
 
           {/* Name Field */}
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>姓名</label>
+            <label className={styles.label}>昵称</label>
             <div className={styles.inputContainer}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className={styles.inputIcon}>
                 <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="rgba(10, 10, 10, 0.5)"/>
@@ -381,7 +417,7 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
               <input
                 type="text"
                 className={styles.input}
-                placeholder="请输入您的姓名"
+                placeholder="请输入您的昵称"
                 value={formData.name}
                 onChange={(e) => handleChange('name', e.target.value)}
               />
@@ -590,7 +626,7 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
             <span>使用微信继续</span>
           </button>
 
-          <button type="button" className={styles.socialButton}>
+          <button type="button" className={styles.socialButton} onClick={() => handleSocialLogin('wechat')} disabled={loading || isOAuthLoading}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
               <path d="M2.541 0H13.5a2.55 2.55 0 0 1 2.54 2.563v8.297c-.006 0-.531-.046-2.978-.813-.412-.14-.916-.327-1.479-.536q-.456-.17-.957-.353a13 13 0 0 0 1.325-3.373H8.822V4.649h3.831v-.634h-3.83V2.121H7.26c-.274 0-.274.273-.274.273v1.621H3.11v.634h3.875v1.136h-3.2v.634H9.99c-.227.789-.532 1.53-.894 2.202-2.013-.67-4.161-1.212-5.51-.878-.864.214-1.42.597-1.746.998-1.499 1.84-.424 4.633 2.741 4.633 1.872 0 3.675-1.053 5.072-2.787 2.08 1.008 6.37 2.738 6.387 2.745v.105A2.55 2.55 0 0 1 13.5 16H2.541A2.55 2.55 0 0 1 0 13.437V2.563A2.55 2.55 0 0 1 2.541 0"/>
               <path d="M2.309 9.27c-1.22 1.073-.49 3.034 1.978 3.034 1.434 0 2.868-.925 3.994-2.406-1.602-.789-2.959-1.353-4.425-1.207-.397.04-1.14.217-1.547.58Z"/>

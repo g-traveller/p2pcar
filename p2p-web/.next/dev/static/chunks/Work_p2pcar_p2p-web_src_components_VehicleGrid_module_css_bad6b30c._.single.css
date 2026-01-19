@@ -1,6 +1,6 @@
 /* [project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.module.css [app-client] (css) */
 .VehicleGrid-module__7DL0oW__gridContainer {
-  max-width: 1280px;
+  max-width: 1536px;
   margin: 0 auto;
   padding: 32px 128px 64px;
 }
@@ -56,12 +56,18 @@
 }
 
 .VehicleGrid-module__7DL0oW__grid {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   display: grid;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+  .VehicleGrid-module__7DL0oW__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
   .VehicleGrid-module__7DL0oW__grid {
     grid-template-columns: repeat(2, 1fr);
   }

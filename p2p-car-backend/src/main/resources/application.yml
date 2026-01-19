@@ -65,6 +65,19 @@ jwt:
   expiration: 86400000  # 24 hours
   refresh-expiration: 604800000  # 7 days
 
+# OAuth Configuration
+oauth:
+  wechat:
+    enabled: ${WECHAT_ENABLED:true}
+    app-id: ${WECHAT_APP_ID:your_wechat_app_id}
+    app-secret: ${WECHAT_APP_SECRET:your_wechat_app_secret}
+    redirect-uri: ${WECHAT_REDIRECT_URI:http://localhost:3000/auth/wechat/callback}
+    scope: snsapi_login
+    # WeChat OAuth URLs
+    authorize-url: https://open.weixin.qq.com/connect/qrconnect
+    access-token-url: https://api.weixin.qq.com/sns/oauth2/access_token
+    user-info-url: https://api.weixin.qq.com/sns/userinfo
+
 # File Storage Configuration
 file:
   storage:

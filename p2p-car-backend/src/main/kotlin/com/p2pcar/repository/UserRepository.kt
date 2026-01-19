@@ -20,6 +20,8 @@ interface UserRepository : JpaRepository<User, Long> {
 
     fun existsByEmail(email: String): Boolean
 
+    fun existsByName(name: String): Boolean
+
     @Query("SELECT u FROM User u WHERE u.status = :status")
     fun findByStatus(status: UserStatus): List<User>
 

@@ -473,6 +473,7 @@ __turbopack_context__.v({
   "pulse": "VehicleFilters-module__SNhiCG__pulse",
   "resetButton": "VehicleFilters-module__SNhiCG__resetButton",
   "select": "VehicleFilters-module__SNhiCG__select",
+  "selectFilterIcon": "VehicleFilters-module__SNhiCG__selectFilterIcon",
   "selectIcon": "VehicleFilters-module__SNhiCG__selectIcon",
   "selectWrapper": "VehicleFilters-module__SNhiCG__selectWrapper",
   "tagButton": "VehicleFilters-module__SNhiCG__tagButton",
@@ -510,10 +511,6 @@ const VEHICLE_TYPES = [
         label: 'SUV'
     },
     {
-        value: 'mpv',
-        label: 'MPV'
-    },
-    {
         value: 'sports',
         label: '跑车'
     },
@@ -529,19 +526,15 @@ const PRICE_RANGES = [
     },
     {
         value: '0-200',
-        label: '¥200 以下'
+        label: '¥200以下'
     },
     {
         value: '200-500',
         label: '¥200-500'
     },
     {
-        value: '500-1000',
-        label: '¥500-1000'
-    },
-    {
-        value: '1000+',
-        label: '¥1000 以上'
+        value: '500+',
+        label: '¥500以上'
     }
 ];
 const SEATS_OPTIONS = [
@@ -624,83 +617,127 @@ function VehicleFilters({ onFiltersChange, loading = false }) {
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: `${__TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filtersContainer} ${loading ? __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].loading : ''}`,
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filtersHeader,
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterInfo,
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                width: "20",
-                                height: "20",
-                                viewBox: "0 0 20 20",
-                                fill: "none",
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterIcon,
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                    d: "M5 4h10M3 8h14M4 12h12M6 16h8",
-                                    stroke: "currentColor",
-                                    strokeWidth: "2",
-                                    strokeLinecap: "round"
-                                }, void 0, false, {
-                                    fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                    lineNumber: 121,
-                                    columnNumber: 13
-                                }, this)
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filtersHeader,
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterInfo,
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                            width: "20",
+                            height: "20",
+                            viewBox: "0 0 20 20",
+                            fill: "none",
+                            className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterIcon,
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                d: "M5 4h10M3 8h14M4 12h12M6 16h8",
+                                stroke: "currentColor",
+                                strokeWidth: "2",
+                                strokeLinecap: "round"
                             }, void 0, false, {
                                 fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 114,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterTitle,
-                                children: "筛选条件"
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 128,
-                                columnNumber: 11
-                            }, this),
-                            hasActiveFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].activeCount,
-                                children: [
-                                    "(",
-                                    getActiveFilterCount(),
-                                    ")"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 130,
+                                lineNumber: 119,
                                 columnNumber: 13
                             }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                        lineNumber: 113,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterActions,
-                        children: [
-                            hasActiveFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].resetButton,
-                                onClick: handleReset,
-                                disabled: loading,
-                                children: "清除筛选"
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 135,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].toggleButton,
-                                onClick: ()=>setIsExpanded(!isExpanded),
-                                "aria-label": isExpanded ? '收起筛选' : '展开筛选',
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                        }, void 0, false, {
+                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                            lineNumber: 112,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterTitle,
+                            children: "筛选条件"
+                        }, void 0, false, {
+                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                            lineNumber: 126,
+                            columnNumber: 11
+                        }, this),
+                        hasActiveFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].activeCount,
+                            children: [
+                                "(",
+                                getActiveFilterCount(),
+                                ")"
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                            lineNumber: 128,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                    lineNumber: 111,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].tagGroup,
+                    children: VEHICLE_TYPES.map((type)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            className: `${__TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].tagButton} ${filters.vehicleType === type.value ? __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].active : ''}`,
+                            onClick: ()=>handleVehicleTypeChange(type.value),
+                            disabled: loading,
+                            children: type.label
+                        }, type.value, false, {
+                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                            lineNumber: 135,
+                            columnNumber: 13
+                        }, this))
+                }, void 0, false, {
+                    fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                    lineNumber: 133,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterActions,
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].selectWrapper,
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                    width: "20",
+                                    height: "20",
+                                    viewBox: "0 0 20 20",
+                                    fill: "none",
+                                    className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].selectFilterIcon,
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                        d: "M5 4h10M3 8h14M4 12h12M6 16h8",
+                                        stroke: "currentColor",
+                                        strokeWidth: "2",
+                                        strokeLinecap: "round"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                                        lineNumber: 156,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                                    lineNumber: 149,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                    className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].select,
+                                    value: filters.priceRange,
+                                    onChange: (e)=>handlePriceRangeChange(e.target.value),
+                                    disabled: loading,
+                                    children: PRICE_RANGES.map((range)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                            value: range.value,
+                                            children: range.label
+                                        }, range.value, false, {
+                                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                                            lineNumber: 170,
+                                            columnNumber: 17
+                                        }, this))
+                                }, void 0, false, {
+                                    fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                                    lineNumber: 163,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     width: "16",
                                     height: "16",
                                     viewBox: "0 0 16 16",
                                     fill: "none",
-                                    className: `${__TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].toggleIcon} ${isExpanded ? __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].expanded : ''}`,
+                                    className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].selectIcon,
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                         d: "M4 6l4 4 4-4",
                                         stroke: "currentColor",
@@ -709,215 +746,45 @@ function VehicleFilters({ onFiltersChange, loading = false }) {
                                         strokeLinejoin: "round"
                                     }, void 0, false, {
                                         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                        lineNumber: 155,
+                                        lineNumber: 182,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                    lineNumber: 148,
+                                    lineNumber: 175,
                                     columnNumber: 13
                                 }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 143,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                        lineNumber: 133,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                lineNumber: 112,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `${__TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filtersContent} ${isExpanded ? __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].expanded : ''}`,
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterSection,
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterLabel,
-                                children: "车型"
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 171,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].tagGroup,
-                                children: VEHICLE_TYPES.map((type)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        className: `${__TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].tagButton} ${filters.vehicleType === type.value ? __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].active : ''}`,
-                                        onClick: ()=>handleVehicleTypeChange(type.value),
-                                        disabled: loading,
-                                        children: type.label
-                                    }, type.value, false, {
-                                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                        lineNumber: 174,
-                                        columnNumber: 15
-                                    }, this))
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 172,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                        lineNumber: 170,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterSection,
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterLabel,
-                                children: "价格区间"
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 188,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].selectWrapper,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].select,
-                                        value: filters.priceRange,
-                                        onChange: (e)=>handlePriceRangeChange(e.target.value),
-                                        disabled: loading,
-                                        children: PRICE_RANGES.map((range)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                value: range.value,
-                                                children: range.label
-                                            }, range.value, false, {
-                                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                                lineNumber: 197,
-                                                columnNumber: 17
-                                            }, this))
-                                    }, void 0, false, {
-                                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                        lineNumber: 190,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        width: "16",
-                                        height: "16",
-                                        viewBox: "0 0 16 16",
-                                        fill: "none",
-                                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].selectIcon,
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                            d: "M4 6l4 4 4-4",
-                                            stroke: "currentColor",
-                                            strokeWidth: "2",
-                                            strokeLinecap: "round",
-                                            strokeLinejoin: "round"
-                                        }, void 0, false, {
-                                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                            lineNumber: 209,
-                                            columnNumber: 15
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                        lineNumber: 202,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 189,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                        lineNumber: 187,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterSection,
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterLabel,
-                                children: "座位数"
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 222,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].chipGroup,
-                                children: SEATS_OPTIONS.map((seat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        className: `${__TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].chipButton} ${filters.seats.includes(seat) ? __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].active : ''}`,
-                                        onClick: ()=>handleSeatToggle(seat),
-                                        disabled: loading,
-                                        children: [
-                                            seat,
-                                            "座"
-                                        ]
-                                    }, seat, true, {
-                                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                        lineNumber: 225,
-                                        columnNumber: 15
-                                    }, this))
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 223,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                        lineNumber: 221,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterSection,
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].filterLabel,
-                                children: "燃料类型"
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 239,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].chipGroup,
-                                children: FUEL_TYPES.map((fuel)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        className: `${__TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].chipButton} ${filters.fuelTypes.includes(fuel) ? __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].active : ''}`,
-                                        onClick: ()=>handleFuelTypeToggle(fuel),
-                                        disabled: loading,
-                                        children: fuel
-                                    }, fuel, false, {
-                                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                        lineNumber: 242,
-                                        columnNumber: 15
-                                    }, this))
-                            }, void 0, false, {
-                                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                                lineNumber: 240,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                        lineNumber: 238,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-                lineNumber: 168,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                            lineNumber: 148,
+                            columnNumber: 11
+                        }, this),
+                        hasActiveFilters && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            className: __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$src$2f$components$2f$VehicleFilters$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].resetButton,
+                            onClick: handleReset,
+                            disabled: loading,
+                            children: "清除筛选"
+                        }, void 0, false, {
+                            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                            lineNumber: 192,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+                    lineNumber: 147,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
+            lineNumber: 109,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
         fileName: "[project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.tsx",
-        lineNumber: 110,
+        lineNumber: 108,
         columnNumber: 5
     }, this);
 }
@@ -1151,7 +1018,7 @@ function VehicleGrid() {
         seats: [],
         fuelTypes: []
     });
-    const pageSize = 9;
+    const pageSize = 16;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Work$2f$p2pcar$2f$p2p$2d$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         fetchVehicles();
     }, [
@@ -1175,8 +1042,8 @@ function VehicleGrid() {
             let maxPrice;
             if (activeFilters.priceRange !== 'all') {
                 const range = activeFilters.priceRange;
-                if (range === '1000+') {
-                    minPrice = 1000;
+                if (range === '500+') {
+                    minPrice = 500;
                 // maxPrice remains undefined (no upper limit)
                 } else if (range === '0-200') {
                     minPrice = 0;

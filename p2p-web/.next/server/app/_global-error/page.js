@@ -2,7 +2,7 @@ var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_global-err
 R.c("server/chunks/ssr/[root-of-the-server]__7a66f715._.js")
 R.c("server/chunks/ssr/Work_p2pcar_p2p-web_87a4c87c._.js")
 R.c("server/chunks/ssr/7d238_next_dist_d43b3555._.js")
-R.c("server/chunks/ssr/[root-of-the-server]__f2f1ca78._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__ec525480._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__92f898f6._.js")
 R.c("server/chunks/ssr/7d238_next_dist_f86ebc54._.js")
 R.c("server/chunks/ssr/Work_p2pcar_p2p-web_src_app_95d28842._.js")

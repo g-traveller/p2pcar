@@ -7,7 +7,8 @@ import java.time.LocalDateTime
 @Table(name = "users", indexes = [
     Index(name = "idx_users_phone", columnList = "phone"),
     Index(name = "idx_users_email", columnList = "email"),
-    Index(name = "idx_users_status", columnList = "status")
+    Index(name = "idx_users_status", columnList = "status"),
+    Index(name = "idx_users_name", columnList = "name", unique = true)
 ])
 data class User(
     @Id
@@ -23,7 +24,7 @@ data class User(
     @Column(name = "password_hash", nullable = false)
     var passwordHash: String,
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     var name: String,
 
     @Column(length = 500)

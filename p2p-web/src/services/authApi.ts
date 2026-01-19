@@ -1,4 +1,4 @@
-import { LoginRequest, LoginResponse, RegisterRequest, ApiResponse, SendVerificationCodeRequest, SendVerificationCodeResponse } from '@/types/api';
+import { LoginRequest, LoginResponse, RegisterRequest, ApiResponse, SendVerificationCodeRequest, SendVerificationCodeResponse, OAuthUrlResponse, WeChatOAuthRequest, WeChatOAuthResponse } from '@/types/api';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
@@ -138,6 +138,45 @@ export class AuthApiService {
   }
 
   /**
+   * Get WeChat OAuth authorization URL
+   */
+  static async getWeChatAuthorizeUrl(): Promise<ApiResponse<OAuthUrlResponse>> {
+    const response = await fetch(`${this.baseUrl}/oauth/wechat/authorize-url`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
+    }
+
+    return response.json();
+  }
+
+  /**
+   * Handle WeChat OAuth callback
+   */
+  static async weChatOAuthCallback(data: WeChatOAuthRequest): Promise<ApiResponse<WeChatOAuthResponse>> {
+    const response = await fetch(`${this.baseUrl}/oauth/wechat/callback`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorData = await this.extractErrorData(response);
+      throw errorData;
+    }
+
+    return response.json();
+  }
+
+  /**
    * Extract error data from failed response
    */
   private static async extractErrorData(response: Response): Promise<never> {
@@ -185,5 +224,7 @@ export const forgotPassword = (email: string) => AuthApiService.forgotPassword(e
 export const resetPassword = (token: string, password: string) => AuthApiService.resetPassword(token, password);
 export const verifyEmail = (token: string) => AuthApiService.verifyEmail(token);
 export const sendVerificationCode = (data: SendVerificationCodeRequest) => AuthApiService.sendVerificationCode(data);
+export const getWeChatAuthorizeUrl = () => AuthApiService.getWeChatAuthorizeUrl();
+export const weChatOAuthCallback = (data: WeChatOAuthRequest) => AuthApiService.weChatOAuthCallback(data);
 
 export default AuthApiService;

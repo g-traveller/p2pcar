@@ -76,6 +76,108 @@
   display: flex;
 }
 
+.Navbar-module__PUpGsG__userGreeting {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+  position: relative;
+}
+
+.Navbar-module__PUpGsG__greetingText {
+  color: #5f6368;
+  white-space: nowrap;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.Navbar-module__PUpGsG__userMenu {
+  position: relative;
+}
+
+.Navbar-module__PUpGsG__menuButton {
+  cursor: pointer;
+  color: #5f6368;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  transition: all .2s;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__menuButton:hover {
+  background-color: #0000000a;
+}
+
+.Navbar-module__PUpGsG__dropdownIcon {
+  transition: transform .2s;
+}
+
+.Navbar-module__PUpGsG__menuButton:hover .Navbar-module__PUpGsG__dropdownIcon {
+  transform: rotate(180deg);
+}
+
+.Navbar-module__PUpGsG__dropdownMenu {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1001;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-width: 160px;
+  transition: all .2s;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  transform: translateY(-8px);
+  box-shadow: 0 4px 12px #0000001a;
+}
+
+.Navbar-module__PUpGsG__userMenu:hover .Navbar-module__PUpGsG__dropdownMenu, .Navbar-module__PUpGsG__menuButton:focus + .Navbar-module__PUpGsG__dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.Navbar-module__PUpGsG__dropdownItem {
+  color: #5f6368;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 10px 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: all .15s;
+  display: block;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:hover {
+  background-color: #0000000a;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.Navbar-module__PUpGsG__dropdownDivider {
+  background-color: #e5e7eb;
+  height: 1px;
+  margin: 4px 0;
+}
+
 .Navbar-module__PUpGsG__loginButton {
   color: #5f6368;
   white-space: nowrap;
@@ -180,6 +282,117 @@
 
   .Navbar-module__PUpGsG__logoText {
     font-size: 16px;
+  }
+}
+
+.Navbar-module__PUpGsG__dialogOverlay {
+  z-index: 9999;
+  background-color: #00000080;
+  justify-content: center;
+  align-items: center;
+  animation: .2s ease-out Navbar-module__PUpGsG__fadeIn;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.Navbar-module__PUpGsG__dialogContainer {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  animation: .2s ease-out Navbar-module__PUpGsG__slideUp;
+  box-shadow: 0 20px 25px -5px #0000001a, 0 10px 10px -5px #0000000a;
+}
+
+.Navbar-module__PUpGsG__dialogHeader {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 24px 16px;
+}
+
+.Navbar-module__PUpGsG__dialogTitle {
+  color: #101828;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.Navbar-module__PUpGsG__dialogBody {
+  padding: 20px 24px;
+}
+
+.Navbar-module__PUpGsG__dialogMessage {
+  color: #4a5565;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.Navbar-module__PUpGsG__dialogFooter {
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary, .Navbar-module__PUpGsG__dialogButtonPrimary {
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary {
+  color: #5f6368;
+  background-color: #fff;
+  border: 1px solid #d1d5dc;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary:hover:not(:disabled) {
+  background-color: #f8f9fa;
+  border-color: #9ca3af;
+}
+
+.Navbar-module__PUpGsG__dialogButtonPrimary {
+  color: #fff;
+  background-color: #1a73e8;
+}
+
+.Navbar-module__PUpGsG__dialogButtonPrimary:hover:not(:disabled) {
+  background-color: #1557b0;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary:disabled, .Navbar-module__PUpGsG__dialogButtonPrimary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+@keyframes Navbar-module__PUpGsG__fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes Navbar-module__PUpGsG__slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

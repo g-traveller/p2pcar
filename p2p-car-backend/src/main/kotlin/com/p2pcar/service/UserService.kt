@@ -56,12 +56,20 @@ class UserService(
 
         ValidationUtil.checkPassword(request.password)
 
-        // Validate name
+        // Validate nickname
         if (request.name.length < 2) {
             throw BusinessException(ErrorCode.NAME_TOO_SHORT)
         }
         if (request.name.length > 50) {
             throw BusinessException(ErrorCode.NAME_TOO_LONG)
+        }
+        // Allow Chinese, English, numbers, underscores, and spaces
+        if (!request.name.matches(Regex("^[\\u4e00-\\u9fa5a-zA-Z0-9_\\s]+$"))) {
+            throw BusinessException(ErrorCode.NAME_FORMAT_INVALID)
+        }
+        // Check nickname uniqueness
+        if (userRepository.existsByName(request.name)) {
+            throw BusinessException(ErrorCode.NAME_ALREADY_EXISTS)
         }
 
         val user = User(

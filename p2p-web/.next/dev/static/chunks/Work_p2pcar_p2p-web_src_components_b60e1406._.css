@@ -76,6 +76,108 @@
   display: flex;
 }
 
+.Navbar-module__PUpGsG__userGreeting {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+  position: relative;
+}
+
+.Navbar-module__PUpGsG__greetingText {
+  color: #5f6368;
+  white-space: nowrap;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.Navbar-module__PUpGsG__userMenu {
+  position: relative;
+}
+
+.Navbar-module__PUpGsG__menuButton {
+  cursor: pointer;
+  color: #5f6368;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  transition: all .2s;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__menuButton:hover {
+  background-color: #0000000a;
+}
+
+.Navbar-module__PUpGsG__dropdownIcon {
+  transition: transform .2s;
+}
+
+.Navbar-module__PUpGsG__menuButton:hover .Navbar-module__PUpGsG__dropdownIcon {
+  transform: rotate(180deg);
+}
+
+.Navbar-module__PUpGsG__dropdownMenu {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1001;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-width: 160px;
+  transition: all .2s;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  transform: translateY(-8px);
+  box-shadow: 0 4px 12px #0000001a;
+}
+
+.Navbar-module__PUpGsG__userMenu:hover .Navbar-module__PUpGsG__dropdownMenu, .Navbar-module__PUpGsG__menuButton:focus + .Navbar-module__PUpGsG__dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.Navbar-module__PUpGsG__dropdownItem {
+  color: #5f6368;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 10px 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: all .15s;
+  display: block;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:hover {
+  background-color: #0000000a;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.Navbar-module__PUpGsG__dropdownDivider {
+  background-color: #e5e7eb;
+  height: 1px;
+  margin: 4px 0;
+}
+
 .Navbar-module__PUpGsG__loginButton {
   color: #5f6368;
   white-space: nowrap;
@@ -180,6 +282,117 @@
 
   .Navbar-module__PUpGsG__logoText {
     font-size: 16px;
+  }
+}
+
+.Navbar-module__PUpGsG__dialogOverlay {
+  z-index: 9999;
+  background-color: #00000080;
+  justify-content: center;
+  align-items: center;
+  animation: .2s ease-out Navbar-module__PUpGsG__fadeIn;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.Navbar-module__PUpGsG__dialogContainer {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  animation: .2s ease-out Navbar-module__PUpGsG__slideUp;
+  box-shadow: 0 20px 25px -5px #0000001a, 0 10px 10px -5px #0000000a;
+}
+
+.Navbar-module__PUpGsG__dialogHeader {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 24px 16px;
+}
+
+.Navbar-module__PUpGsG__dialogTitle {
+  color: #101828;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.Navbar-module__PUpGsG__dialogBody {
+  padding: 20px 24px;
+}
+
+.Navbar-module__PUpGsG__dialogMessage {
+  color: #4a5565;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.Navbar-module__PUpGsG__dialogFooter {
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary, .Navbar-module__PUpGsG__dialogButtonPrimary {
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary {
+  color: #5f6368;
+  background-color: #fff;
+  border: 1px solid #d1d5dc;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary:hover:not(:disabled) {
+  background-color: #f8f9fa;
+  border-color: #9ca3af;
+}
+
+.Navbar-module__PUpGsG__dialogButtonPrimary {
+  color: #fff;
+  background-color: #1a73e8;
+}
+
+.Navbar-module__PUpGsG__dialogButtonPrimary:hover:not(:disabled) {
+  background-color: #1557b0;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary:disabled, .Navbar-module__PUpGsG__dialogButtonPrimary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+@keyframes Navbar-module__PUpGsG__fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes Navbar-module__PUpGsG__slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -601,10 +814,8 @@
 /* [project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.module.css [app-client] (css) */
 .VehicleFilters-module__SNhiCG__filtersContainer {
   background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  margin-bottom: 24px;
-  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 0;
   transition: all .3s;
 }
 
@@ -616,7 +827,7 @@
 .VehicleFilters-module__SNhiCG__filtersHeader {
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 24px;
   display: flex;
 }
 
@@ -629,18 +840,20 @@
 .VehicleFilters-module__SNhiCG__filterIcon {
   color: #6b7280;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .VehicleFilters-module__SNhiCG__filterTitle {
-  color: #101828;
+  color: #364153;
   font-family: Inter, Noto Sans SC, sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .VehicleFilters-module__SNhiCG__activeCount {
-  color: #1e88e5;
-  background: #1e88e51a;
+  color: #155dfc;
+  background: #155dfc1a;
   border-radius: 12px;
   padding: 2px 8px;
   font-family: Inter, sans-serif;
@@ -651,11 +864,12 @@
 .VehicleFilters-module__SNhiCG__filterActions {
   align-items: center;
   gap: 12px;
+  margin-left: auto;
   display: flex;
 }
 
 .VehicleFilters-module__SNhiCG__resetButton {
-  color: #1e88e5;
+  color: #155dfc;
   cursor: pointer;
   background: none;
   border: none;
@@ -668,7 +882,7 @@
 }
 
 .VehicleFilters-module__SNhiCG__resetButton:hover:not(:disabled) {
-  background: #1e88e51a;
+  background: #155dfc1a;
 }
 
 .VehicleFilters-module__SNhiCG__resetButton:disabled {
@@ -704,15 +918,16 @@
 }
 
 .VehicleFilters-module__SNhiCG__filtersContent {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  align-items: center;
+  gap: 16px;
   max-height: 200px;
   transition: max-height .3s;
-  display: grid;
+  display: flex;
   overflow: hidden;
 }
 
 .VehicleFilters-module__SNhiCG__filtersContent.VehicleFilters-module__SNhiCG__expanded {
+  flex-wrap: wrap;
   max-height: none;
 }
 
@@ -724,6 +939,7 @@
 
 .VehicleFilters-module__SNhiCG__filterLabel {
   color: #4a5565;
+  margin-bottom: 4px;
   font-family: Inter, Noto Sans SC, sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -736,29 +952,31 @@
 }
 
 .VehicleFilters-module__SNhiCG__tagButton {
-  color: #4a5565;
+  color: #364153;
   cursor: pointer;
   white-space: nowrap;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 8px 16px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 10px 20px;
   font-family: Inter, Noto Sans SC, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   transition: all .2s;
+  display: flex;
 }
 
 .VehicleFilters-module__SNhiCG__tagButton:hover:not(:disabled) {
   color: #101828;
-  background: #f3f4f6;
-  border-color: #d1d5dc;
+  background: #e5e7eb;
 }
 
 .VehicleFilters-module__SNhiCG__tagButton.VehicleFilters-module__SNhiCG__active {
   color: #fff;
-  background: #1e88e5;
-  border-color: #1e88e5;
+  background: #155dfc;
 }
 
 .VehicleFilters-module__SNhiCG__tagButton:disabled {
@@ -767,33 +985,37 @@
 }
 
 .VehicleFilters-module__SNhiCG__selectWrapper {
+  align-items: center;
+  gap: 8px;
+  display: flex;
   position: relative;
 }
 
 .VehicleFilters-module__SNhiCG__select {
-  color: #101828;
+  color: #364153;
   cursor: pointer;
   appearance: none;
-  background: #f9fafb;
+  background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: 8px;
   outline: none;
-  width: 100%;
-  padding: 10px 36px 10px 16px;
+  min-width: 150px;
+  height: 40px;
+  padding: 10px 40px 10px 16px;
   font-family: Inter, Noto Sans SC, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   transition: all .2s;
 }
 
 .VehicleFilters-module__SNhiCG__select:hover:not(:disabled) {
-  background: #f3f4f6;
-  border-color: #d1d5dc;
+  background: #f9fafb;
+  border-color: #155dfc;
 }
 
 .VehicleFilters-module__SNhiCG__select:focus {
-  border-color: #1e88e5;
-  box-shadow: 0 0 0 3px #1e88e51a;
+  border-color: #155dfc;
+  box-shadow: 0 0 0 3px #155dfc1a;
 }
 
 .VehicleFilters-module__SNhiCG__select:disabled {
@@ -809,9 +1031,14 @@
   color: #6b7280;
   pointer-events: none;
   position: absolute;
-  top: 50%;
   right: 12px;
-  transform: translateY(-50%);
+}
+
+.VehicleFilters-module__SNhiCG__selectFilterIcon {
+  color: #6b7280;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .VehicleFilters-module__SNhiCG__chipGroup {
@@ -853,54 +1080,43 @@
 
 @media (max-width: 1024px) {
   .VehicleFilters-module__SNhiCG__filtersContent {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 768px) {
   .VehicleFilters-module__SNhiCG__filtersContainer {
-    margin-bottom: 20px;
-    padding: 16px;
+    padding: 12px 0;
   }
 
   .VehicleFilters-module__SNhiCG__filtersHeader {
-    margin-bottom: 16px;
-  }
-
-  .VehicleFilters-module__SNhiCG__filterTitle {
-    font-size: 15px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .VehicleFilters-module__SNhiCG__filtersContent {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .VehicleFilters-module__SNhiCG__tagGroup, .VehicleFilters-module__SNhiCG__chipGroup {
-    gap: 6px;
+  .VehicleFilters-module__SNhiCG__tagGroup {
+    flex-wrap: wrap;
   }
 
-  .VehicleFilters-module__SNhiCG__tagButton, .VehicleFilters-module__SNhiCG__chipButton {
-    padding: 6px 12px;
-    font-size: 13px;
+  .VehicleFilters-module__SNhiCG__tagButton {
+    height: 36px;
+    padding: 8px 16px;
+    font-size: 14px;
   }
 
   .VehicleFilters-module__SNhiCG__select {
-    padding: 8px 32px 8px 12px;
-    font-size: 13px;
+    height: 36px;
+    padding: 8px 36px 8px 12px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
-  .VehicleFilters-module__SNhiCG__filtersContainer {
-    border-radius: 12px;
-    padding: 12px;
-  }
-
-  .VehicleFilters-module__SNhiCG__filterInfo {
-    gap: 6px;
-  }
-
   .VehicleFilters-module__SNhiCG__filterIcon {
     width: 18px;
     height: 18px;
@@ -920,19 +1136,16 @@
     font-size: 13px;
   }
 
-  .VehicleFilters-module__SNhiCG__toggleButton {
-    width: 28px;
-    height: 28px;
-  }
-
-  .VehicleFilters-module__SNhiCG__filterLabel {
+  .VehicleFilters-module__SNhiCG__tagButton {
+    height: 32px;
+    padding: 6px 12px;
     font-size: 13px;
   }
 
-  .VehicleFilters-module__SNhiCG__tagButton, .VehicleFilters-module__SNhiCG__chipButton {
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-size: 12px;
+  .VehicleFilters-module__SNhiCG__select {
+    height: 32px;
+    padding: 6px 32px 6px 10px;
+    font-size: 13px;
   }
 }
 
@@ -952,7 +1165,7 @@
 
 /* [project]/Work/p2pcar/p2p-web/src/components/VehicleGrid.module.css [app-client] (css) */
 .VehicleGrid-module__7DL0oW__gridContainer {
-  max-width: 1280px;
+  max-width: 1536px;
   margin: 0 auto;
   padding: 32px 128px 64px;
 }
@@ -1008,12 +1221,18 @@
 }
 
 .VehicleGrid-module__7DL0oW__grid {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   display: grid;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+  .VehicleGrid-module__7DL0oW__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
   .VehicleGrid-module__7DL0oW__grid {
     grid-template-columns: repeat(2, 1fr);
   }

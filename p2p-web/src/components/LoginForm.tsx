@@ -1,24 +1,82 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import styles from './LoginForm.module.css';
 import { LoginRequest } from '@/types/api';
+import { login } from '@/services/authApi';
+import { getLoginErrorMessage } from '@/utils/errorHandler';
+import { useWeChatOAuth } from '@/hooks/useWeChatOAuth';
 
 interface LoginFormProps {
   onLogin?: (data: LoginRequest) => Promise<void>;
 }
 
+type InputType = 'email' | 'phone' | 'unknown';
+
 export default function LoginForm({ onLogin }: LoginFormProps) {
-  const [email, setEmail] = useState('');
+  const searchParams = useSearchParams();
+  const { initiateOAuth, handleCallback, isLoading: isOAuthLoading, error: oauthError } = useWeChatOAuth();
+
+  const [emailOrPhone, setEmailOrPhone] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Handle WeChat OAuth callback
+  useEffect(() => {
+    const code = searchParams.get('code');
+    const state = searchParams.get('state');
+
+    if (code && state) {
+      const handleOAuthCallback = async () => {
+        try {
+          await handleCallback(code, state);
+          // Redirect to home page after successful login
+          window.location.href = '/';
+        } catch (err) {
+          setError(err instanceof Error ? err.message : '微信登录失败');
+        }
+      };
+
+      handleOAuthCallback();
+    }
+  }, [searchParams, handleCallback]);
+
+  // Auto-detect input type based on user input
+  const inputType: InputType = useMemo(() => {
+    if (!emailOrPhone) return 'unknown';
+
+    // Check if it's an email (contains @)
+    if (emailOrPhone.includes('@')) {
+      return 'email';
+    }
+
+    // Check if it's a phone number (starts with 1 and has 11 digits)
+    const phoneRegex = /^1[3-9]\d{9}$/;
+    if (phoneRegex.test(emailOrPhone)) {
+      return 'phone';
+    }
+
+    // Check if user is typing a phone number (starts with 1 and contains only digits)
+    const partialPhoneRegex = /^1[0-9]{0,9}$/;
+    if (partialPhoneRegex.test(emailOrPhone)) {
+      return 'phone';
+    }
+
+    return 'unknown';
+  }, [emailOrPhone]);
+
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    const phoneRegex = /^1[3-9]\d{9}$/;
+    return phoneRegex.test(phone);
   };
 
   const validatePassword = (password: string): boolean => {
@@ -30,13 +88,21 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
     setError('');
 
     // Validation
-    if (!email) {
-      setError('请输入邮箱地址');
+    if (!emailOrPhone) {
+      setError('请输入邮箱地址或手机号');
       return;
     }
 
-    if (!validateEmail(email)) {
+    // Auto-detect and validate based on input
+    const isEmail = emailOrPhone.includes('@');
+
+    if (isEmail && !validateEmail(emailOrPhone)) {
       setError('请输入有效的邮箱地址');
+      return;
+    }
+
+    if (!isEmail && !validatePhone(emailOrPhone)) {
+      setError('请输入有效的手机号');
       return;
     }
 
@@ -54,43 +120,119 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 
     try {
       if (onLogin) {
-        await onLogin({ email, password, rememberMe });
+        await onLogin({ emailOrPhone, password, rememberMe });
       } else {
         // Default API call
-        const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
-        const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        });
+        const response = await login({ emailOrPhone, password });
 
-        const data = await response.json();
-
-        if (data.code === 200) {
+        if (response.code === 200) {
           // Store token and user data
           const storage = rememberMe ? localStorage : sessionStorage;
-          storage.setItem('auth_token', data.data.token);
-          storage.setItem('auth_user', JSON.stringify(data.data.user));
+          storage.setItem('auth_token', response.data.token);
+          storage.setItem('auth_user', JSON.stringify(response.data.user));
 
           // Redirect to home page
           window.location.href = '/';
         } else {
-          setError(data.message || '登录失败，请重试');
+          setError(response.message || '登录失败，请重试');
         }
       }
     } catch (err) {
-      setError('登录失败，请检查网络连接');
+      const errorMessage = getLoginErrorMessage(err);
+      setError(errorMessage);
       console.error('Login error:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSocialLogin = (provider: 'google' | 'facebook') => {
-    // TODO: Implement social login
-    console.log(`Social login with ${provider}`);
+  const handleSocialLogin = async (provider: 'wechat' | 'alipay') => {
+    if (provider === 'wechat') {
+      try {
+        await initiateOAuth();
+      } catch (err) {
+        setError(err instanceof Error ? err.message : '微信登录失败');
+      }
+    } else {
+      // TODO: Implement Alipay login
+      console.log(`Social login with ${provider}`);
+    }
+  };
+
+  const getInputPlaceholder = () => {
+    return '请输入邮箱地址或手机号';
+  };
+
+  const getInputLabel = () => {
+    return '账号';
+  };
+
+  const getInputIcon = () => {
+    if (inputType === 'email') {
+      return (
+        <svg className={styles.inputIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path
+            d="M3 4a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V4z"
+            stroke="#6a7282"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          <path
+            d="M3 4l8 6 8-6"
+            stroke="#6a7282"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </svg>
+      );
+    }
+
+    if (inputType === 'phone') {
+      return (
+        <svg className={styles.inputIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path
+            d="M3 4h14a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"
+            stroke="#6a7282"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          <path
+            d="M7 2L3 6M13 2l4 4"
+            stroke="#6a7282"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <rect x="6" y="9" width="8" height="6" rx="0.5" stroke="#6a7282" strokeWidth="1.5" fill="none" />
+        </svg>
+      );
+    }
+
+    // Default icon for unknown state
+    return (
+      <svg className={styles.inputIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M10 9a3 3 0 100-6 3 3 0 000 6z"
+          stroke="#6a7282"
+          strokeWidth="1.5"
+          fill="none"
+        />
+        <path
+          d="M10 12c-4 0-6 2-6 4v1a1 1 0 001 1h10a1 1 0 001-1v-1c0-2-2-4-6-4z"
+          stroke="#6a7282"
+          strokeWidth="1.5"
+          fill="none"
+        />
+      </svg>
+    );
+  };
+
+  const getInputType = () => {
+    if (inputType === 'email') return 'email';
+    if (inputType === 'phone') return 'tel';
+    return 'text';
   };
 
   return (
@@ -133,34 +275,25 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 
         {/* Login Form */}
         <form className={styles.form} onSubmit={handleSubmit}>
-          {/* Email Input */}
+          {/* Email/Phone Input with Auto-detection */}
           <div className={styles.inputGroup}>
-            <label className={styles.label}>邮箱地址</label>
+            <label className={styles.label}>{getInputLabel()}</label>
             <div className={styles.inputWrapper}>
-              <svg className={styles.inputIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M3 4a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V4z"
-                  stroke="#6a7282"
-                  strokeWidth="1.5"
-                  fill="none"
-                />
-                <path
-                  d="M3 4l8 6 8-6"
-                  stroke="#6a7282"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                />
-              </svg>
+              {getInputIcon()}
               <input
-                type="email"
+                type={getInputType()}
                 className={styles.input}
-                placeholder="请输入邮箱地址"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder={getInputPlaceholder()}
+                value={emailOrPhone}
+                onChange={(e) => setEmailOrPhone(e.target.value)}
                 disabled={isLoading}
               />
+              {/* Show detected type indicator */}
+              {inputType !== 'unknown' && (
+                <span className={styles.inputTypeIndicator}>
+                  {inputType === 'email' ? '邮箱' : '手机'}
+                </span>
+              )}
             </div>
           </div>
 
@@ -259,7 +392,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
             type="button"
             className={styles.socialButton}
             onClick={() => handleSocialLogin('wechat')}
-            disabled={isLoading}
+            disabled={isLoading || isOAuthLoading}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
               <path d="M11.176 14.429c-2.665 0-4.826-1.8-4.826-4.018 0-2.22 2.159-4.02 4.824-4.02S16 8.191 16 10.411c0 1.21-.65 2.301-1.666 3.036a.32.32 0 0 0-.12.366l.218.81a.6.6 0 0 1 .029.117.166.166 0 0 1-.162.162.2.2 0 0 1-.092-.03l-1.057-.61a.5.5 0 0 0-.256-.074.5.5 0 0 0-.142.021 5.7 5.7 0 0 1-1.576.22M9.064 9.542a.647.647 0 1 0 .557-1 .645.645 0 0 0-.646.647.6.6 0 0 0 .09.353Zm3.232.001a.646.646 0 1 0 .546-1 .645.645 0 0 0-.644.644.63.63 0 0 0 .098.356"/>

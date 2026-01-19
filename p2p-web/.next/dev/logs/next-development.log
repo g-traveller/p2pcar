@@ -1,23 +1,187 @@
-[00:00:00.413] Server  LOG     ✓ Ready in 312ms
-[00:00:03.631] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:53.087] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:52.165] Server  LOG     ✓ Compiled in 149ms
-[00:04:09.474] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:17.572] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:19.390] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:04:38.800] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:06:57.295] Server  LOG     ✓ Compiled in 9ms
-[01:07:55.454] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:13:32.810] Server  LOG     ✓ Compiled in 6ms
-[01:13:51.740] Server  LOG     ✓ Compiled in 8ms
-[01:13:56.916] Server  LOG     ✓ Compiled in 8ms
-[01:14:12.287] Server  LOG     ✓ Compiled in 26ms
-[01:14:15.665] Server  LOG     ✓ Compiled in 10ms
-[01:14:22.964] Server  LOG     ✓ Compiled in 7ms
-[01:23:52.578] Server  LOG     ✓ Compiled in 9ms
-[01:31:58.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:32:03.195] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:32:04.439] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:32:05.754] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:32:17.099] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:32:18.600] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:00.399] Server  LOG     ✓ Ready in 302ms
+[00:05:03.189] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:09.350] Server  LOG     ✓ Compiled in 12ms
+[00:09:54.286] Server  LOG     ✓ Compiled in 13ms
+[00:14:53.017] Server  LOG     ✓ Compiled in 9ms
+[00:15:15.585] Server  LOG     ✓ Compiled in 11ms
+[00:16:25.646] Server  LOG     ✓ Compiled in 7ms
+[00:22:13.752] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:23:10.608] Browser LOG     Backend not available, using mock verification code
+[00:23:10.608] Browser LOG     === MOCK VERIFICATION CODE ===
+[00:23:10.608] Browser LOG     Account: 18601993072
+[00:23:10.608] Browser LOG     Code: 876026
+[00:23:10.608] Browser LOG     Expires at: 1/17/2026, 9:42:23 PM
+[00:23:10.608] Browser LOG     ============================
+[00:23:38.950] Browser ERROR   Registration failed: {}
+[00:24:47.551] Browser ERROR   Registration failed: {}
+[00:24:49.413] Browser ERROR   Registration failed: {}
+[00:24:49.576] Browser ERROR   Registration failed: {}
+[00:24:49.741] Browser ERROR   Registration failed: {}
+[00:24:49.959] Browser ERROR   Registration failed: {}
+[00:24:50.139] Browser ERROR   Registration failed: {}
+[00:25:08.912] Browser ERROR   Registration failed: {}
+[00:25:09.099] Browser ERROR   Registration failed: {}
+[00:25:09.263] Browser ERROR   Registration failed: {}
+[00:25:15.903] Browser ERROR   Registration failed: {}
+[00:39:12.428] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:12.543] Browser ERROR   Error fetching vehicles: {}
+[00:39:12.543] Browser ERROR   Failed to fetch vehicles: {}
+[00:39:26.496] Browser LOG     Backend not available, using mock verification code
+[00:39:26.496] Browser LOG     === MOCK VERIFICATION CODE ===
+[00:39:26.496] Browser LOG     Account: 18601993072
+[00:39:26.496] Browser LOG     Code: 528968
+[00:39:26.496] Browser LOG     Expires at: 1/17/2026, 9:58:39 PM
+[00:39:26.496] Browser LOG     ============================
+[00:39:45.680] Browser ERROR   Registration failed: {}
+[00:41:46.128] Browser LOG     Backend not available, using mock verification code
+[00:41:46.129] Browser LOG     === MOCK VERIFICATION CODE ===
+[00:41:46.129] Browser LOG     Account: 17222222222
+[00:41:46.129] Browser LOG     Code: 966854
+[00:41:46.129] Browser LOG     Expires at: 1/17/2026, 10:00:59 PM
+[00:41:46.129] Browser LOG     ============================
+[00:42:01.109] Browser ERROR   Registration failed: {}
+[11:33:13.499] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:13:18.018] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:13:42.993] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:14:21.079] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:14:40.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:14:44.055] Browser ERROR   Registration failed: {}
+[21:15:24.667] Server  LOG     ✓ Compiled in 15ms
+[21:15:27.905] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:15:34.051] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:16:23.903] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:16:59.431] Browser ERROR   Registration failed: {}
+[21:17:23.599] Browser ERROR   Registration failed: {}
+[21:17:45.133] Browser ERROR   Registration failed: {}
+[21:17:46.169] Browser ERROR   Registration failed: {}
+[21:17:46.318] Browser ERROR   Registration failed: {}
+[21:17:46.473] Browser ERROR   Registration failed: {}
+[21:17:46.632] Browser ERROR   Registration failed: {}
+[21:17:46.803] Browser ERROR   Registration failed: {}
+[21:17:46.970] Browser ERROR   Registration failed: {}
+[21:17:47.124] Browser ERROR   Registration failed: {}
+[21:17:47.311] Browser ERROR   Registration failed: {}
+[21:18:11.538] Browser ERROR   Registration failed: {}
+[21:18:14.785] Browser ERROR   Registration failed: {}
+[21:18:14.944] Browser ERROR   Registration failed: {}
+[21:18:15.094] Browser ERROR   Registration failed: {}
+[21:18:17.461] Browser ERROR   Registration failed: {}
+[21:18:17.747] Browser ERROR   Registration failed: {}
+[21:18:35.980] Browser ERROR   Registration failed: {}
+[21:27:19.902] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:32:14.649] Browser ERROR   Registration failed: {}
+[21:35:12.638] Browser ERROR   Registration failed: {}
+[21:36:19.076] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:38:19.727] Server  LOG     ✓ Compiled in 12ms
+[21:38:25.258] Server  LOG     ✓ Compiled in 49ms
+[21:38:42.864] Server  LOG     ✓ Compiled in 16ms
+[21:38:50.456] Server  LOG     ✓ Compiled in 11ms
+[21:38:58.822] Server  LOG     ✓ Compiled in 14ms
+[21:39:16.867] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:39:22.877] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:39:25.803] Browser ERROR   Registration failed: {}
+[21:39:28.888] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:39:31.773] Browser ERROR   Registration failed: {}
+[21:39:34.872] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:39:40.876] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:39:43.784] Browser ERROR   Registration failed: {}
+[21:40:07.018] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:40:12.055] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:42:31.281] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:42:55.278] Browser ERROR   Registration failed: {}
+[21:43:10.055] Browser ERROR   Registration failed: {}
+[21:45:32.579] Server  LOG     ✓ Compiled in 7ms
+[21:47:19.734] Browser ERROR   Registration failed: {}
+[21:47:24.363] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:47:27.796] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:47:51.572] Browser ERROR   Registration failed: {}
+[21:47:58.965] Browser ERROR   Registration failed: {}
+[24:09:21.075] Browser ERROR   Registration failed: {}
+[24:13:26.419] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:13:44.400] Browser ERROR   Registration failed: {}
+[24:14:48.096] Browser ERROR   Registration failed: {}
+[24:16:06.830] Server  LOG     ✓ Compiled in 12ms
+[24:19:04.730] Browser ERROR   Registration failed: {}
+[24:19:08.590] Server  LOG     ✓ Compiled in 8ms
+[24:34:38.849] Server  LOG     ✓ Compiled in 11ms
+[24:35:28.139] Browser ERROR   Registration failed: {}
+[24:35:34.521] Browser ERROR   Registration failed: {}
+[24:37:58.403] Server  LOG     ✓ Compiled in 8ms
+[24:38:31.529] Browser ERROR   Registration failed: {}
+[24:38:37.430] Browser ERROR   Registration failed: {"code":1005,"response":{"data":{"code":1005,"message":"Verification code expired or not found","timestamp":1768744368215},"status":400}}
+[24:38:39.744] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:39:01.018] Browser ERROR   Registration failed: {"code":1005,"response":{"data":{"code":1005,"message":"Verification code expired or not found","timestamp":1768744390117},"status":400}}
+[24:39:26.676] Browser ERROR   Registration failed: {"code":1005,"response":{"data":{"code":1005,"message":"Verification code expired or not found","timestamp":1768744407427},"status":400}}
+[24:47:59.594] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:41:25.975] Server  LOG     ✓ Compiled in 12ms
+[34:42:05.632] Server  LOG     ✓ Compiled in 17ms
+[34:42:05.721] Browser ERROR   uncaughtError: ReferenceError: email is not defined
+[34:42:10.870] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[34:42:10.934] Server  LOG     ✓ Compiled in 8ms
+[34:42:11.009] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:42:41.095] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:43:26.705] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:44:25.058] Server  LOG     ✓ Compiled in 17ms
+[34:44:26.022] Browser ERROR   uncaughtError: ReferenceError: loginType is not defined
+[34:44:38.255] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[34:44:38.308] Server  LOG     ✓ Compiled in 7ms
+[34:44:38.388] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:44:42.039] Server  LOG     ✓ Compiled in 8ms
+[34:44:46.654] Server  LOG     ✓ Compiled in 9ms
+[34:44:53.020] Server  LOG     ✓ Compiled in 9ms
+[34:45:37.836] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:45:43.861] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:46:02.449] Browser ERROR   Login error: {"code":401,"response":{"data":{"code":401,"message":"Invalid phone or password","timestamp":1768780818212},"status":401}}
+[34:46:24.279] Browser ERROR   Login error: {"code":401,"response":{"data":{"code":401,"message":"Invalid phone or password","timestamp":1768780840043},"status":401}}
+[34:46:35.323] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:47:25.041] Server  LOG     ✓ Compiled in 10ms
+[34:47:28.259] Server  LOG     ✓ Compiled in 10ms
+[34:47:31.136] Server  LOG     ✓ Compiled in 9ms
+[34:47:39.747] Server  LOG     ✓ Compiled in 7ms
+[34:47:44.153] Server  LOG     ✓ Compiled in 8ms
+[34:49:57.561] Server  LOG     ✓ Compiled in 7ms
+[34:50:07.616] Server  LOG     ✓ Compiled in 7ms
+[34:51:32.040] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:00:20.419] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:00:56.958] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:01:04.710] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:03:06.921] Server  LOG     ✓ Compiled in 1ms
+[35:03:07.022] Browser ERROR   uncaughtError: Error: useAuthContext must be used within an AuthProvider
+[35:03:24.994] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[35:03:25.061] Server  LOG     ✓ Compiled in 10ms
+[35:03:25.117] Server  ERROR   ⨯ Error: useAuthContext must be used within an AuthProvider
+[35:03:25.251] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:03:26.022] Browser ERROR   uncaughtError: Error: useAuthContext must be used within an AuthProvider
+[35:05:33.081] Server  ERROR   ⨯ Error: useAuthContext must be used within an AuthProvider
+[35:05:33.209] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:05:33.317] Browser ERROR   uncaughtError: Error: useAuthContext must be used within an AuthProvider
+[35:05:36.376] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[35:05:36.539] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:07:26.902] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:07:37.624] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:07:37.754] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:07:39.529] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:07:40.865] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:07:44.565] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:07:46.576] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:08:44.709] Server  LOG     ✓ Compiled in 9ms
+[35:08:47.842] Server  LOG     ✓ Compiled in 7ms
+[35:08:54.525] Server  LOG     ✓ Compiled in 8ms
+[35:09:05.407] Server  LOG     ✓ Compiled in 8ms
+[35:09:42.517] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:09:45.869] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:09:59.214] Browser ERROR   Login error: {"code":401,"response":{"data":{"code":401,"message":"Invalid phone or password","timestamp":1768782254983},"status":401}}
+[35:10:03.325] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:10:07.848] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:10:33.393] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:14:55.120] Browser LOG     Social login with wechat
+[35:14:57.474] Browser LOG     Social login with wechat
+[35:14:57.639] Browser LOG     Social login with wechat
+[35:15:02.212] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:17:19.873] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Work/p2pcar/p2p-web/src/services/authApi.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[35:17:19.922] Server  LOG     ✓ Compiled in 6ms
+[35:17:20.010] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:17:23.816] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Work/p2pcar/p2p-web/src/services/authApi.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[35:17:23.872] Server  LOG     ✓ Compiled in 7ms
+[35:17:23.961] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:18:45.589] Server  LOG     ✓ Compiled in 17ms

@@ -101,6 +101,7 @@
   padding: 0 16px;
   transition: border-color .2s, box-shadow .2s;
   display: flex;
+  position: relative;
 }
 
 .LoginForm-module__1certW__inputWrapper:hover {
@@ -154,6 +155,33 @@
 
 .LoginForm-module__1certW__togglePassword:hover {
   color: #155dfc;
+}
+
+.LoginForm-module__1certW__inputTypeIndicator {
+  color: #155dfc;
+  pointer-events: none;
+  background-color: #155dfc1a;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  animation: .2s ease-out LoginForm-module__1certW__fadeIn;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+}
+
+@keyframes LoginForm-module__1certW__fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%)translateX(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-50%)translateX(0);
+  }
 }
 
 .LoginForm-module__1certW__formActions {

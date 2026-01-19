@@ -3,12 +3,15 @@ package com.p2pcar.controller
 import com.p2pcar.dto.request.LoginRequest
 import com.p2pcar.dto.request.RegisterRequest
 import com.p2pcar.dto.request.SendVerificationCodeRequest
+import com.p2pcar.dto.request.WeChatOAuthRequest
 import com.p2pcar.dto.response.ApiResponse
 import com.p2pcar.dto.response.AuthResponse
+import com.p2pcar.dto.response.OAuthUrlResponse
 import com.p2pcar.dto.response.SendVerificationCodeResponse
 import com.p2pcar.dto.response.UserResponse
 import com.p2pcar.service.UserService
 import com.p2pcar.service.VerificationCodeService
+import com.p2pcar.service.OAuthService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -17,7 +20,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/auth")
 class AuthController(
     private val userService: UserService,
-    private val verificationCodeService: VerificationCodeService
+    private val verificationCodeService: VerificationCodeService,
+    private val oauthService: OAuthService
 ) {
 
     @PostMapping("/send-verification-code")
@@ -75,5 +79,26 @@ class AuthController(
     fun getCurrentUser(): ResponseEntity<ApiResponse<UserResponse>> {
         val user = userService.getCurrentUser()
         return ResponseEntity.ok(ApiResponse.success(user))
+    }
+
+    // OAuth endpoints
+
+    @GetMapping("/oauth/wechat/authorize-url")
+    fun getWeChatAuthorizeUrl(): ResponseEntity<ApiResponse<OAuthUrlResponse>> {
+        val response = oauthService.getWeChatAuthorizationUrl()
+        return ResponseEntity.ok(ApiResponse.success(response))
+    }
+
+    @PostMapping("/oauth/wechat/callback")
+    fun weChatCallback(@Valid @RequestBody request: WeChatOAuthRequest): ResponseEntity<ApiResponse<AuthResponse>> {
+        val (token, user) = oauthService.handleWeChatCallback(request.code, request.state)
+
+        val response = AuthResponse(
+            token = token,
+            refreshToken = "", // TODO: Implement refresh tokens
+            user = user
+        )
+
+        return ResponseEntity.ok(ApiResponse.success(response))
     }
 }

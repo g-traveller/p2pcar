@@ -70,7 +70,7 @@ export interface Vehicle {
 
 // Auth interfaces
 export interface LoginRequest {
-  email: string;
+  emailOrPhone: string; // Backend accepts either email or phone
   password: string;
   rememberMe?: boolean;
 }
@@ -111,4 +111,20 @@ export interface AuthUser {
   name: string;
   avatar?: string;
   phone?: string;
+}
+
+// OAuth interfaces
+export interface OAuthUrlResponse {
+  authorizationUrl: string;
+  state: string;
+}
+
+export interface WeChatOAuthRequest {
+  code: string;
+  state: string;
+}
+
+export interface WeChatOAuthResponse {
+  token: string;
+  user: AuthUser;
 }

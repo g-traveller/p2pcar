@@ -32,10 +32,17 @@ enum class ErrorCode(val code: Int, val message: String, val httpStatus: Int = 4
     PASSWORD_INCORRECT(1022, "密码错误", 401),
     PASSWORDS_DO_NOT_MATCH(1023, "两次输入的密码不一致", 400),
 
-    // Name Errors
-    NAME_TOO_SHORT(1030, "姓名至少需要2个字符", 400),
-    NAME_TOO_LONG(1031, "姓名不能超过50个字符", 400),
-    NAME_FORMAT_INVALID(1032, "姓名只能包含中文、英文和空格", 400),
+    // Nickname Errors
+    NAME_TOO_SHORT(1030, "昵称至少需要2个字符", 400),
+    NAME_TOO_LONG(1031, "昵称不能超过50个字符", 400),
+    NAME_FORMAT_INVALID(1032, "昵称只能包含中文、英文、数字、下划线和空格", 400),
+    NAME_ALREADY_EXISTS(1033, "该昵称已被使用，请更换其他昵称", 409),
+
+    // OAuth Errors
+    OAUTH_TOKEN_FAILED(1040, "获取微信授权令牌失败", 400),
+    OAUTH_USER_INFO_FAILED(1041, "获取微信用户信息失败", 400),
+    OAUTH_STATE_INVALID(1042, "授权状态无效", 400),
+    OAUTH_CODE_INVALID(1043, "授权码无效或已过期", 400),
 
     // Vehicle
     VEHICLE_NOT_FOUND(2001, "车辆不存在", 404),

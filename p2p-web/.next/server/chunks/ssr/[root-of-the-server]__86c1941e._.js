@@ -1,3 +1,0 @@
-module.exports=[21290,a=>{a.v({className:"inter_5901b7c6-module__ec5Qua__className",variable:"inter_5901b7c6-module__ec5Qua__variable"})},28246,a=>{"use strict";var b=a.i(16250),c=a.i(21290);let d={className:c.default.className,style:{fontFamily:"'Inter', 'Inter Fallback'",fontStyle:"normal"}};function e({children:a}){return(0,b.jsx)("html",{lang:"zh-CN",children:(0,b.jsx)("body",{className:`${d.variable} antialiased`,children:a})})}null!=c.default.variable&&(d.variable=c.default.variable),a.s(["default",()=>e,"metadata",0,{title:"P2P Car Rental - 找到您理想的租车",description:"P2P租车平台，找到您理想的租车"}],28246)}];
-
-//# sourceMappingURL=%5Broot-of-the-server%5D__86c1941e._.js.map

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import LoginForm from '@/components/LoginForm';
 import { LoginRequest } from '@/types/api';
 
@@ -10,5 +11,9 @@ export default function LoginPage() {
     console.log('Login data:', data);
   };
 
-  return <LoginForm />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginForm />
+    </Suspense>
+  );
 }

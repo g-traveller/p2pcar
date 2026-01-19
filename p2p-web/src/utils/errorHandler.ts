@@ -32,10 +32,11 @@ const ERROR_CODE_MAP: Record<number, string> = {
   1022: '密码错误',
   1023: '两次输入的密码不一致',
 
-  // Name errors (1030-1032)
-  1030: '姓名至少需要2个字符',
-  1031: '姓名不能超过50个字符',
-  1032: '姓名只能包含中文、英文和空格',
+  // Nickname errors (1030-1033)
+  1030: '昵称至少需要2个字符',
+  1031: '昵称不能超过50个字符',
+  1032: '昵称只能包含中文、英文、数字、下划线和空格',
+  1033: '该昵称已被使用，请更换其他昵称',
 
   // General errors (400-500)
   400: '请求参数错误，请检查输入',
@@ -185,16 +186,19 @@ const mapErrorMessage = (message: string): string => {
     }
   }
 
-  // Name errors
-  if (lowerMessage.includes('name') || lowerMessage.includes('姓名')) {
+  // Nickname errors
+  if (lowerMessage.includes('name') || lowerMessage.includes('昵称')) {
+    if (lowerMessage.includes('already exists') || lowerMessage.includes('已被使用') || lowerMessage.includes('已存在') || lowerMessage.includes('被占用')) {
+      return '该昵称已被使用，请更换其他昵称';
+    }
     if (lowerMessage.includes('too short') || lowerMessage.includes('太短')) {
-      return '姓名至少需要2个字符';
+      return '昵称至少需要2个字符';
     }
     if (lowerMessage.includes('too long') || lowerMessage.includes('太长')) {
-      return '姓名不能超过50个字符';
+      return '昵称不能超过50个字符';
     }
     if (lowerMessage.includes('invalid') || lowerMessage.includes('格式')) {
-      return '姓名格式不正确，只能包含中文、英文和空格';
+      return '昵称格式不正确，只能包含中文、英文、数字、下划线和空格';
     }
   }
 
@@ -235,4 +239,59 @@ export const getVerificationCodeErrorMessage = (error: any): string => {
 
   // Fall back to general registration error handler
   return getRegistrationErrorMessage(error);
+};
+
+/**
+ * Maps login errors to user-friendly messages
+ */
+export const getLoginErrorMessage = (error: any): string => {
+  const errorData = extractErrorData(error);
+
+  // Check for field-specific validation errors
+  if (errorData.errors) {
+    const firstField = Object.keys(errorData.errors)[0];
+    const firstError = errorData.errors[firstField]?.[0];
+    if (firstError) {
+      return firstError;
+    }
+  }
+
+  // Check if backend sent an error code
+  if (errorData.code && ERROR_CODE_MAP[errorData.code]) {
+    return ERROR_CODE_MAP[errorData.code];
+  }
+
+  // Check for error message
+  if (errorData.message) {
+    // If it's already Chinese, return it directly
+    if (/[\u4e00-\u9fa5]/.test(errorData.message)) {
+      return errorData.message;
+    }
+
+    // Map common login errors
+    const lowerMessage = errorData.message.toLowerCase();
+    if (lowerMessage.includes('bad credentials') || lowerMessage.includes('密码') || lowerMessage.includes('凭证')) {
+      return '用户名或密码错误';
+    }
+    if (lowerMessage.includes('user not found') || lowerMessage.includes('用户不存在') || lowerMessage.includes('未找到')) {
+      return '用户不存在，请检查输入或注册新账户';
+    }
+    if (lowerMessage.includes('account disabled') || lowerMessage.includes('账户已禁用')) {
+      return '账户已被禁用，请联系客服';
+    }
+    if (lowerMessage.includes('account locked') || lowerMessage.includes('账户已锁定')) {
+      return '账户已被锁定，请稍后再试或联系客服';
+    }
+  }
+
+  // Check HTTP status from response
+  if (error?.response?.status) {
+    const status = error.response.status;
+    if (ERROR_CODE_MAP[status]) {
+      return ERROR_CODE_MAP[status];
+    }
+  }
+
+  // Default error message
+  return '登录失败，请稍后重试';
 };

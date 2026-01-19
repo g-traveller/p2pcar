@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40f47f8293898df538a369b615d98320fb16d6f8b9": {
+      "workers": {
+        "app/login/page": {
+          "moduleId": 17886,
+          "async": false,
+          "exportedName": "$$RSC_SERVER_ACTION_0",
+          "filename": "Work/p2pcar/p2p-web/src/app/login/page.tsx"
+        }
+      },
+      "layer": {
+        "app/login/page": "rsc"
+      },
+      "exportedName": "$$RSC_SERVER_ACTION_0",
+      "filename": "Work/p2pcar/p2p-web/src/app/login/page.tsx"
+    }
+  },
+  "edge": {}
+}

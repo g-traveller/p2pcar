@@ -98,6 +98,7 @@
 }
 
 .inputWrapper {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -160,6 +161,33 @@
 
 .togglePassword:hover {
   color: #155dfc;
+}
+
+/* Input Type Indicator */
+.inputTypeIndicator {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: #155dfc;
+  background-color: rgba(21, 93, 252, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
 }
 
 /* Form Actions */
