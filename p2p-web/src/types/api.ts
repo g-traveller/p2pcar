@@ -112,19 +112,3 @@ export interface AuthUser {
   avatar?: string;
   phone?: string;
 }
-
-// OAuth interfaces
-export interface OAuthUrlResponse {
-  authorizationUrl: string;
-  state: string;
-}
-
-export interface WeChatOAuthRequest {
-  code: string;
-  state: string;
-}
-
-export interface WeChatOAuthResponse {
-  token: string;
-  user: AuthUser;
-}

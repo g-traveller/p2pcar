@@ -104,6 +104,10 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
     return count;
   };
 
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div className={`${styles.filtersContainer} ${loading ? styles.loading : ''}`}>
       <div className={styles.filtersHeader}>
@@ -188,6 +192,31 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
               />
             </svg>
           </div>
+
+          {/* Toggle button */}
+          <button
+            className={styles.toggleButton}
+            onClick={toggleExpanded}
+            disabled={loading}
+            title={isExpanded ? '收起筛选' : '更多筛选'}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              className={`${styles.toggleIcon} ${isExpanded ? styles.expanded : ''}`}
+            >
+              <path
+                d="M5 8l5 5 5-5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
           {hasActiveFilters && (
             <button
               className={styles.resetButton}
@@ -197,6 +226,43 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
               清除筛选
             </button>
           )}
+        </div>
+      </div>
+
+      {/* Expandable content */}
+      <div className={`${styles.filtersContent} ${isExpanded ? styles.expanded : ''}`}>
+        {/* Seats filter */}
+        <div className={styles.filterSection}>
+          <label className={styles.filterLabel}>座位数</label>
+          <div className={styles.chipGroup}>
+            {SEATS_OPTIONS.map((seat) => (
+              <button
+                key={seat}
+                className={`${styles.chipButton} ${filters.seats.includes(seat) ? styles.active : ''}`}
+                onClick={() => handleSeatToggle(seat)}
+                disabled={loading}
+              >
+                {seat}座
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Fuel type filter */}
+        <div className={styles.filterSection}>
+          <label className={styles.filterLabel}>燃料类型</label>
+          <div className={styles.chipGroup}>
+            {FUEL_TYPES.map((fuelType) => (
+              <button
+                key={fuelType}
+                className={`${styles.chipButton} ${filters.fuelTypes.includes(fuelType) ? styles.active : ''}`}
+                onClick={() => handleFuelTypeToggle(fuelType)}
+                disabled={loading}
+              >
+                {fuelType}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

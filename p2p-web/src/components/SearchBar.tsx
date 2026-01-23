@@ -1,6 +1,32 @@
-import styles from './SearchBar.module.css';
+'use client';
 
-export default function SearchBar() {
+import styles from './SearchBar.module.css';
+import { useState, useMemo } from 'react';
+import LocationSelector from './LocationSelector';
+
+export interface SearchBarProps {
+  onSearch?: (params: { location?: string; startDate?: string; endDate?: string }) => void;
+}
+
+export default function SearchBar({ onSearch }: SearchBarProps) {
+  const [location, setLocation] = useState('');
+
+  // 计算默认日期
+  const tomorrow = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().split('T')[0];
+  }, []);
+
+  const oneWeekLater = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 7);
+    return date.toISOString().split('T')[0];
+  }, []);
+
+  const [startDate, setStartDate] = useState(tomorrow);
+  const [endDate, setEndDate] = useState(oneWeekLater);
+
   return (
     <div className={styles.searchBar}>
       <div className={styles.container}>
@@ -9,16 +35,11 @@ export default function SearchBar() {
           <div className={styles.searchFields}>
             <div className={styles.field}>
               <label className={styles.label}>取车地点</label>
-              <div className={styles.inputContainer}>
-                <svg className={styles.icon} width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 2C6.13 2 3 5.13 3 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#6B7280"/>
-                </svg>
-                <input
-                  type="text"
-                  placeholder="输入城市或地址"
-                  className={styles.input}
-                />
-              </div>
+              <LocationSelector
+                value={location}
+                onChange={setLocation}
+                placeholder="请选择取车地点"
+              />
             </div>
             <div className={styles.field}>
               <label className={styles.label}>开始日期</label>
@@ -26,7 +47,13 @@ export default function SearchBar() {
                 <svg className={styles.icon} width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M6 3a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1V4a1 1 0 10-2 0v1H7V4a1 1 0 00-1-1zm0 3h8v2H6V6zm0 4h8v6H6v-6z" fill="#6B7280"/>
                 </svg>
-                <input type="date" className={styles.input} />
+                <input
+                  type="date"
+                  className={styles.input}
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  min={tomorrow}
+                />
               </div>
             </div>
             <div className={styles.field}>
@@ -35,10 +62,16 @@ export default function SearchBar() {
                 <svg className={styles.icon} width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M6 3a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1V4a1 1 0 10-2 0v1H7V4a1 1 0 00-1-1zm0 3h8v2H6V6zm0 4h8v6H6v-6z" fill="#6B7280"/>
                 </svg>
-                <input type="date" className={styles.input} />
+                <input
+                  type="date"
+                  className={styles.input}
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  min={startDate}
+                />
               </div>
             </div>
-            <button className={styles.searchButton}>
+            <button className={styles.searchButton} onClick={() => onSearch?.({ location, startDate, endDate })}>
               <svg className={styles.searchIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M9 17A8 8 0 119 1a8 8 0 010 16zm0-2A6 6 0 109 3a6 6 0 000 12zm7.07-2.93l-1.41 1.41 3.36 3.36 1.41-1.41-3.36-3.36z" fill="white"/>
               </svg>

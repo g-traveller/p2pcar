@@ -281,41 +281,6 @@
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
 }
 
-/* Social Buttons */
-.socialButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.socialButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  height: 48px;
-  border: 1px solid #d1d5dc;
-  border-radius: 10px;
-  background-color: #ffffff;
-  color: #101828;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-  font-family: 'Inter', 'Noto Sans SC', sans-serif;
-}
-
-.socialButton:hover:not(:disabled) {
-  background-color: #f9fafb;
-  border-color: #155dfc;
-}
-
-.socialButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 /* Register Link */
 .registerLink {
   text-align: center;
@@ -513,13 +478,5 @@
 
   .title {
     font-size: 22px;
-  }
-
-  .socialButtons {
-    gap: 8px;
-  }
-
-  .socialButton {
-    padding: 0 12px;
   }
 }

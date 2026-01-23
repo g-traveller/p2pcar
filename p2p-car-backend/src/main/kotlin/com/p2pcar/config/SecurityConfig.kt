@@ -69,6 +69,7 @@ class SecurityConfig(
                         "/auth/**",
                         "/vehicles/**",
                         "/vehicles/search/**",
+                        "/locations/**",
                         "/error"
                     ).permitAll()
                     .anyRequest().authenticated()

@@ -8,7 +8,13 @@ import styles from './VehicleGrid.module.css';
 
 type SortOption = 'recommended' | 'price-low' | 'price-high' | 'rating';
 
-export default function VehicleGrid() {
+export interface SearchParams {
+  location?: string;
+  startDate?: string;
+  endDate?: string;
+}
+
+export default function VehicleGrid({ searchParams }: { searchParams?: SearchParams }) {
   const [vehicles, setVehicles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +37,7 @@ export default function VehicleGrid() {
 
   useEffect(() => {
     fetchVehicles();
-  }, [sortBy, currentPage, activeFilters]);
+  }, [sortBy, currentPage, activeFilters, searchParams]);
 
   const fetchVehicles = async () => {
     try {
@@ -68,6 +74,9 @@ export default function VehicleGrid() {
       const vehicleType = activeFilters.vehicleType === 'all' ? undefined : activeFilters.vehicleType.toUpperCase();
 
       const { vehicles: fetchedVehicles, total: totalCount } = await searchVehicles({
+        location: searchParams?.location,
+        startDate: searchParams?.startDate,
+        endDate: searchParams?.endDate,
         vehicleType,
         minPrice,
         maxPrice,

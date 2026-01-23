@@ -1,12 +1,10 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useMemo } from 'react';
 import styles from './LoginForm.module.css';
 import { LoginRequest } from '@/types/api';
 import { login } from '@/services/authApi';
 import { getLoginErrorMessage } from '@/utils/errorHandler';
-import { useWeChatOAuth } from '@/hooks/useWeChatOAuth';
 
 interface LoginFormProps {
   onLogin?: (data: LoginRequest) => Promise<void>;
@@ -15,35 +13,12 @@ interface LoginFormProps {
 type InputType = 'email' | 'phone' | 'unknown';
 
 export default function LoginForm({ onLogin }: LoginFormProps) {
-  const searchParams = useSearchParams();
-  const { initiateOAuth, handleCallback, isLoading: isOAuthLoading, error: oauthError } = useWeChatOAuth();
-
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
-  // Handle WeChat OAuth callback
-  useEffect(() => {
-    const code = searchParams.get('code');
-    const state = searchParams.get('state');
-
-    if (code && state) {
-      const handleOAuthCallback = async () => {
-        try {
-          await handleCallback(code, state);
-          // Redirect to home page after successful login
-          window.location.href = '/';
-        } catch (err) {
-          setError(err instanceof Error ? err.message : '微信登录失败');
-        }
-      };
-
-      handleOAuthCallback();
-    }
-  }, [searchParams, handleCallback]);
 
   // Auto-detect input type based on user input
   const inputType: InputType = useMemo(() => {
@@ -143,19 +118,6 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
       console.error('Login error:', err);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleSocialLogin = async (provider: 'wechat' | 'alipay') => {
-    if (provider === 'wechat') {
-      try {
-        await initiateOAuth();
-      } catch (err) {
-        setError(err instanceof Error ? err.message : '微信登录失败');
-      }
-    } else {
-      // TODO: Implement Alipay login
-      console.log(`Social login with ${provider}`);
     }
   };
 
@@ -380,39 +342,6 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
             {isLoading ? '登录中...' : '登录'}
           </button>
         </form>
-
-        {/* Divider */}
-        <div className={styles.divider}>
-          <span>或者</span>
-        </div>
-
-        {/* Social Login */}
-        <div className={styles.socialButtons}>
-          <button
-            type="button"
-            className={styles.socialButton}
-            onClick={() => handleSocialLogin('wechat')}
-            disabled={isLoading || isOAuthLoading}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M11.176 14.429c-2.665 0-4.826-1.8-4.826-4.018 0-2.22 2.159-4.02 4.824-4.02S16 8.191 16 10.411c0 1.21-.65 2.301-1.666 3.036a.32.32 0 0 0-.12.366l.218.81a.6.6 0 0 1 .029.117.166.166 0 0 1-.162.162.2.2 0 0 1-.092-.03l-1.057-.61a.5.5 0 0 0-.256-.074.5.5 0 0 0-.142.021 5.7 5.7 0 0 1-1.576.22M9.064 9.542a.647.647 0 1 0 .557-1 .645.645 0 0 0-.646.647.6.6 0 0 0 .09.353Zm3.232.001a.646.646 0 1 0 .546-1 .645.645 0 0 0-.644.644.63.63 0 0 0 .098.356"/>
-              <path d="M0 6.826c0 1.455.781 2.765 2.001 3.656a.385.385 0 0 1 .143.439l-.161.6-.1.373a.5.5 0 0 0-.032.14.19.19 0 0 0 .193.193q.06 0 .111-.029l1.268-.733a.6.6 0 0 1 .308-.088q.088 0 .171.025a6.8 6.8 0 0 0 1.625.26 4.5 4.5 0 0 1-.177-1.251c0-2.936 2.785-5.02 5.824-5.02l.15.002C10.587 3.429 8.392 2 5.796 2 2.596 2 0 4.16 0 6.826m4.632-1.555a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0m3.875 0a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0"/>
-            </svg>
-            <span>使用微信登录</span>
-          </button>
-          <button
-            type="button"
-            className={styles.socialButton}
-            onClick={() => handleSocialLogin('alipay')}
-            disabled={isLoading}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M2.541 0H13.5a2.55 2.55 0 0 1 2.54 2.563v8.297c-.006 0-.531-.046-2.978-.813-.412-.14-.916-.327-1.479-.536q-.456-.17-.957-.353a13 13 0 0 0 1.325-3.373H8.822V4.649h3.831v-.634h-3.83V2.121H7.26c-.274 0-.274.273-.274.273v1.621H3.11v.634h3.875v1.136h-3.2v.634H9.99c-.227.789-.532 1.53-.894 2.202-2.013-.67-4.161-1.212-5.51-.878-.864.214-1.42.597-1.746.998-1.499 1.84-.424 4.633 2.741 4.633 1.872 0 3.675-1.053 5.072-2.787 2.08 1.008 6.37 2.738 6.387 2.745v.105A2.55 2.55 0 0 1 13.5 16H2.541A2.55 2.55 0 0 1 0 13.437V2.563A2.55 2.55 0 0 1 2.541 0"/>
-              <path d="M2.309 9.27c-1.22 1.073-.49 3.034 1.978 3.034 1.434 0 2.868-.925 3.994-2.406-1.602-.789-2.959-1.353-4.425-1.207-.397.04-1.14.217-1.547.58Z"/>
-            </svg>
-            <span>使用支付宝登录</span>
-          </button>
-        </div>
 
         {/* Register Link */}
         <div className={styles.registerLink}>
