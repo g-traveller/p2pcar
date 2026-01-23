@@ -200,9 +200,10 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
             disabled={loading}
             title={isExpanded ? '收起筛选' : '更多筛选'}
           >
+            <span>{isExpanded ? '收起' : '更多筛选'}</span>
             <svg
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 20 20"
               fill="none"
               className={`${styles.toggleIcon} ${isExpanded ? styles.expanded : ''}`}
@@ -231,37 +232,49 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
 
       {/* Expandable content */}
       <div className={`${styles.filtersContent} ${isExpanded ? styles.expanded : ''}`}>
-        {/* Seats filter */}
-        <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>座位数</label>
-          <div className={styles.chipGroup}>
-            {SEATS_OPTIONS.map((seat) => (
-              <button
-                key={seat}
-                className={`${styles.chipButton} ${filters.seats.includes(seat) ? styles.active : ''}`}
-                onClick={() => handleSeatToggle(seat)}
-                disabled={loading}
-              >
-                {seat}座
-              </button>
-            ))}
+        <div className={styles.filtersGrid}>
+          {/* Seats filter */}
+          <div className={styles.filterSection}>
+            <div className={styles.filterSectionHeader}>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className={styles.sectionIcon}>
+                <path d="M7 9a2 2 0 11-4 0 2 2 0 014 0zm5-5a2 2 0 11-4 0 2 2 0 014 0zM3 13a2 2 0 11-4 0 2 2 0 014 0zm5-5a2 2 0 11-4 0 2 2 0 014 0z" fill="currentColor"/>
+              </svg>
+              <span className={styles.filterLabel}>座位数</span>
+            </div>
+            <div className={styles.chipGroup}>
+              {SEATS_OPTIONS.map((seat) => (
+                <button
+                  key={seat}
+                  className={`${styles.chipButton} ${filters.seats.includes(seat) ? styles.active : ''}`}
+                  onClick={() => handleSeatToggle(seat)}
+                  disabled={loading}
+                >
+                  {seat}座
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Fuel type filter */}
-        <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>燃料类型</label>
-          <div className={styles.chipGroup}>
-            {FUEL_TYPES.map((fuelType) => (
-              <button
-                key={fuelType}
-                className={`${styles.chipButton} ${filters.fuelTypes.includes(fuelType) ? styles.active : ''}`}
-                onClick={() => handleFuelTypeToggle(fuelType)}
-                disabled={loading}
-              >
-                {fuelType}
-              </button>
-            ))}
+          {/* Fuel type filter */}
+          <div className={styles.filterSection}>
+            <div className={styles.filterSectionHeader}>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className={styles.sectionIcon}>
+                <path d="M12 2a10 10 0 110 20 10 10 0 01-10-2zm1 15h-2v-6H5v-2h4V8l1 1-2 4v4h2v4h-2z" fill="currentColor"/>
+              </svg>
+              <span className={styles.filterLabel}>燃料类型</span>
+            </div>
+            <div className={styles.chipGroup}>
+              {FUEL_TYPES.map((fuelType) => (
+                <button
+                  key={fuelType}
+                  className={`${styles.chipButton} ${filters.fuelTypes.includes(fuelType) ? styles.active : ''}`}
+                  onClick={() => handleFuelTypeToggle(fuelType)}
+                  disabled={loading}
+                >
+                  {fuelType}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
