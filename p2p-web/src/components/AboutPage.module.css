@@ -1,0 +1,515 @@
+/* About Page Styles */
+.page {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(169.38deg, #155dfc 0%, #193cb8 100%);
+  padding: 80px 160px;
+  min-height: 288px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroTitle {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 48px;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.3516px;
+  margin: 0 0 24px 0;
+}
+
+.heroSubtitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: #dbeafe;
+  text-align: center;
+  letter-spacing: -0.4492px;
+  margin: 0;
+  max-width: 764px;
+}
+
+/* Navigation Bar */
+.navBar {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 160px;
+  min-height: 57px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a5565;
+  font-size: 16px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.backButton:hover {
+  color: #155dfc;
+}
+
+/* Content Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 48px;
+}
+
+.sectionTitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: #101828;
+  letter-spacing: 0.3955px;
+  margin: 0 0 32px 0;
+}
+
+.sectionTitle:not(:first-child) {
+  text-align: center;
+}
+
+/* Story Content */
+.storyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.storyParagraph {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #364153;
+  letter-spacing: -0.3125px;
+  margin: 0;
+}
+
+/* Mission & Vision Grid */
+.missionVisionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.missionCard {
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+}
+
+.mission {
+  background: #eff6ff;
+}
+
+.vision {
+  background: #f0fdf4;
+}
+
+.missionIcon,
+.visionIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+}
+
+.missionIcon {
+  background: #155dfc;
+}
+
+.visionIcon {
+  background: #00a63e;
+}
+
+.missionTitle,
+.visionTitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #101828;
+  letter-spacing: 0.0703px;
+  margin: 0 0 16px 0;
+}
+
+.missionDescription,
+.visionDescription {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #364153;
+  letter-spacing: -0.3125px;
+  margin: 0;
+}
+
+/* Core Values Grid */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.valueItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.valueIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.valueTitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: #101828;
+  letter-spacing: -0.4395px;
+  margin: 0 0 8px 0;
+}
+
+.valueDescription {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #4a5565;
+  letter-spacing: -0.1504px;
+  margin: 0;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #bedbff;
+  transform: translateX(-50%);
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 144px;
+}
+
+.timelineItem.left {
+  flex-direction: row;
+}
+
+.timelineItem.right {
+  flex-direction: row-reverse;
+}
+
+.timelineDot {
+  position: absolute;
+  left: 50%;
+  top: 56px;
+  width: 32px;
+  height: 32px;
+  background: #155dfc;
+  border: 4px solid white;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timelineContent {
+  width: 512px;
+  background: #eff6ff;
+  border-radius: 14px;
+  padding: 24px;
+  position: relative;
+}
+
+.timelineItem.left .timelineContent {
+  margin-left: auto;
+  margin-right: 560px;
+}
+
+.timelineItem.right .timelineContent {
+  margin-left: 560px;
+  margin-right: auto;
+}
+
+.timelineYear {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #155dfc;
+  margin-bottom: 8px;
+}
+
+.timelineItem.left .timelineYear {
+  text-align: right;
+}
+
+.timelineTitle {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: #101828;
+  letter-spacing: -0.4492px;
+  margin: 0 0 8px 0;
+}
+
+.timelineDescription {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4a5565;
+  letter-spacing: -0.3125px;
+  margin: 0;
+}
+
+/* Platform Statistics */
+.statsSection {
+  background: linear-gradient(169.017deg, #155dfc 0%, #193cb8 100%);
+  border-radius: 16px;
+  padding: 48px;
+}
+
+.statsTitle {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.3955px;
+  margin: 0 0 32px 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.statValue {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.3691px;
+}
+
+.statLabel {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #dbeafe;
+  text-align: center;
+  letter-spacing: -0.3125px;
+}
+
+/* Honors Grid */
+.honorsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.honorItem {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.honorIcon {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.honorContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.honorTitle {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #101828;
+  letter-spacing: -0.3125px;
+  margin: 0;
+}
+
+.honorIssuer {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #4a5565;
+  letter-spacing: -0.1504px;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .hero {
+    padding: 60px 64px;
+  }
+
+  .navBar {
+    padding: 16px 64px;
+  }
+
+  .container {
+    padding: 48px 32px 32px;
+  }
+
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 40px 32px;
+  }
+
+  .navBar {
+    padding: 16px 32px;
+  }
+
+  .container {
+    padding: 32px 16px;
+  }
+
+  .missionVisionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .timelineItem.left .timelineContent,
+  .timelineItem.right .timelineContent {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .timeline {
+    padding-left: 40px;
+  }
+
+  .timelineLine {
+    left: 20px;
+  }
+
+  .timelineDot {
+    left: 20px;
+  }
+
+  .honorsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statValue {
+    font-size: 28px;
+  }
+}

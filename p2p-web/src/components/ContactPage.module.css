@@ -1,0 +1,548 @@
+/* Contact Page Styles */
+.page {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(170.393deg, #155dfc 0%, #193cb8 100%);
+  padding: 80px 160px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroTitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 48px;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.3516px;
+  margin: 0 0 24px 0;
+}
+
+.heroSubtitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: #dbeafe;
+  text-align: center;
+  letter-spacing: -0.4492px;
+  margin: 0;
+  max-width: 768px;
+}
+
+/* Navigation Bar */
+.navBar {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 160px;
+  min-height: 57px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a5565;
+  font-size: 16px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.backButton:hover {
+  color: #155dfc;
+}
+
+/* Content Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 32px 32px;
+  display: flex;
+  gap: 32px;
+}
+
+/* Contact Sidebar */
+.contactSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 0 0 384px;
+}
+
+.contactCard {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.contactIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+
+.contactIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.contactTitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: #101828;
+  letter-spacing: -0.4492px;
+  margin: 0 0 12px 0;
+}
+
+.contactDescription {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4a5565;
+  letter-spacing: -0.3125px;
+  margin: 0 0 12px 0;
+}
+
+.contactValue {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #155dfc;
+  letter-spacing: 0.0703px;
+  margin: 0 0 16px 0;
+}
+
+.contactValues {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contactValues .contactValue {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: #155dfc;
+  letter-spacing: -0.4395px;
+}
+
+.contactAddress {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.addressLine {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #364153;
+  letter-spacing: -0.3125px;
+  margin: 0;
+}
+
+.contactExtra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.contactExtra svg {
+  color: #6a7282;
+}
+
+.contactExtra span {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6a7282;
+  letter-spacing: -0.1504px;
+}
+
+/* Social Links */
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+}
+
+.socialName {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #364153;
+  letter-spacing: -0.3125px;
+}
+
+/* Contact Form Card */
+.contactFormCard {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 48px;
+  flex: 1;
+}
+
+.sectionTitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: #101828;
+  letter-spacing: 0.3955px;
+  margin: 0 0 8px 0;
+}
+
+.formDescription {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4a5565;
+  letter-spacing: -0.3125px;
+  margin: 0 0 32px 0;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formLabel {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #364153;
+  letter-spacing: -0.1504px;
+}
+
+.formInput,
+.formSelectInput,
+.formTextarea {
+  background: #f3f3f5;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #101828;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: #717182;
+}
+
+.formInput:focus,
+.formSelectInput:focus,
+.formTextarea:focus {
+  background: #e3f2fd;
+  border-color: #155dfc;
+}
+
+.formSelect {
+  position: relative;
+}
+
+.formSelectInput {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding-right: 40px;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #717182;
+}
+
+.formTextarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  line-height: 20px;
+}
+
+.submitButton {
+  background: #155dfc;
+  border: none;
+  border-radius: 10px;
+  height: 48px;
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.submitButton:hover {
+  background: #1565c0;
+}
+
+.submitButton:active {
+  transform: scale(0.98);
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 48px;
+}
+
+/* Offices Grid */
+.officesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.officeItem {
+  border-left: 4px solid;
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.officeCity {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: #101828;
+  letter-spacing: -0.4492px;
+  margin: 0;
+}
+
+.officeAddress {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4a5565;
+  letter-spacing: -0.3125px;
+  margin: 0;
+}
+
+.officePhone {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6a7282;
+  letter-spacing: -0.1504px;
+  margin: 0;
+}
+
+/* FAQ Card */
+.faqCard {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 48px 48px 48px 160px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.faqItem {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.faqQuestion {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: #101828;
+  letter-spacing: -0.4395px;
+  margin: 0;
+}
+
+.faqAnswer {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4a5565;
+  letter-spacing: -0.3125px;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .hero {
+    padding: 60px 64px;
+  }
+
+  .navBar {
+    padding: 16px 64px;
+  }
+
+  .container {
+    padding: 48px 32px 32px;
+  }
+
+  .faqCard {
+    padding: 48px 48px 48px 120px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 40px 32px;
+  }
+
+  .navBar {
+    padding: 16px 32px;
+  }
+
+  .container {
+    padding: 32px 16px;
+    flex-direction: column;
+  }
+
+  .contactSidebar {
+    flex: 1;
+  }
+
+  .contactFormCard {
+    padding: 32px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .officesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .faqCard {
+    padding: 32px;
+  }
+
+  .faqList {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .contactFormCard {
+    padding: 24px;
+  }
+
+  .submitButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
