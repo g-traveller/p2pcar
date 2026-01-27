@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/Work/p2pcar/p2p-web/src/components/P2PRentalPage.module.css"],"sourcesContent":[".page {\n  min-height: 100vh;\n  background-color: #ffffff;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n}\n\n.main {\n  flex: 1;\n  padding-top: 56px;\n  display: flex;\n  flex-direction: column;\n}\n"],"names":[],"mappings":"AAAA;;;;;;;;AAQA"}}]
+}

@@ -162,6 +162,14 @@
   color: #101828;
   letter-spacing: 0.0703px;
   margin: 0 0 16px 0;
+  padding-left: 80px;
+}
+
+@media (max-width: 1024px) {
+  .missionTitle,
+  .visionTitle {
+    padding-left: 0;
+  }
 }
 
 .missionDescription,
@@ -173,6 +181,15 @@
   color: #364153;
   letter-spacing: -0.3125px;
   margin: 0;
+  padding-left: 80px;
+}
+
+/* Reset padding for smaller screens */
+@media (max-width: 1024px) {
+  .missionDescription,
+  .visionDescription {
+    padding-left: 0;
+  }
 }
 
 /* Core Values Grid */
@@ -267,7 +284,8 @@
 }
 
 .timelineContent {
-  width: 512px;
+  width: 45%;
+  max-width: 512px;
   background: #eff6ff;
   border-radius: 14px;
   padding: 24px;
@@ -276,11 +294,11 @@
 
 .timelineItem.left .timelineContent {
   margin-left: auto;
-  margin-right: 560px;
+  margin-right: calc(50% + 40px);
 }
 
 .timelineItem.right .timelineContent {
-  margin-left: 560px;
+  margin-left: calc(50% + 40px);
   margin-right: auto;
 }
 
@@ -382,6 +400,7 @@
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  min-height: 80px;
 }
 
 .honorIcon {
@@ -456,6 +475,22 @@
 
   .missionVisionGrid {
     grid-template-columns: 1fr;
+  }
+
+  /* Make mission/vision cards work better on mobile */
+  .missionIcon,
+  .visionIcon {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 16px;
+  }
+
+  .missionTitle,
+  .visionTitle,
+  .missionDescription,
+  .visionDescription {
+    padding-left: 0;
   }
 
   .timelineItem.left .timelineContent,

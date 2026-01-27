@@ -8,5 +8,7 @@
 
 .main {
   flex: 1;
-  padding-top: 64px;
+  padding-top: 56px;
+  display: flex;
+  flex-direction: column;
 }

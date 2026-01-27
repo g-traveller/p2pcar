@@ -1,0 +1,689 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/VehicleDetailPage.module.css [app-client] (css) */
+.VehicleDetailPage-module__4OtsXa__page {
+  background: #f9fafb;
+  min-height: 100vh;
+  padding-top: 57px;
+}
+
+.VehicleDetailPage-module__4OtsXa__container {
+  gap: 24px;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 32px 160px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__navBar {
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  height: 57px;
+  padding: 16px 160px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.VehicleDetailPage-module__4OtsXa__backButton {
+  cursor: pointer;
+  color: #4a5565;
+  background: none;
+  border: none;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__leftColumn {
+  flex-direction: column;
+  flex: 0 0 800px;
+  gap: 24px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewsCard {
+  background: #fff;
+  border-radius: 14px;
+  flex-direction: column;
+  min-height: 926px;
+  padding: 0;
+  display: flex;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.VehicleDetailPage-module__4OtsXa__galleryCard {
+  padding: 0;
+  overflow: hidden;
+}
+
+.VehicleDetailPage-module__4OtsXa__mainImageContainer {
+  background: #f3f4f6;
+  height: 384px;
+  position: relative;
+}
+
+.VehicleDetailPage-module__4OtsXa__mainImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.VehicleDetailPage-module__4OtsXa__navButton {
+  cursor: pointer;
+  background: #ffffffe6;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  transition: all .2s;
+  display: flex;
+  position: absolute;
+}
+
+.VehicleDetailPage-module__4OtsXa__navButton:hover {
+  background: #fff;
+}
+
+.VehicleDetailPage-module__4OtsXa__prevButton {
+  top: 172px;
+  left: 16px;
+}
+
+.VehicleDetailPage-module__4OtsXa__nextButton {
+  top: 172px;
+  left: 744px;
+}
+
+.VehicleDetailPage-module__4OtsXa__favoriteButton, .VehicleDetailPage-module__4OtsXa__shareButton {
+  top: 16px;
+  left: 744px;
+}
+
+.VehicleDetailPage-module__4OtsXa__imageCounter {
+  color: #fff;
+  background: #0009;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 14px;
+  position: absolute;
+  top: 340px;
+  left: 733px;
+}
+
+.VehicleDetailPage-module__4OtsXa__thumbnailStrip {
+  gap: 16px;
+  height: 96px;
+  padding: 14px;
+  display: flex;
+  overflow-x: auto;
+}
+
+.VehicleDetailPage-module__4OtsXa__thumbnail {
+  cursor: pointer;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  flex-shrink: 0;
+  width: 80px;
+  height: 64px;
+  padding: 2px;
+  transition: all .2s;
+}
+
+.VehicleDetailPage-module__4OtsXa__thumbnail img {
+  object-fit: cover;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.VehicleDetailPage-module__4OtsXa__activeThumbnail {
+  border-color: #155dfc;
+}
+
+.VehicleDetailPage-module__4OtsXa__vehicleTitle {
+  color: #101828;
+  letter-spacing: .3955px;
+  margin: 0 0 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.VehicleDetailPage-module__4OtsXa__badges {
+  gap: 8px;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__badge {
+  color: #1447e6;
+  letter-spacing: -.1504px;
+  background: #dbeafe;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  display: inline-block;
+}
+
+.VehicleDetailPage-module__4OtsXa__ratingSection {
+  border-bottom: 1px solid #f3f4f6;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__rating {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__ratingValue {
+  color: #101828;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewCount {
+  color: #6a7282;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.VehicleDetailPage-module__4OtsXa__location {
+  color: #4a5565;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__specsGrid {
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 25px 0;
+  display: grid;
+}
+
+.VehicleDetailPage-module__4OtsXa__specItem {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__specIcon {
+  margin-bottom: 8px;
+  font-size: 32px;
+}
+
+.VehicleDetailPage-module__4OtsXa__specLabel {
+  color: #6a7282;
+  margin-bottom: 4px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.VehicleDetailPage-module__4OtsXa__specValue {
+  color: #101828;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.VehicleDetailPage-module__4OtsXa__hostSection {
+  margin-top: 16px;
+}
+
+.VehicleDetailPage-module__4OtsXa__sectionTitle {
+  color: #101828;
+  margin: 0 0 12px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.VehicleDetailPage-module__4OtsXa__hostInfo {
+  align-items: center;
+  gap: 16px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__hostAvatar {
+  color: #155dfc;
+  background: #dbeafe;
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__hostDetails {
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__hostName {
+  color: #101828;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.VehicleDetailPage-module__4OtsXa__hostStats {
+  color: #4a5565;
+  align-items: center;
+  gap: 16px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__hostRating {
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__superHostBadge {
+  background: #fefce8;
+  border-radius: 10px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__superHostBadge span {
+  color: #a65f00;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.VehicleDetailPage-module__4OtsXa__description {
+  color: #364153;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.VehicleDetailPage-module__4OtsXa__featuresGrid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  display: grid;
+}
+
+.VehicleDetailPage-module__4OtsXa__featureItem {
+  color: #364153;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__featureIcon {
+  color: #10b981;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__tabs {
+  background: #ececf0;
+  border-radius: 14px;
+  gap: 3px;
+  width: fit-content;
+  margin: 32px 0 24px;
+  padding: 3.5px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__tab {
+  color: #0a0a0a;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #0000;
+  border-radius: 14px;
+  padding: 5px 9px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  transition: all .2s;
+}
+
+.VehicleDetailPage-module__4OtsXa__activeTab {
+  background: #fff;
+  border-color: #0000;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewsList {
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 24px 24px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewItem {
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 24px;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewItem:last-child {
+  border-bottom: none;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewHeader {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewer {
+  gap: 12px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewerAvatar {
+  color: #364153;
+  background: #e5e7eb;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewerInfo {
+  flex-direction: column;
+  gap: 2px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewerName {
+  color: #101828;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewMeta {
+  color: #6a7282;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewRatingBadge {
+  background: #fefce8;
+  border-radius: 4px;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewRatingBadge span {
+  color: #101828;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.VehicleDetailPage-module__4OtsXa__reviewComment {
+  color: #364153;
+  margin: 12px 0;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.VehicleDetailPage-module__4OtsXa__helpfulButton {
+  cursor: pointer;
+  color: #6a7282;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color .2s;
+}
+
+.VehicleDetailPage-module__4OtsXa__helpfulButton:hover {
+  color: #4a5565;
+}
+
+.VehicleDetailPage-module__4OtsXa__ratingDetails {
+  padding: 24px;
+}
+
+.VehicleDetailPage-module__4OtsXa__ratingPlaceholder {
+  color: #6a7282;
+  text-align: center;
+  padding: 40px 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+}
+
+.VehicleDetailPage-module__4OtsXa__sidebar {
+  flex: 0 0 384px;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookingCard {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  position: sticky;
+  top: 89px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.VehicleDetailPage-module__4OtsXa__priceSection {
+  margin-bottom: 24px;
+}
+
+.VehicleDetailPage-module__4OtsXa__price {
+  color: #155dfc;
+  font-family: Inter, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.VehicleDetailPage-module__4OtsXa__priceUnit {
+  color: #4a5565;
+  margin-left: 4px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookButton {
+  color: #fff;
+  cursor: pointer;
+  background: #155dfc;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 28px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background .2s;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookButton:hover {
+  background: #1565c0;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookingFeatures {
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__feature {
+  color: #4a5565;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  display: flex;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookingInfo {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 25px;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookingInfoTitle {
+  color: #4a5565;
+  margin: 0 0 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookingInfoList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookingInfoList li {
+  color: #4a5565;
+  margin-bottom: 4px;
+  padding-left: 20px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  position: relative;
+}
+
+.VehicleDetailPage-module__4OtsXa__bookingInfoList li:before {
+  content: "•";
+  color: #4a5565;
+  position: absolute;
+  left: 0;
+}
+
+.VehicleDetailPage-module__4OtsXa__loading, .VehicleDetailPage-module__4OtsXa__error {
+  color: #6a7282;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+@media (max-width: 1400px) {
+  .VehicleDetailPage-module__4OtsXa__specsGrid, .VehicleDetailPage-module__4OtsXa__featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .VehicleDetailPage-module__4OtsXa__container {
+    flex-direction: column;
+    padding: 24px 32px;
+  }
+
+  .VehicleDetailPage-module__4OtsXa__leftColumn {
+    flex: 1;
+  }
+
+  .VehicleDetailPage-module__4OtsXa__sidebar {
+    position: static;
+  }
+
+  .VehicleDetailPage-module__4OtsXa__specsGrid, .VehicleDetailPage-module__4OtsXa__featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .VehicleDetailPage-module__4OtsXa__container {
+    padding: 16px;
+  }
+
+  .VehicleDetailPage-module__4OtsXa__specsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .VehicleDetailPage-module__4OtsXa__featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .VehicleDetailPage-module__4OtsXa__thumbnailStrip {
+    padding: 10px;
+  }
+
+  .VehicleDetailPage-module__4OtsXa__thumbnail {
+    width: 60px;
+  }
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_VehicleDetailPage_module_2491100e.css.map*/

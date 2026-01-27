@@ -1,0 +1,126 @@
+/* [project]/Work/p2pcar/src/components/SearchBar.module.css [app-client] (css) */
+.SearchBar-module__kQVeOq__searchBar {
+  background: linear-gradient(135deg, #155dfc 0%, #1447e6 100%);
+  width: 100%;
+  height: 351px;
+  padding-top: 65px;
+  position: relative;
+}
+
+.SearchBar-module__kQVeOq__container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 128px;
+}
+
+.SearchBar-module__kQVeOq__title {
+  text-align: center;
+  color: #fff;
+  letter-spacing: .3691px;
+  margin-bottom: 32px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.SearchBar-module__kQVeOq__searchCard {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
+}
+
+.SearchBar-module__kQVeOq__searchFields {
+  gap: 16px;
+  height: 70px;
+  display: flex;
+  position: relative;
+}
+
+.SearchBar-module__kQVeOq__field {
+  flex-direction: column;
+  gap: 8px;
+  width: 280px;
+  display: flex;
+}
+
+.SearchBar-module__kQVeOq__label {
+  color: #4a5565;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.SearchBar-module__kQVeOq__inputContainer {
+  background-color: #fff;
+  border: 1px solid #d1d5dc;
+  border-radius: 10px;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 13px;
+  display: flex;
+}
+
+.SearchBar-module__kQVeOq__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.SearchBar-module__kQVeOq__input {
+  color: #101828;
+  background: none;
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 16px;
+}
+
+.SearchBar-module__kQVeOq__input::placeholder {
+  color: #10182880;
+  letter-spacing: -.3125px;
+}
+
+.SearchBar-module__kQVeOq__searchButton {
+  cursor: pointer;
+  background-color: #155dfc;
+  border: none;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 280px;
+  height: 48px;
+  transition: background-color .2s;
+  display: flex;
+  position: absolute;
+  top: 22px;
+  right: 0;
+}
+
+.SearchBar-module__kQVeOq__searchButton:hover {
+  background-color: #134ce8;
+}
+
+.SearchBar-module__kQVeOq__searchIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.SearchBar-module__kQVeOq__searchButton span {
+  color: #fff;
+  letter-spacing: -.3125px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+/*# sourceMappingURL=Work_p2pcar_src_components_SearchBar_module_css_bad6b30c._.single.css.map*/

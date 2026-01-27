@@ -40,12 +40,46 @@ class VehicleService(
             "price_desc" -> Sort.by("pricePerDay").descending()
             "rating_desc" -> Sort.by("rating").descending()
             "created_desc" -> Sort.by("createdAt").descending()
+            "distance_asc" -> Sort.by("rating").descending() // 前端会处理距离排序
             else -> Sort.by("rating").descending()
         }
 
         val page = PageRequest.of(request.page, request.size, sort)
 
-        val vehiclesPage = if (request.startDate != null && request.endDate != null) {
+        // 如果提供了经纬度，使用基于坐标的搜索
+        val vehiclesPage = if (request.latitude != null && request.longitude != null) {
+            // 使用基于坐标的搜索
+            if (request.startDate != null && request.endDate != null) {
+                // TODO: 实现带日期可用性检查的坐标搜索
+                vehicleRepository.searchVehiclesByLocation(
+                    status = VehicleStatus.AVAILABLE,
+                    latitude = request.latitude,
+                    longitude = request.longitude,
+                    radius = request.radius,
+                    minPrice = request.minPrice,
+                    maxPrice = request.maxPrice,
+                    brand = request.brand,
+                    transmission = request.transmission?.uppercase(),
+                    fuelType = request.fuelType?.map { it.uppercase() },
+                    seats = request.seats,
+                    pageable = page
+                )
+            } else {
+                vehicleRepository.searchVehiclesByLocation(
+                    status = VehicleStatus.AVAILABLE,
+                    latitude = request.latitude,
+                    longitude = request.longitude,
+                    radius = request.radius,
+                    minPrice = request.minPrice,
+                    maxPrice = request.maxPrice,
+                    brand = request.brand,
+                    transmission = request.transmission?.uppercase(),
+                    fuelType = request.fuelType?.map { it.uppercase() },
+                    seats = request.seats,
+                    pageable = page
+                )
+            }
+        } else if (request.startDate != null && request.endDate != null) {
             if (!DateUtil.isValidRange(request.startDate, request.endDate)) {
                 throw BusinessException(ErrorCode.INVALID_DATE_RANGE)
             }
@@ -58,25 +92,62 @@ class VehicleService(
         } else {
             vehicleRepository.searchVehicles(
                 status = VehicleStatus.AVAILABLE,
-                location = request.location,
                 minPrice = request.minPrice,
                 maxPrice = request.maxPrice,
-                seats = request.seats,
-                transmission = request.transmission,
-                fuelType = request.fuelType,
                 brand = request.brand,
+                transmission = request.transmission?.uppercase(),
+                fuelType = request.fuelType?.map { it.uppercase() },
+                seats = request.seats,
                 pageable = page
             )
         }
 
-        val responses = vehiclesPage.content.map { toResponse(it) }
+        // 计算距离（如果提供了坐标）
+        val responses = vehiclesPage.content.map { vehicle ->
+            val response = toResponse(vehicle)
+            if (request.latitude != null && request.longitude != null &&
+                vehicle.latitude != null && vehicle.longitude != null) {
+                val distance = calculateDistance(
+                    request.latitude, request.longitude,
+                    vehicle.latitude!!.toDouble(), vehicle.longitude!!.toDouble()
+                )
+                response.copy(distance = distance)
+            } else {
+                response
+            }
+        }
+
+        // 如果需要按距离排序
+        val sortedResponses = if (request.sortBy == "distance_asc" && request.latitude != null && request.longitude != null) {
+            responses.sortedBy { it.distance }
+        } else {
+            responses
+        }
 
         return PageResponse.of(
-            items = responses,
+            items = sortedResponses,
             total = vehiclesPage.totalElements,
             page = vehiclesPage.number,
             size = vehiclesPage.size
         )
+    }
+
+    /**
+     * 使用 Haversine 公式计算两点之间的距离（单位：公里）
+     */
+    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val earthRadius = 6371.0 // 地球半径，单位：公里
+
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+
+        val a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2)
+
+        val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+        return earthRadius * c
     }
 
     @Transactional(readOnly = true)
@@ -264,7 +335,9 @@ class VehicleService(
                 if (vehicle.instantBook) add("即时预订")
             },
             status = vehicle.status.name,
-            createdAt = vehicle.createdAt
+            createdAt = vehicle.createdAt,
+            latitude = vehicle.latitude,
+            longitude = vehicle.longitude
         )
     }
 }

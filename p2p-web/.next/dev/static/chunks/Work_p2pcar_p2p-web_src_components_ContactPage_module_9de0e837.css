@@ -1,0 +1,525 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/ContactPage.module.css [app-client] (css) */
+.ContactPage-module__XBU4aa__page {
+  background: #f9fafb;
+  min-height: 100vh;
+}
+
+.ContactPage-module__XBU4aa__hero {
+  background: linear-gradient(170.393deg, #155dfc 0%, #193cb8 100%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 260px;
+  padding: 80px 160px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__heroTitle {
+  color: #fff;
+  text-align: center;
+  letter-spacing: .3516px;
+  margin: 0 0 24px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.ContactPage-module__XBU4aa__heroSubtitle {
+  color: #dbeafe;
+  text-align: center;
+  letter-spacing: -.4492px;
+  max-width: 768px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.ContactPage-module__XBU4aa__navBar {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  min-height: 57px;
+  padding: 16px 160px;
+}
+
+.ContactPage-module__XBU4aa__backButton {
+  cursor: pointer;
+  color: #4a5565;
+  background: none;
+  border: none;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__backButton:hover {
+  color: #155dfc;
+}
+
+.ContactPage-module__XBU4aa__container {
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 32px 32px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__contactSidebar {
+  flex-direction: column;
+  flex: 0 0 384px;
+  gap: 24px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__contactCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.ContactPage-module__XBU4aa__contactIcon {
+  border-radius: 12px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__contactIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ContactPage-module__XBU4aa__contactTitle {
+  color: #101828;
+  letter-spacing: -.4492px;
+  margin: 0 0 12px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.ContactPage-module__XBU4aa__contactDescription {
+  color: #4a5565;
+  letter-spacing: -.3125px;
+  margin: 0 0 12px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.ContactPage-module__XBU4aa__contactValue {
+  color: #155dfc;
+  letter-spacing: .0703px;
+  margin: 0 0 16px;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.ContactPage-module__XBU4aa__contactValues {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__contactValues .ContactPage-module__XBU4aa__contactValue {
+  color: #155dfc;
+  letter-spacing: -.4395px;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.ContactPage-module__XBU4aa__contactAddress {
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__addressLine {
+  color: #364153;
+  letter-spacing: -.3125px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.ContactPage-module__XBU4aa__contactExtra {
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__contactExtra svg {
+  color: #6a7282;
+}
+
+.ContactPage-module__XBU4aa__contactExtra span {
+  color: #6a7282;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.ContactPage-module__XBU4aa__socialLinks {
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__socialLink {
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__socialIcon {
+  color: #fff;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__socialName {
+  color: #364153;
+  letter-spacing: -.3125px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.ContactPage-module__XBU4aa__contactFormCard {
+  background: #fff;
+  border-radius: 16px;
+  flex: 1;
+  padding: 48px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.ContactPage-module__XBU4aa__sectionTitle {
+  color: #101828;
+  letter-spacing: .3955px;
+  margin: 0 0 8px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.ContactPage-module__XBU4aa__formDescription {
+  color: #4a5565;
+  letter-spacing: -.3125px;
+  margin: 0 0 32px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.ContactPage-module__XBU4aa__contactForm {
+  flex-direction: column;
+  gap: 24px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__formRow {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  display: grid;
+}
+
+.ContactPage-module__XBU4aa__formField {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__formLabel {
+  color: #364153;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.ContactPage-module__XBU4aa__formInput, .ContactPage-module__XBU4aa__formSelectInput, .ContactPage-module__XBU4aa__formTextarea {
+  color: #101828;
+  background: #f3f3f5;
+  border: 1px solid #0000;
+  border-radius: 8px;
+  outline: none;
+  padding: 8px 12px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  transition: all .2s;
+}
+
+.ContactPage-module__XBU4aa__formInput::placeholder, .ContactPage-module__XBU4aa__formTextarea::placeholder {
+  color: #717182;
+}
+
+.ContactPage-module__XBU4aa__formInput:focus, .ContactPage-module__XBU4aa__formSelectInput:focus, .ContactPage-module__XBU4aa__formTextarea:focus {
+  background: #e3f2fd;
+  border-color: #155dfc;
+}
+
+.ContactPage-module__XBU4aa__formSelect {
+  position: relative;
+}
+
+.ContactPage-module__XBU4aa__formSelectInput {
+  appearance: none;
+  cursor: pointer;
+  width: 100%;
+  padding-right: 40px;
+}
+
+.ContactPage-module__XBU4aa__selectArrow {
+  pointer-events: none;
+  color: #717182;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+}
+
+.ContactPage-module__XBU4aa__formTextarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  line-height: 20px;
+}
+
+.ContactPage-module__XBU4aa__submitButton {
+  color: #fff;
+  cursor: pointer;
+  background: #155dfc;
+  border: none;
+  border-radius: 10px;
+  align-self: flex-start;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 12px 32px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  transition: all .2s;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__submitButton:hover {
+  background: #1565c0;
+}
+
+.ContactPage-module__XBU4aa__submitButton:active {
+  transform: scale(.98);
+}
+
+.ContactPage-module__XBU4aa__card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 48px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.ContactPage-module__XBU4aa__officesGrid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  display: grid;
+}
+
+.ContactPage-module__XBU4aa__officeItem {
+  border-left: 4px solid;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 28px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__officeCity {
+  color: #101828;
+  letter-spacing: -.4492px;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.ContactPage-module__XBU4aa__officeAddress {
+  color: #4a5565;
+  letter-spacing: -.3125px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.ContactPage-module__XBU4aa__officePhone {
+  color: #6a7282;
+  letter-spacing: -.1504px;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.ContactPage-module__XBU4aa__faqCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 48px 48px 48px 160px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.ContactPage-module__XBU4aa__faqList {
+  flex-direction: column;
+  gap: 24px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__faqItem {
+  border-bottom: 1px solid #e5e7eb;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 24px;
+  display: flex;
+}
+
+.ContactPage-module__XBU4aa__faqItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ContactPage-module__XBU4aa__faqQuestion {
+  color: #101828;
+  letter-spacing: -.4395px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.ContactPage-module__XBU4aa__faqAnswer {
+  color: #4a5565;
+  letter-spacing: -.3125px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@media (max-width: 1400px) {
+  .ContactPage-module__XBU4aa__hero {
+    padding: 60px 64px;
+  }
+
+  .ContactPage-module__XBU4aa__navBar {
+    padding: 16px 64px;
+  }
+
+  .ContactPage-module__XBU4aa__container {
+    padding: 48px 32px 32px;
+  }
+
+  .ContactPage-module__XBU4aa__faqCard {
+    padding: 48px 48px 48px 120px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ContactPage-module__XBU4aa__hero {
+    padding: 40px 32px;
+  }
+
+  .ContactPage-module__XBU4aa__navBar {
+    padding: 16px 32px;
+  }
+
+  .ContactPage-module__XBU4aa__container {
+    flex-direction: column;
+    padding: 32px 16px;
+  }
+
+  .ContactPage-module__XBU4aa__contactSidebar {
+    flex: 1;
+  }
+
+  .ContactPage-module__XBU4aa__contactFormCard {
+    padding: 32px;
+  }
+
+  .ContactPage-module__XBU4aa__formRow, .ContactPage-module__XBU4aa__officesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ContactPage-module__XBU4aa__faqCard {
+    padding: 32px;
+  }
+
+  .ContactPage-module__XBU4aa__faqList {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .ContactPage-module__XBU4aa__heroTitle {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .ContactPage-module__XBU4aa__heroSubtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ContactPage-module__XBU4aa__sectionTitle {
+    font-size: 24px;
+  }
+
+  .ContactPage-module__XBU4aa__card, .ContactPage-module__XBU4aa__contactFormCard {
+    padding: 24px;
+  }
+
+  .ContactPage-module__XBU4aa__submitButton {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_ContactPage_module_9de0e837.css.map*/

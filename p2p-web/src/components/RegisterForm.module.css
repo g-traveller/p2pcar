@@ -10,25 +10,30 @@
   position: relative;
   width: 40%;
   background: #ffffff;
-  padding: 32px 160px;
+  padding: 32px 48px;
   display: flex;
   flex-direction: column;
 }
 
+/* Top Bar - Contains Back Button and Logo */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
 /* Back Button */
 .backButton {
-  position: absolute;
-  left: 160px;
-  top: 32px;
   display: flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
   color: #4A5565;
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   transition: color 0.2s;
 }
 
@@ -42,9 +47,6 @@
 
 /* Logo */
 .logoContainer {
-  position: absolute;
-  left: 160px;
-  top: 80px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -57,7 +59,7 @@
 
 .logoText {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   color: #1E88E5;
 }
 
@@ -184,8 +186,8 @@
 .passwordStrength {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .strengthBar {
@@ -195,6 +197,7 @@
   background-color: #E5E7EB;
   position: relative;
   overflow: hidden;
+  max-width: 120px;
 }
 
 .strengthFill {
@@ -203,10 +206,34 @@
   transition: all 0.3s ease;
 }
 
+.strengthFillWeak {
+  background-color: #EF4444;
+}
+
+.strengthFillMedium {
+  background-color: #F59E0B;
+}
+
+.strengthFillStrong {
+  background-color: #10B981;
+}
+
 .strengthText {
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
+}
+
+.strengthTextWeak {
+  color: #EF4444;
+}
+
+.strengthTextMedium {
+  color: #F59E0B;
+}
+
+.strengthTextStrong {
+  color: #10B981;
 }
 
 /* Verification Container */
@@ -282,22 +309,25 @@
 .termsLabel {
   display: flex;
   align-items: flex-start;
-  gap: 4px;
+  gap: 8px;
   font-size: 14px;
   color: #4A5565;
   line-height: 20px;
   cursor: pointer;
+  flex-wrap: wrap;
 }
 
-.termsLabel a {
+.link {
   color: #1E88E5;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
-.termsLabel a:hover {
+.link:hover {
   color: #1565C0;
+  text-decoration: underline;
 }
 
 /* Submit Button */

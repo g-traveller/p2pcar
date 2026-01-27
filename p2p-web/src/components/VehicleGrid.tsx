@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import VehicleCard from './VehicleCard';
 import VehicleFilters, { VehicleFilterValues } from './VehicleFilters';
 import { searchVehicles } from '@/services/vehicleApi';
+import { SelectedLocation } from './LocationSelector';
 import styles from './VehicleGrid.module.css';
 
 type SortOption = 'recommended' | 'price-low' | 'price-high' | 'rating';
 
 export interface SearchParams {
-  location?: string;
+  location?: SelectedLocation;
   startDate?: string;
   endDate?: string;
 }
@@ -22,13 +23,11 @@ export default function VehicleGrid({ searchParams }: { searchParams?: SearchPar
   const [sortBy, setSortBy] = useState<SortOption>('recommended');
   const [currentPage, setCurrentPage] = useState(0);
   const [filters, setFilters] = useState<VehicleFilterValues>({
-    vehicleType: 'all',
     priceRange: 'all',
     seats: [],
     fuelTypes: [],
   });
   const [activeFilters, setActiveFilters] = useState<VehicleFilterValues>({
-    vehicleType: 'all',
     priceRange: 'all',
     seats: [],
     fuelTypes: [],
@@ -70,14 +69,12 @@ export default function VehicleGrid({ searchParams }: { searchParams?: SearchPar
         }
       }
 
-      // Map vehicle type to backend enum
-      const vehicleType = activeFilters.vehicleType === 'all' ? undefined : activeFilters.vehicleType.toUpperCase();
-
       const { vehicles: fetchedVehicles, total: totalCount } = await searchVehicles({
-        location: searchParams?.location,
+        location: searchParams?.location?.city,
+        latitude: searchParams?.location?.latitude,
+        longitude: searchParams?.location?.longitude,
         startDate: searchParams?.startDate,
         endDate: searchParams?.endDate,
-        vehicleType,
         minPrice,
         maxPrice,
         seats: activeFilters.seats.length > 0 ? activeFilters.seats : undefined,

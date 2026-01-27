@@ -1,0 +1,224 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/LocationSelector.module.css [app-client] (css) */
+.LocationSelector-module__Dp-eda__container {
+  width: 100%;
+  position: relative;
+}
+
+.LocationSelector-module__Dp-eda__trigger {
+  cursor: pointer;
+  background: #fff;
+  border: 1.5px solid #e4e7ec;
+  border-radius: 6px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  transition: all .2s;
+  display: flex;
+}
+
+.LocationSelector-module__Dp-eda__trigger:hover:not(.LocationSelector-module__Dp-eda__disabled) {
+  background-color: #fafbfc;
+  border-color: #1e88e5;
+}
+
+.LocationSelector-module__Dp-eda__trigger.LocationSelector-module__Dp-eda__open {
+  background-color: #fff;
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 3px #1e88e51a;
+}
+
+.LocationSelector-module__Dp-eda__trigger.LocationSelector-module__Dp-eda__disabled {
+  cursor: not-allowed;
+  opacity: .6;
+  background-color: #f5f5f5;
+}
+
+.LocationSelector-module__Dp-eda__value {
+  color: #101828;
+  text-align: left;
+  flex: 1;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.LocationSelector-module__Dp-eda__arrow {
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+
+.LocationSelector-module__Dp-eda__trigger.LocationSelector-module__Dp-eda__open .LocationSelector-module__Dp-eda__arrow {
+  transform: rotate(180deg);
+}
+
+.LocationSelector-module__Dp-eda__dropdown {
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  flex-direction: column;
+  max-height: 400px;
+  animation: .2s ease-out LocationSelector-module__Dp-eda__slideDown;
+  display: flex;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  box-shadow: 0 10px 25px #0000001a;
+}
+
+@media (max-width: 768px) {
+  .LocationSelector-module__Dp-eda__dropdown {
+    border-radius: 16px 16px 0 0;
+    max-height: 70vh;
+    animation: .3s ease-out LocationSelector-module__Dp-eda__slideUp;
+    position: fixed;
+    inset: auto 0 0;
+  }
+
+  @keyframes LocationSelector-module__Dp-eda__slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@keyframes LocationSelector-module__Dp-eda__slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.LocationSelector-module__Dp-eda__searchBox {
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  display: flex;
+}
+
+.LocationSelector-module__Dp-eda__searchIcon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.LocationSelector-module__Dp-eda__searchInput {
+  color: #101828;
+  border: none;
+  outline: none;
+  flex: 1;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.LocationSelector-module__Dp-eda__searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.LocationSelector-module__Dp-eda__locationList {
+  flex: 1;
+  padding: 8px 0;
+  overflow-y: auto;
+}
+
+.LocationSelector-module__Dp-eda__locationList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.LocationSelector-module__Dp-eda__locationList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.LocationSelector-module__Dp-eda__locationList::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.LocationSelector-module__Dp-eda__cityGroup {
+  margin-bottom: 8px;
+}
+
+.LocationSelector-module__Dp-eda__cityGroup:last-child {
+  margin-bottom: 0;
+}
+
+.LocationSelector-module__Dp-eda__cityName {
+  color: #6a7282;
+  background-color: #f9fafb;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.LocationSelector-module__Dp-eda__locationItem {
+  cursor: pointer;
+  padding: 10px 16px;
+  transition: background-color .15s;
+}
+
+.LocationSelector-module__Dp-eda__locationItem:hover {
+  background-color: #f3f4f6;
+}
+
+.LocationSelector-module__Dp-eda__locationItem.LocationSelector-module__Dp-eda__selected {
+  background-color: #eff6ff;
+}
+
+.LocationSelector-module__Dp-eda__locationHeader {
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  display: flex;
+}
+
+.LocationSelector-module__Dp-eda__locationName {
+  color: #101828;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.LocationSelector-module__Dp-eda__locationDistrict {
+  color: #6a7282;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.LocationSelector-module__Dp-eda__locationAddress {
+  color: #6a7282;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.LocationSelector-module__Dp-eda__error {
+  color: #dc2626;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.LocationSelector-module__Dp-eda__overlay {
+  z-index: 600;
+  background: none;
+  position: fixed;
+  inset: 0;
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_LocationSelector_module_css_bad6b30c._.single.css.map*/

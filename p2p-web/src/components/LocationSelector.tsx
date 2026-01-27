@@ -4,9 +4,17 @@ import { useState, useEffect } from 'react';
 import styles from './LocationSelector.module.css';
 import { PickupLocation, getActiveLocations } from '@/services/pickupLocationApi';
 
+export interface SelectedLocation {
+  name: string;           // 显示名称
+  city: string;           // 城市名称
+  address: string;        // 完整地址
+  latitude: number;       // 纬度
+  longitude: number;      // 经度
+}
+
 interface LocationSelectorProps {
-  value?: string;
-  onChange?: (location: string) => void;
+  value?: SelectedLocation;
+  onChange?: (location: SelectedLocation) => void;
   placeholder?: string;
   disabled?: boolean;
   className?: string;
@@ -62,7 +70,7 @@ export default function LocationSelector({
           // Find and set initial location if value is provided
           if (value) {
             const initialLocation = response.data.find(loc =>
-              loc.address === value || loc.name === value
+              loc.city === value.city && loc.address === value.address
             );
             if (initialLocation) {
               setSelectedLocation(initialLocation);
@@ -82,13 +90,24 @@ export default function LocationSelector({
 
   const handleSelect = (location: PickupLocation) => {
     setSelectedLocation(location);
-    onChange?.(location.address);
+    // 传递完整的 SelectedLocation 对象（包含经纬度）
+    const selectedLocation: SelectedLocation = {
+      name: location.name,
+      city: location.city,
+      address: location.address,
+      latitude: location.latitude || 0,
+      longitude: location.longitude || 0
+    };
+    onChange?.(selectedLocation);
     setIsOpen(false);
   };
 
   const getDisplayValue = () => {
     if (selectedLocation) {
       return `${selectedLocation.district ? selectedLocation.district + ' · ' : ''}${selectedLocation.name}`;
+    }
+    if (value) {
+      return value.name;
     }
     return placeholder;
   };

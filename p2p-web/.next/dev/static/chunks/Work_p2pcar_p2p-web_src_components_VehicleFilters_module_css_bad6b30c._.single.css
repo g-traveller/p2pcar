@@ -1,0 +1,416 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/VehicleFilters.module.css [app-client] (css) */
+.VehicleFilters-module__SNhiCG__filtersContainer {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 0;
+  transition: all .3s;
+}
+
+.VehicleFilters-module__SNhiCG__filtersContainer.VehicleFilters-module__SNhiCG__loading {
+  opacity: .6;
+  pointer-events: none;
+}
+
+.VehicleFilters-module__SNhiCG__filtersHeader {
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__filterInfo {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__filterIcon {
+  color: #6b7280;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.VehicleFilters-module__SNhiCG__filterTitle {
+  color: #364153;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.VehicleFilters-module__SNhiCG__activeCount {
+  color: #155dfc;
+  background: #155dfc1a;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.VehicleFilters-module__SNhiCG__filterActions {
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__resetButton {
+  color: #155dfc;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.VehicleFilters-module__SNhiCG__resetButton:hover:not(:disabled) {
+  background: #155dfc1a;
+}
+
+.VehicleFilters-module__SNhiCG__resetButton:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.VehicleFilters-module__SNhiCG__toggleButton {
+  color: #4a5565;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__toggleButton:hover:not(:disabled) {
+  color: #1e88e5;
+  background: #f9fafb;
+  border-color: #1e88e5;
+}
+
+.VehicleFilters-module__SNhiCG__toggleButton:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.VehicleFilters-module__SNhiCG__filtersContent {
+  max-height: 0;
+  padding-top: 0;
+  transition: max-height .3s;
+  overflow: hidden;
+}
+
+.VehicleFilters-module__SNhiCG__filtersContent.VehicleFilters-module__SNhiCG__expanded {
+  border-top: 1px solid #e5e7eb;
+  max-height: 500px;
+  padding-top: 16px;
+}
+
+.VehicleFilters-module__SNhiCG__filtersGrid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  display: grid;
+}
+
+.VehicleFilters-module__SNhiCG__filterSection {
+  flex-direction: column;
+  gap: 12px;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__filterSectionHeader {
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__sectionIcon {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.VehicleFilters-module__SNhiCG__filterLabel {
+  color: #364153;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.VehicleFilters-module__SNhiCG__tagGroup {
+  flex-wrap: wrap;
+  gap: 8px;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__tagButton {
+  color: #364153;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 10px 20px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all .2s;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__tagButton:hover:not(:disabled) {
+  color: #101828;
+  background: #e5e7eb;
+}
+
+.VehicleFilters-module__SNhiCG__tagButton.VehicleFilters-module__SNhiCG__active {
+  color: #fff;
+  background: #155dfc;
+}
+
+.VehicleFilters-module__SNhiCG__tagButton:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.VehicleFilters-module__SNhiCG__selectWrapper {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+  position: relative;
+}
+
+.VehicleFilters-module__SNhiCG__select {
+  color: #364153;
+  cursor: pointer;
+  appearance: none;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  outline: none;
+  min-width: 150px;
+  height: 40px;
+  padding: 10px 40px 10px 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.VehicleFilters-module__SNhiCG__select:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #155dfc;
+}
+
+.VehicleFilters-module__SNhiCG__select:focus {
+  border-color: #155dfc;
+  box-shadow: 0 0 0 3px #155dfc1a;
+}
+
+.VehicleFilters-module__SNhiCG__select:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.VehicleFilters-module__SNhiCG__select option {
+  background: #fff;
+}
+
+.VehicleFilters-module__SNhiCG__selectIcon {
+  color: #6b7280;
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+}
+
+.VehicleFilters-module__SNhiCG__selectFilterIcon {
+  color: #6b7280;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.VehicleFilters-module__SNhiCG__chipGroup {
+  flex-wrap: wrap;
+  gap: 10px;
+  display: flex;
+}
+
+.VehicleFilters-module__SNhiCG__chipButton {
+  color: #4a5565;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  min-width: 65px;
+  padding: 10px 18px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+  display: inline-flex;
+}
+
+.VehicleFilters-module__SNhiCG__chipButton:hover:not(:disabled) {
+  color: #1e88e5;
+  background: #f9fafb;
+  border-color: #1e88e5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px #1e85ff1a;
+}
+
+.VehicleFilters-module__SNhiCG__chipButton.VehicleFilters-module__SNhiCG__active {
+  color: #fff;
+  background: #1e88e5;
+  border-color: #1e88e5;
+  box-shadow: 0 2px 4px #1e85ff33;
+}
+
+.VehicleFilters-module__SNhiCG__chipButton:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+  .VehicleFilters-module__SNhiCG__filtersGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .VehicleFilters-module__SNhiCG__filtersContainer {
+    padding: 12px 0;
+  }
+
+  .VehicleFilters-module__SNhiCG__filtersHeader {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .VehicleFilters-module__SNhiCG__filterInfo {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .VehicleFilters-module__SNhiCG__filterActions {
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 8px;
+    display: flex;
+  }
+
+  .VehicleFilters-module__SNhiCG__filtersContent.VehicleFilters-module__SNhiCG__expanded {
+    padding-top: 12px;
+  }
+
+  .VehicleFilters-module__SNhiCG__filtersGrid {
+    gap: 16px;
+  }
+
+  .VehicleFilters-module__SNhiCG__tagGroup {
+    flex-wrap: wrap;
+  }
+
+  .VehicleFilters-module__SNhiCG__tagButton {
+    height: 36px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .VehicleFilters-module__SNhiCG__select {
+    min-width: 120px;
+    height: 36px;
+    padding: 8px 36px 8px 12px;
+    font-size: 14px;
+  }
+
+  .VehicleFilters-module__SNhiCG__toggleButton {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .VehicleFilters-module__SNhiCG__chipButton {
+    min-width: 55px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .VehicleFilters-module__SNhiCG__filterIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .VehicleFilters-module__SNhiCG__filterTitle {
+    font-size: 14px;
+  }
+
+  .VehicleFilters-module__SNhiCG__activeCount {
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+
+  .VehicleFilters-module__SNhiCG__resetButton {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  .VehicleFilters-module__SNhiCG__tagButton {
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .VehicleFilters-module__SNhiCG__select {
+    min-width: 100px;
+    height: 32px;
+    padding: 6px 32px 6px 10px;
+    font-size: 13px;
+  }
+
+  .VehicleFilters-module__SNhiCG__toggleButton {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .VehicleFilters-module__SNhiCG__toggleButton span {
+    text-overflow: ellipsis;
+    max-width: 60px;
+    overflow: hidden;
+  }
+}
+
+@keyframes VehicleFilters-module__SNhiCG__pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .8;
+  }
+}
+
+.VehicleFilters-module__SNhiCG__filtersContainer.VehicleFilters-module__SNhiCG__updating {
+  animation: .5s VehicleFilters-module__SNhiCG__pulse;
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_VehicleFilters_module_css_bad6b30c._.single.css.map*/

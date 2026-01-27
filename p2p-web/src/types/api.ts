@@ -48,6 +48,9 @@ export interface VehicleResponse {
   badges: string[];
   status: string;
   createdAt: string;
+  distance?: number;    // 距离（公里）
+  latitude?: number;    // 车辆位置纬度
+  longitude?: number;   // 车辆位置经度
 }
 
 // Vehicle interface for frontend (transformed from backend response)
@@ -66,6 +69,9 @@ export interface Vehicle {
   trips: number;
   price: number;
   badges: string[];
+  distance?: number;    // 距离（公里）
+  latitude?: number;    // 车辆位置纬度
+  longitude?: number;   // 车辆位置经度
 }
 
 // Auth interfaces

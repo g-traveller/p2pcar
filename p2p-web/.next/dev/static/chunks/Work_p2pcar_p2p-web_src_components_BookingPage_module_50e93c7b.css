@@ -1,0 +1,552 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/BookingPage.module.css [app-client] (css) */
+.BookingPage-module__6SpyGq__page {
+  background: #f9fafb;
+  min-height: 100vh;
+  padding-top: 57px;
+}
+
+.BookingPage-module__6SpyGq__navBar {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 160px;
+}
+
+.BookingPage-module__6SpyGq__backButton {
+  cursor: pointer;
+  color: #4a5565;
+  background: none;
+  border: none;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 32px 128px;
+}
+
+.BookingPage-module__6SpyGq__title {
+  color: #101828;
+  letter-spacing: -.011px;
+  margin-bottom: 32px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.BookingPage-module__6SpyGq__content {
+  align-items: flex-start;
+  gap: 32px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__leftColumn {
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
+  max-width: 800px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__rightColumn {
+  flex-shrink: 0;
+  width: 384px;
+  position: sticky;
+  top: 81px;
+}
+
+.BookingPage-module__6SpyGq__card {
+  background: #fff;
+  border-radius: 14px;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  display: flex;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.BookingPage-module__6SpyGq__cardTitle {
+  color: #101828;
+  letter-spacing: -.45px;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.BookingPage-module__6SpyGq__vehicleInfo {
+  gap: 16px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__vehicleImage {
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  width: 128px;
+  height: 96px;
+}
+
+.BookingPage-module__6SpyGq__vehicleDetails {
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__vehicleName {
+  color: #101828;
+  letter-spacing: -.44px;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.BookingPage-module__6SpyGq__vehicleMeta {
+  color: #4a5565;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__vehiclePrice {
+  color: #155dfc;
+  letter-spacing: .07px;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.BookingPage-module__6SpyGq__dateFields {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  display: grid;
+}
+
+.BookingPage-module__6SpyGq__field {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__label {
+  color: #364153;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.BookingPage-module__6SpyGq__inputContainer {
+  background: #fff;
+  border: 1px solid #d1d5dc;
+  border-radius: 10px;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  padding: 0 17px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__inputContainer > svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.BookingPage-module__6SpyGq__dateInput {
+  color: #101828;
+  background: none;
+  border: none;
+  outline: none;
+  flex: 1;
+  height: 100%;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+}
+
+.BookingPage-module__6SpyGq__dateInput::placeholder {
+  color: #99a1af;
+}
+
+.BookingPage-module__6SpyGq__locationButton {
+  color: #717182;
+  cursor: pointer;
+  background: #f3f3f5;
+  border: 1px solid #0000;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+  padding: 0 13px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  transition: all .2s;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__locationButton:hover {
+  background: #e5e7eb;
+}
+
+.BookingPage-module__6SpyGq__insuranceOptions {
+  flex-direction: column;
+  gap: 16px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__insuranceOption {
+  cursor: pointer;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 18px;
+  transition: all .2s;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__insuranceOption:hover {
+  border-color: #d1d5dc;
+}
+
+.BookingPage-module__6SpyGq__insuranceOption.BookingPage-module__6SpyGq__selected {
+  border-color: #155dfc;
+}
+
+.BookingPage-module__6SpyGq__insuranceOption.BookingPage-module__6SpyGq__recommended {
+  background: #eff6ff;
+  border-color: #155dfc;
+}
+
+.BookingPage-module__6SpyGq__insuranceContent {
+  flex: 1;
+  gap: 12px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__radioInput {
+  display: none;
+}
+
+.BookingPage-module__6SpyGq__insuranceDetails {
+  flex: 1;
+}
+
+.BookingPage-module__6SpyGq__insuranceHeader {
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__insuranceName {
+  color: #101828;
+  letter-spacing: -.44px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.BookingPage-module__6SpyGq__insuranceDescription {
+  color: #4a5565;
+  margin: 0 0 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.BookingPage-module__6SpyGq__insuranceFeatures {
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__insuranceFeatures li {
+  color: #364153;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__insuranceFeatures li svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.BookingPage-module__6SpyGq__insurancePrice {
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 38px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__price {
+  color: #155dfc;
+  letter-spacing: -.45px;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.BookingPage-module__6SpyGq__priceUnit {
+  color: #6a7282;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+}
+
+.BookingPage-module__6SpyGq__addOnOption {
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  align-items: center;
+  gap: 12px;
+  padding: 17px;
+  transition: all .2s;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__addOnOption:hover {
+  background: #f9fafb;
+}
+
+.BookingPage-module__6SpyGq__addOnSelected {
+  background: #f0f7ff;
+  border-color: #155dfc;
+}
+
+.BookingPage-module__6SpyGq__checkbox {
+  background: #f3f3f5;
+  border: 1px solid #0000001a;
+  border-radius: 4px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  position: relative;
+}
+
+.BookingPage-module__6SpyGq__checkboxInner {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__addOnDetails {
+  flex: 1;
+}
+
+.BookingPage-module__6SpyGq__addOnName {
+  color: #101828;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__addOnName svg {
+  width: 20px;
+  height: 20px;
+}
+
+.BookingPage-module__6SpyGq__addOnDescription {
+  color: #4a5565;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+}
+
+.BookingPage-module__6SpyGq__addOnPrice {
+  color: #101828;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.BookingPage-module__6SpyGq__priceCard {
+  background: #fff;
+  border-radius: 14px;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  display: flex;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.BookingPage-module__6SpyGq__priceDetails {
+  flex-direction: column;
+  gap: 16px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__priceRow {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__priceLabel, .BookingPage-module__6SpyGq__priceValue {
+  color: #364153;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.BookingPage-module__6SpyGq__totalSection {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 17px;
+}
+
+.BookingPage-module__6SpyGq__totalRow {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__totalLabel {
+  color: #101828;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.BookingPage-module__6SpyGq__totalValue {
+  color: #155dfc;
+  letter-spacing: .4px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.BookingPage-module__6SpyGq__confirmButton {
+  color: #fff;
+  cursor: pointer;
+  background: #d1d5dc;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 60px;
+  margin-top: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.BookingPage-module__6SpyGq__confirmButton:hover {
+  background: #155dfc;
+}
+
+.BookingPage-module__6SpyGq__confirmButton:active {
+  transform: scale(.98);
+}
+
+.BookingPage-module__6SpyGq__tips {
+  background: #eff6ff;
+  border-radius: 10px;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  display: flex;
+}
+
+.BookingPage-module__6SpyGq__tipIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.BookingPage-module__6SpyGq__tipContent {
+  flex: 1;
+}
+
+.BookingPage-module__6SpyGq__tipTitle {
+  color: #364153;
+  margin: 0 0 4px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.BookingPage-module__6SpyGq__tipText {
+  color: #364153;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.BookingPage-module__6SpyGq__loading {
+  text-align: center;
+  color: #6a7282;
+  padding: 100px 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+}
+
+.BookingPage-module__6SpyGq__error {
+  text-align: center;
+  color: #dc2626;
+  padding: 100px 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+}
+
+@media (max-width: 1200px) {
+  .BookingPage-module__6SpyGq__content {
+    flex-direction: column;
+  }
+
+  .BookingPage-module__6SpyGq__rightColumn {
+    width: 100%;
+    max-width: 400px;
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .BookingPage-module__6SpyGq__container {
+    padding: 24px 32px;
+  }
+
+  .BookingPage-module__6SpyGq__dateFields {
+    grid-template-columns: 1fr;
+  }
+
+  .BookingPage-module__6SpyGq__vehicleInfo {
+    flex-direction: column;
+  }
+
+  .BookingPage-module__6SpyGq__vehicleImage {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_BookingPage_module_50e93c7b.css.map*/

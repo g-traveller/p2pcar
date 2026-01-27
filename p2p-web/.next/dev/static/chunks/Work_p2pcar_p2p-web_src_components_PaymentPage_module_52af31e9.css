@@ -1,0 +1,578 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/PaymentPage.module.css [app-client] (css) */
+.PaymentPage-module__cH_3NG__page {
+  background: #fff;
+  min-height: 100vh;
+}
+
+.PaymentPage-module__cH_3NG__container {
+  gap: 24px;
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 89px 160px 32px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__navBar {
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  height: 57px;
+  padding: 16px 160px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.PaymentPage-module__cH_3NG__backButton {
+  cursor: pointer;
+  color: #4a5565;
+  background: none;
+  border: none;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__backButton:hover {
+  color: #155dfc;
+}
+
+.PaymentPage-module__cH_3NG__leftColumn {
+  flex-direction: column;
+  flex: 0 0 800px;
+  gap: 24px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__pageTitle {
+  color: #101828;
+  letter-spacing: .3955px;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.PaymentPage-module__cH_3NG__card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.PaymentPage-module__cH_3NG__cardTitle {
+  color: #101828;
+  letter-spacing: -.4492px;
+  margin: 0 0 16px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.PaymentPage-module__cH_3NG__paymentMethods {
+  flex-direction: column;
+  gap: 12px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__paymentMethod {
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  align-items: center;
+  gap: 12px;
+  min-height: 80px;
+  padding: 18px;
+  transition: all .2s;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__paymentMethod:hover {
+  border-color: #d1d5dc;
+}
+
+.PaymentPage-module__cH_3NG__paymentMethod.PaymentPage-module__cH_3NG__selected {
+  background: #eff6ff;
+  border-color: #155dfc;
+}
+
+.PaymentPage-module__cH_3NG__radioIndicator {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__paymentMethod.PaymentPage-module__cH_3NG__selected .PaymentPage-module__cH_3NG__radioIndicator {
+  border-color: #155dfc;
+}
+
+.PaymentPage-module__cH_3NG__radioDot {
+  background: #155dfc;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+}
+
+.PaymentPage-module__cH_3NG__paymentIcon {
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__paymentInfo {
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__paymentName {
+  color: #101828;
+  letter-spacing: -.3125px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.PaymentPage-module__cH_3NG__paymentDesc {
+  color: #4a5565;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__qrCodeSection {
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__qrCodePlaceholder {
+  background: #f3f4f6;
+  border-radius: 14px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 256px;
+  height: 256px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__qrCodeIcon {
+  font-size: 64px;
+}
+
+.PaymentPage-module__cH_3NG__qrCodeText {
+  color: #99a1af;
+  letter-spacing: -.3125px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.PaymentPage-module__cH_3NG__qrCodeInstruction {
+  color: #4a5565;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__bankCardPlaceholder {
+  color: #6a7282;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__termsSection {
+  align-items: flex-start;
+  gap: 12px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__checkbox {
+  cursor: pointer;
+  background: #f3f3f5;
+  border: 1px solid #0000001a;
+  border-radius: 4px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  box-shadow: 0 1px 2px #0000000d;
+}
+
+.PaymentPage-module__cH_3NG__checkbox:checked {
+  background: #155dfc;
+  border-color: #155dfc;
+}
+
+.PaymentPage-module__cH_3NG__termsLabel {
+  color: #364153;
+  letter-spacing: -.1504px;
+  cursor: pointer;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__link {
+  color: #155dfc;
+  text-decoration: none;
+}
+
+.PaymentPage-module__cH_3NG__link:hover {
+  text-decoration: underline;
+}
+
+.PaymentPage-module__cH_3NG__securityNotice {
+  background: #eff6ff;
+  border: 1px solid #bedbff;
+  border-radius: 14px;
+  gap: 12px;
+  padding: 24px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__securityIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+
+.PaymentPage-module__cH_3NG__securityContent {
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__securityTitle {
+  color: #101828;
+  letter-spacing: -.3125px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.PaymentPage-module__cH_3NG__securityText {
+  color: #364153;
+  letter-spacing: -.1504px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__sidebar {
+  flex: 0 0 384px;
+}
+
+.PaymentPage-module__cH_3NG__orderSummary {
+  background: #fff;
+  border-radius: 14px;
+  flex-direction: column;
+  gap: 24px;
+  max-height: calc(100vh - 113px);
+  padding: 24px;
+  display: flex;
+  position: sticky;
+  top: 89px;
+  overflow-y: auto;
+  box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000001a;
+}
+
+.PaymentPage-module__cH_3NG__vehicleSection {
+  border-bottom: 1px solid #e5e7eb;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 12px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__vehicleImage {
+  border-radius: 10px;
+  width: 100%;
+  height: 128px;
+  overflow: hidden;
+}
+
+.PaymentPage-module__cH_3NG__vehicleImage img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.PaymentPage-module__cH_3NG__vehicleName {
+  color: #101828;
+  letter-spacing: -.3125px;
+  margin: 0;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.PaymentPage-module__cH_3NG__orderDetails {
+  border-bottom: 1px solid #e5e7eb;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 12px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__detailRow {
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__detailLabel {
+  color: #4a5565;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__detailValue {
+  color: #101828;
+  letter-spacing: -.1504px;
+  text-align: right;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__priceBreakdown {
+  flex-direction: column;
+  gap: 12px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__priceRow {
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__priceLabel {
+  color: #364153;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans JP, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__priceValue {
+  color: #364153;
+  letter-spacing: -.1504px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__totalSection {
+  border-top: 1px solid #e5e7eb;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 5px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__totalRow {
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__totalLabel {
+  color: #101828;
+  letter-spacing: -.4395px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.PaymentPage-module__cH_3NG__totalValue {
+  color: #155dfc;
+  letter-spacing: .0703px;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.PaymentPage-module__cH_3NG__depositBox {
+  background: #fefce8;
+  border: 1px solid #fff085;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__depositRow {
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  display: flex;
+}
+
+.PaymentPage-module__cH_3NG__depositLabel {
+  color: #364153;
+  letter-spacing: -.1504px;
+  font-family: Inter, Noto Sans SC, Noto Sans JP, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__depositValue {
+  color: #101828;
+  letter-spacing: -.1504px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.PaymentPage-module__cH_3NG__payButton, .PaymentPage-module__cH_3NG__payButtonActive, .PaymentPage-module__cH_3NG__payButtonDisabled {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 60px;
+  font-family: Inter, Noto Sans JP, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  transition: all .2s;
+}
+
+.PaymentPage-module__cH_3NG__payButtonDisabled {
+  color: #fff;
+  cursor: not-allowed;
+  background: #d1d5dc;
+}
+
+.PaymentPage-module__cH_3NG__payButtonActive {
+  color: #fff;
+  background: #155dfc;
+}
+
+.PaymentPage-module__cH_3NG__payButtonActive:hover:not(:disabled) {
+  background: #1565c0;
+}
+
+.PaymentPage-module__cH_3NG__payButtonActive:active:not(:disabled) {
+  transform: scale(.98);
+}
+
+.PaymentPage-module__cH_3NG__loading, .PaymentPage-module__cH_3NG__error {
+  color: #6a7282;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  display: flex;
+}
+
+@media (max-width: 1400px) {
+  .PaymentPage-module__cH_3NG__container {
+    padding: 24px 64px;
+  }
+
+  .PaymentPage-module__cH_3NG__leftColumn {
+    flex: 1;
+  }
+
+  .PaymentPage-module__cH_3NG__navBar {
+    padding: 16px 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .PaymentPage-module__cH_3NG__container {
+    flex-direction: column;
+    padding: 24px 32px;
+  }
+
+  .PaymentPage-module__cH_3NG__leftColumn {
+    flex: 1;
+  }
+
+  .PaymentPage-module__cH_3NG__sidebar {
+    position: static;
+  }
+
+  .PaymentPage-module__cH_3NG__navBar {
+    padding: 16px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .PaymentPage-module__cH_3NG__container, .PaymentPage-module__cH_3NG__navBar {
+    padding: 16px;
+  }
+
+  .PaymentPage-module__cH_3NG__pageTitle {
+    font-size: 24px;
+  }
+
+  .PaymentPage-module__cH_3NG__qrCodePlaceholder {
+    width: 200px;
+    height: 200px;
+  }
+
+  .PaymentPage-module__cH_3NG__qrCodeIcon {
+    font-size: 48px;
+  }
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_PaymentPage_module_52af31e9.css.map*/

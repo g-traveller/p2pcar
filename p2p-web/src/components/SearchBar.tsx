@@ -2,14 +2,20 @@
 
 import styles from './SearchBar.module.css';
 import { useState, useMemo } from 'react';
-import LocationSelector from './LocationSelector';
+import LocationSelector, { SelectedLocation } from './LocationSelector';
+
+export interface SearchParams {
+  location?: SelectedLocation;
+  startDate?: string;
+  endDate?: string;
+}
 
 export interface SearchBarProps {
-  onSearch?: (params: { location?: string; startDate?: string; endDate?: string }) => void;
+  onSearch?: (params: SearchParams) => void;
 }
 
 export default function SearchBar({ onSearch }: SearchBarProps) {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState<SelectedLocation | undefined>(undefined);
 
   // 计算默认日期
   const tomorrow = useMemo(() => {
@@ -38,7 +44,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
               <LocationSelector
                 value={location}
                 onChange={setLocation}
-                placeholder="请选择取车地点"
+                placeholder="请输入或选择取车地点"
               />
             </div>
             <div className={styles.field}>

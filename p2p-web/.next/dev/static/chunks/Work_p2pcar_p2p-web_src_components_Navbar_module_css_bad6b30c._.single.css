@@ -1,0 +1,399 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/Navbar.module.css [app-client] (css) */
+.Navbar-module__PUpGsG__navbar {
+  z-index: 1000;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  width: 100%;
+  height: 56px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.Navbar-module__PUpGsG__container {
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+  max-width: 1536px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__logo {
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: opacity .2s;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__logo:hover {
+  opacity: .8;
+}
+
+.Navbar-module__PUpGsG__logoIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.Navbar-module__PUpGsG__logoText {
+  color: #1a73e8;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.Navbar-module__PUpGsG__navLinks {
+  flex: 1;
+  align-items: center;
+  gap: 24px;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__navLink {
+  color: #5f6368;
+  white-space: nowrap;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.Navbar-module__PUpGsG__navLink:hover {
+  color: #1a73e8;
+}
+
+.Navbar-module__PUpGsG__userActions {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__userGreeting {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+  position: relative;
+}
+
+.Navbar-module__PUpGsG__greetingText {
+  color: #5f6368;
+  white-space: nowrap;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.Navbar-module__PUpGsG__userMenu {
+  position: relative;
+}
+
+.Navbar-module__PUpGsG__menuButton {
+  cursor: pointer;
+  color: #5f6368;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  transition: all .2s;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__menuButton:hover {
+  background-color: #0000000a;
+}
+
+.Navbar-module__PUpGsG__dropdownIcon {
+  transition: transform .2s;
+}
+
+.Navbar-module__PUpGsG__menuButton:hover .Navbar-module__PUpGsG__dropdownIcon {
+  transform: rotate(180deg);
+}
+
+.Navbar-module__PUpGsG__dropdownMenu {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1001;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-width: 160px;
+  transition: all .2s;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  transform: translateY(-8px);
+  box-shadow: 0 4px 12px #0000001a;
+}
+
+.Navbar-module__PUpGsG__userMenu:hover .Navbar-module__PUpGsG__dropdownMenu, .Navbar-module__PUpGsG__menuButton:focus + .Navbar-module__PUpGsG__dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.Navbar-module__PUpGsG__dropdownItem {
+  color: #5f6368;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 10px 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: all .15s;
+  display: block;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:hover {
+  background-color: #0000000a;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.Navbar-module__PUpGsG__dropdownItem:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.Navbar-module__PUpGsG__dropdownDivider {
+  background-color: #e5e7eb;
+  height: 1px;
+  margin: 4px 0;
+}
+
+.Navbar-module__PUpGsG__loginButton {
+  color: #5f6368;
+  white-space: nowrap;
+  background-color: #0000;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.Navbar-module__PUpGsG__loginButton:hover {
+  color: #1a73e8;
+  background-color: #1a73e80d;
+}
+
+.Navbar-module__PUpGsG__registerButton {
+  color: #fff;
+  white-space: nowrap;
+  background-color: #1a73e8;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.Navbar-module__PUpGsG__registerButton:hover {
+  background-color: #1557b0;
+}
+
+.Navbar-module__PUpGsG__mobileMenuButton {
+  cursor: pointer;
+  color: #333;
+  background: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  transition: color .2s;
+  display: none;
+}
+
+.Navbar-module__PUpGsG__mobileMenuButton:hover {
+  color: #1a73e8;
+}
+
+@media (max-width: 1200px) {
+  .Navbar-module__PUpGsG__container {
+    padding: 0 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .Navbar-module__PUpGsG__container {
+    gap: 24px;
+    padding: 0 32px;
+  }
+
+  .Navbar-module__PUpGsG__navLinks {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Navbar-module__PUpGsG__navbar {
+    height: 56px;
+  }
+
+  .Navbar-module__PUpGsG__container {
+    padding: 0 16px;
+  }
+
+  .Navbar-module__PUpGsG__navLinks, .Navbar-module__PUpGsG__userActions {
+    display: none;
+  }
+
+  .Navbar-module__PUpGsG__mobileMenuButton {
+    display: flex;
+  }
+
+  .Navbar-module__PUpGsG__logoText {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Navbar-module__PUpGsG__logoIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .Navbar-module__PUpGsG__logoText {
+    font-size: 16px;
+  }
+}
+
+.Navbar-module__PUpGsG__dialogOverlay {
+  z-index: 9999;
+  background-color: #00000080;
+  justify-content: center;
+  align-items: center;
+  animation: .2s ease-out Navbar-module__PUpGsG__fadeIn;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.Navbar-module__PUpGsG__dialogContainer {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  animation: .2s ease-out Navbar-module__PUpGsG__slideUp;
+  box-shadow: 0 20px 25px -5px #0000001a, 0 10px 10px -5px #0000000a;
+}
+
+.Navbar-module__PUpGsG__dialogHeader {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 24px 16px;
+}
+
+.Navbar-module__PUpGsG__dialogTitle {
+  color: #101828;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.Navbar-module__PUpGsG__dialogBody {
+  padding: 20px 24px;
+}
+
+.Navbar-module__PUpGsG__dialogMessage {
+  color: #4a5565;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.Navbar-module__PUpGsG__dialogFooter {
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  display: flex;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary, .Navbar-module__PUpGsG__dialogButtonPrimary {
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary {
+  color: #5f6368;
+  background-color: #fff;
+  border: 1px solid #d1d5dc;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary:hover:not(:disabled) {
+  background-color: #f8f9fa;
+  border-color: #9ca3af;
+}
+
+.Navbar-module__PUpGsG__dialogButtonPrimary {
+  color: #fff;
+  background-color: #1a73e8;
+}
+
+.Navbar-module__PUpGsG__dialogButtonPrimary:hover:not(:disabled) {
+  background-color: #1557b0;
+}
+
+.Navbar-module__PUpGsG__dialogButtonSecondary:disabled, .Navbar-module__PUpGsG__dialogButtonPrimary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+@keyframes Navbar-module__PUpGsG__fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes Navbar-module__PUpGsG__slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_Navbar_module_css_bad6b30c._.single.css.map*/

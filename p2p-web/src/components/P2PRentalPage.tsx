@@ -2,16 +2,10 @@
 
 import { useState } from 'react';
 import Navbar from './Navbar';
-import SearchBar from './SearchBar';
+import SearchBar, { SearchParams } from './SearchBar';
 import VehicleGrid from './VehicleGrid';
 import Footer from './Footer';
 import styles from './P2PRentalPage.module.css';
-
-export interface SearchParams {
-  location?: string;
-  startDate?: string;
-  endDate?: string;
-}
 
 export default function P2PRentalPage() {
   const [searchParams, setSearchParams] = useState<SearchParams>({});

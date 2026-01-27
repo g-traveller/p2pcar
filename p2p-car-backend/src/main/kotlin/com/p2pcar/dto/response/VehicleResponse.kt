@@ -26,7 +26,10 @@ data class VehicleResponse(
     val host: HostInfo? = null,
     val badges: List<String> = emptyList(),
     val status: String,
-    val createdAt: LocalDateTime
+    val createdAt: LocalDateTime,
+    val distance: Double? = null,  // 距离（公里）
+    val latitude: BigDecimal? = null,  // 车辆位置纬度
+    val longitude: BigDecimal? = null  // 车辆位置经度
 )
 
 data class HostInfo(

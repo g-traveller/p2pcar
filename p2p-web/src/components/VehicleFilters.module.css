@@ -307,7 +307,20 @@
 
   .filtersHeader {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
+  }
+
+  .filterInfo {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .filterActions {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
   }
 
   .filtersContent.expanded {
@@ -332,6 +345,7 @@
     font-size: 14px;
     height: 36px;
     padding: 8px 36px 8px 12px;
+    min-width: 120px;
   }
 
   .toggleButton {
@@ -376,6 +390,18 @@
     font-size: 13px;
     height: 32px;
     padding: 6px 32px 6px 10px;
+    min-width: 100px;
+  }
+
+  .toggleButton {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .toggleButton span {
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

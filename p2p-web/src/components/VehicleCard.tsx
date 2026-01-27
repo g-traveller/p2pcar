@@ -1,3 +1,6 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import styles from './VehicleCard.module.css';
 import { Vehicle } from '@/types/api';
 
@@ -6,8 +9,18 @@ interface VehicleCardProps {
 }
 
 export default function VehicleCard({ vehicle }: VehicleCardProps) {
+  const router = useRouter();
+
+  const handleBookClick = () => {
+    router.push(`/book/${vehicle.id}`);
+  };
+
+  const handleCardClick = () => {
+    router.push(`/vehicle/${vehicle.id}`);
+  };
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={handleCardClick} style={{ cursor: 'pointer' }}>
       <div className={styles.imageContainer}>
         <img src={vehicle.image} alt={vehicle.name} className={styles.image} />
         <button className={styles.favoriteButton} aria-label="收藏">
@@ -72,7 +85,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
             <div className={styles.priceValue}>¥{vehicle.price}</div>
             <div className={styles.priceUnit}>每天</div>
           </div>
-          <button className={styles.bookButton}>立即预订</button>
+          <button className={styles.bookButton} onClick={handleBookClick}>立即预订</button>
         </div>
       </div>
     </div>

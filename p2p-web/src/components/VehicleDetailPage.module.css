@@ -1,0 +1,717 @@
+/* Vehicle Detail Page Styles */
+.page {
+  min-height: 100vh;
+  background: #f9fafb;
+  padding-top: 57px;
+}
+
+.container {
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 32px 160px;
+  display: flex;
+  gap: 24px;
+}
+
+/* Navigation Bar */
+.navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 57px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  padding: 16px 160px;
+  z-index: 100;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a5565;
+  font-size: 16px;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+}
+
+/* Left Column */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 0 0 800px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.reviewsCard {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 926px;
+}
+
+/* Gallery */
+.galleryCard {
+  padding: 0;
+  overflow: hidden;
+}
+
+.mainImageContainer {
+  position: relative;
+  height: 384px;
+  background: #f3f4f6;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navButton {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.navButton:hover {
+  background: white;
+}
+
+.prevButton {
+  left: 16px;
+  top: 172px;
+}
+
+.nextButton {
+  left: 744px;
+  top: 172px;
+}
+
+.favoriteButton,
+.shareButton {
+  top: 16px;
+}
+
+.favoriteButton {
+  left: 744px;
+}
+
+.shareButton {
+  left: 744px;
+}
+
+.imageCounter {
+  position: absolute;
+  left: 733px;
+  top: 340px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.thumbnailStrip {
+  display: flex;
+  gap: 16px;
+  padding: 14px 14px;
+  height: 96px;
+  overflow-x: auto;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  width: 80px;
+  height: 64px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.activeThumbnail {
+  border-color: #155dfc;
+}
+
+/* Vehicle Info */
+.vehicleTitle {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: #101828;
+  letter-spacing: 0.3955px;
+  margin: 0 0 8px 0;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1447e6;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.1504px;
+}
+
+.ratingSection {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ratingValue {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #101828;
+  line-height: 28px;
+}
+
+.reviewCount {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  color: #6a7282;
+  line-height: 24px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  color: #4a5565;
+}
+
+/* Specs Grid */
+.specsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 25px 0;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 16px;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.specIcon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.specLabel {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  color: #6a7282;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+
+.specValue {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #101828;
+  line-height: 24px;
+}
+
+/* Host Section */
+.hostSection {
+  margin-top: 16px;
+}
+
+.sectionTitle {
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #101828;
+  line-height: 28px;
+  margin: 0 0 12px 0;
+}
+
+.hostInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hostAvatar {
+  width: 64px;
+  height: 64px;
+  background: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #155dfc;
+  flex-shrink: 0;
+}
+
+.hostDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hostName {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #101828;
+  line-height: 28px;
+}
+
+.hostStats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  color: #4a5565;
+  line-height: 20px;
+}
+
+.hostRating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.superHostBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fefce8;
+  border-radius: 10px;
+}
+
+.superHostBadge span {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #a65f00;
+}
+
+/* Description */
+.description {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #364153;
+  line-height: 26px;
+  margin: 0;
+}
+
+/* Features Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  color: #364153;
+  line-height: 24px;
+}
+
+.featureIcon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+}
+
+/* Reviews */
+.tabs {
+  display: flex;
+  gap: 3px;
+  padding: 3.5px;
+  background: #ececf0;
+  border-radius: 14px;
+  width: fit-content;
+  margin: 32px 0 24px 0;
+}
+
+.tab {
+  padding: 5px 9px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0a0a0a;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.activeTab {
+  background: white;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 24px 24px;
+}
+
+.reviewItem {
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 24px;
+}
+
+.reviewItem:last-child {
+  border-bottom: none;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.reviewer {
+  display: flex;
+  gap: 12px;
+}
+
+.reviewerAvatar {
+  width: 40px;
+  height: 40px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  color: #364153;
+}
+
+.reviewerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reviewerName {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #101828;
+  line-height: 24px;
+}
+
+.reviewMeta {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  color: #6a7282;
+  line-height: 20px;
+}
+
+.reviewRatingBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: #fefce8;
+  border-radius: 4px;
+}
+
+.reviewRatingBadge span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #101828;
+}
+
+.reviewComment {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #364153;
+  line-height: 26px;
+  margin: 12px 0;
+}
+
+.helpfulButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #6a7282;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.helpfulButton:hover {
+  color: #4a5565;
+}
+
+/* Rating Details */
+.ratingDetails {
+  padding: 24px;
+}
+
+.ratingPlaceholder {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  color: #6a7282;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 0 0 384px;
+}
+
+.bookingCard {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  position: sticky;
+  top: 89px;
+}
+
+.priceSection {
+  margin-bottom: 24px;
+}
+
+.price {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: #155dfc;
+  line-height: 40px;
+}
+
+.priceUnit {
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #4a5565;
+  line-height: 24px;
+  margin-left: 4px;
+}
+
+.bookButton {
+  width: 100%;
+  height: 60px;
+  background: #155dfc;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 28px;
+}
+
+.bookButton:hover {
+  background: #1565c0;
+}
+
+.bookingFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #4a5565;
+  line-height: 20px;
+}
+
+.bookingInfo {
+  padding-top: 25px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.bookingInfoTitle {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #4a5565;
+  line-height: 20px;
+  margin: 0 0 8px 0;
+}
+
+.bookingInfoList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bookingInfoList li {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #4a5565;
+  line-height: 20px;
+  padding-left: 20px;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.bookingInfoList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #4a5565;
+}
+
+/* Loading and Error States */
+.loading, .error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  color: #6a7282;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .specsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 24px 32px;
+    flex-direction: column;
+  }
+
+  .leftColumn {
+    flex: 1;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .specsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .specsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbnailStrip {
+    padding: 10px;
+  }
+
+  .thumbnail {
+    width: 60px;
+  }
+}

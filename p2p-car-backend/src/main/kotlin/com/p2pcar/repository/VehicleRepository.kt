@@ -25,23 +25,56 @@ interface VehicleRepository : JpaRepository<Vehicle, Long> {
     @Query("""
         SELECT v FROM Vehicle v
         WHERE v.status = :status
-        AND (:location IS NULL OR v.location LIKE %:location%)
         AND (:minPrice IS NULL OR v.pricePerDay >= :minPrice)
         AND (:maxPrice IS NULL OR v.pricePerDay <= :maxPrice)
-        AND (:seats IS NULL OR v.seats = :seats)
-        AND (:transmission IS NULL OR v.transmission = :transmission)
-        AND (:fuelType IS NULL OR v.fuelType = :fuelType)
         AND (:brand IS NULL OR v.brand = :brand)
+        AND (:transmission IS NULL OR v.transmission = :transmission)
+        AND (:fuelType IS NULL OR v.fuelType IN :fuelType)
+        AND (:seats IS NULL OR v.seats IN :seats)
     """)
     fun searchVehicles(
         @Param("status") status: VehicleStatus = VehicleStatus.AVAILABLE,
-        @Param("location") location: String?,
         @Param("minPrice") minPrice: BigDecimal?,
         @Param("maxPrice") maxPrice: BigDecimal?,
-        @Param("seats") seats: Int?,
-        @Param("transmission") transmission: String?,
-        @Param("fuelType") fuelType: String?,
         @Param("brand") brand: String?,
+        @Param("transmission") transmission: String?,
+        @Param("fuelType") fuelType: List<String>?,
+        @Param("seats") seats: List<Int>?,
+        pageable: Pageable
+    ): Page<Vehicle>
+
+    /**
+     * 基于坐标搜索车辆，使用简化的距离计算（Haversine 公式的简化版）
+     * 计算两个经纬度点之间的距离，单位：公里
+     */
+    @Query("""
+        SELECT v FROM Vehicle v
+        WHERE v.status = :status
+        AND v.latitude IS NOT NULL AND v.longitude IS NOT NULL
+        AND (:latitude IS NULL OR :longitude IS NULL OR
+            (6371 * ACOS(
+                SIN(RADIANS(:latitude)) * SIN(RADIANS(v.latitude)) +
+                COS(RADIANS(:latitude)) * COS(RADIANS(v.latitude)) *
+                COS(RADIANS(v.longitude - :longitude))
+            ) <= :radius))
+        AND (:minPrice IS NULL OR v.pricePerDay >= :minPrice)
+        AND (:maxPrice IS NULL OR v.pricePerDay <= :maxPrice)
+        AND (:brand IS NULL OR v.brand = :brand)
+        AND (:transmission IS NULL OR v.transmission = :transmission)
+        AND (:fuelType IS NULL OR v.fuelType IN :fuelType)
+        AND (:seats IS NULL OR v.seats IN :seats)
+    """)
+    fun searchVehiclesByLocation(
+        @Param("status") status: VehicleStatus = VehicleStatus.AVAILABLE,
+        @Param("latitude") latitude: Double?,
+        @Param("longitude") longitude: Double?,
+        @Param("radius") radius: Double?,
+        @Param("minPrice") minPrice: BigDecimal?,
+        @Param("maxPrice") maxPrice: BigDecimal?,
+        @Param("brand") brand: String?,
+        @Param("transmission") transmission: String?,
+        @Param("fuelType") fuelType: List<String>?,
+        @Param("seats") seats: List<Int>?,
         pageable: Pageable
     ): Page<Vehicle>
 

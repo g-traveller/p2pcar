@@ -11,6 +11,7 @@ import jakarta.validation.Valid
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @RestController
@@ -22,22 +23,32 @@ class VehicleController(
     @GetMapping
     fun searchVehicles(
         @RequestParam location: String? = null,
-        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) startDate: LocalDateTime? = null,
-        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) endDate: LocalDateTime? = null,
+        @RequestParam latitude: Double? = null,
+        @RequestParam longitude: Double? = null,
+        @RequestParam radius: Double? = null,
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) startDate: LocalDate? = null,
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) endDate: LocalDate? = null,
         @RequestParam minPrice: java.math.BigDecimal? = null,
         @RequestParam maxPrice: java.math.BigDecimal? = null,
-        @RequestParam seats: Int? = null,
+        @RequestParam seats: List<Int>? = null,
         @RequestParam transmission: String? = null,
-        @RequestParam fuelType: String? = null,
+        @RequestParam fuelType: List<String>? = null,
         @RequestParam brand: String? = null,
         @RequestParam sortBy: String = "rating_desc",
         @RequestParam(defaultValue = "0") page: Int,
         @RequestParam(defaultValue = "20") size: Int
     ): ResponseEntity<ApiResponse<PageResponse<VehicleResponse>>> {
+        // Convert LocalDate to LocalDateTime (start of day for startDate, end of day for endDate)
+        val startDateTime = startDate?.atStartOfDay()
+        val endDateTime = endDate?.atTime(23, 59, 59)
+
         val request = VehicleSearchRequest(
             location = location,
-            startDate = startDate,
-            endDate = endDate,
+            latitude = latitude,
+            longitude = longitude,
+            radius = radius ?: 50.0, // 默认50公里
+            startDate = startDateTime,
+            endDate = endDateTime,
             minPrice = minPrice,
             maxPrice = maxPrice,
             seats = seats,

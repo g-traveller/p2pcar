@@ -1,0 +1,138 @@
+/* [project]/Work/p2pcar/p2p-web/src/components/Footer.module.css [app-client] (css) */
+.Footer-module___PLnAa__footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e8eaed;
+  width: 100%;
+}
+
+.Footer-module___PLnAa__container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.Footer-module___PLnAa__columns {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+  display: grid;
+}
+
+.Footer-module___PLnAa__column {
+  flex-direction: column;
+  gap: 12px;
+  display: flex;
+}
+
+.Footer-module___PLnAa__columnTitle {
+  color: #202124;
+  margin: 0;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.Footer-module___PLnAa__linkList {
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.Footer-module___PLnAa__link {
+  color: #5f6368;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.Footer-module___PLnAa__link:hover {
+  color: #1a73e8;
+}
+
+.Footer-module___PLnAa__bottom {
+  border-top: 1px solid #e8eaed;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  display: flex;
+}
+
+.Footer-module___PLnAa__copyright {
+  color: #9aa0a6;
+  font-family: Inter, Noto Sans SC, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@media (max-width: 1200px) {
+  .Footer-module___PLnAa__container {
+    padding: 40px 48px 24px;
+  }
+
+  .Footer-module___PLnAa__columns {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .Footer-module___PLnAa__container {
+    padding: 32px 24px 20px;
+  }
+
+  .Footer-module___PLnAa__columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .Footer-module___PLnAa__bottom {
+    padding-top: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Footer-module___PLnAa__container {
+    padding: 32px 20px 20px;
+  }
+
+  .Footer-module___PLnAa__columns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .Footer-module___PLnAa__column {
+    gap: 12px;
+  }
+
+  .Footer-module___PLnAa__bottom {
+    padding-top: 32px;
+  }
+
+  .Footer-module___PLnAa__copyright {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Footer-module___PLnAa__container {
+    padding: 24px 16px 16px;
+  }
+
+  .Footer-module___PLnAa__link {
+    font-size: 13px;
+  }
+
+  .Footer-module___PLnAa__copyright {
+    font-size: 11px;
+  }
+}
+
+/*# sourceMappingURL=Work_p2pcar_p2p-web_src_components_Footer_module_css_bad6b30c._.single.css.map*/

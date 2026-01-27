@@ -4,7 +4,6 @@ import { useState } from 'react';
 import styles from './VehicleFilters.module.css';
 
 // Filter types
-export type VehicleType = 'all' | 'sedan' | 'suv' | 'mpv' | 'sports' | 'electric';
 export type PriceRange = 'all' | '0-200' | '200-500' | '500+';
 
 export interface VehicleFiltersProps {
@@ -13,19 +12,10 @@ export interface VehicleFiltersProps {
 }
 
 export interface VehicleFilterValues {
-  vehicleType: VehicleType;
   priceRange: PriceRange;
   seats: number[];
   fuelTypes: string[];
 }
-
-const VEHICLE_TYPES = [
-  { value: 'all' as VehicleType, label: '全部车型' },
-  { value: 'sedan' as VehicleType, label: '轿车' },
-  { value: 'suv' as VehicleType, label: 'SUV' },
-  { value: 'sports' as VehicleType, label: '跑车' },
-  { value: 'electric' as VehicleType, label: '电动车' },
-];
 
 const PRICE_RANGES = [
   { value: 'all' as PriceRange, label: '全部价格' },
@@ -40,19 +30,12 @@ const FUEL_TYPES = ['汽油', '电动', '混动'];
 
 export default function VehicleFilters({ onFiltersChange, loading = false }: VehicleFiltersProps) {
   const [filters, setFilters] = useState<VehicleFilterValues>({
-    vehicleType: 'all',
     priceRange: 'all',
     seats: [],
     fuelTypes: [],
   });
 
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleVehicleTypeChange = (type: VehicleType) => {
-    const newFilters = { ...filters, vehicleType: type };
-    setFilters(newFilters);
-    onFiltersChange(newFilters);
-  };
 
   const handlePriceRangeChange = (range: PriceRange) => {
     const newFilters = { ...filters, priceRange: range };
@@ -80,7 +63,6 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
 
   const handleReset = () => {
     const resetFilters: VehicleFilterValues = {
-      vehicleType: 'all',
       priceRange: 'all',
       seats: [],
       fuelTypes: [],
@@ -90,14 +72,12 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
   };
 
   const hasActiveFilters =
-    filters.vehicleType !== 'all' ||
     filters.priceRange !== 'all' ||
     filters.seats.length > 0 ||
     filters.fuelTypes.length > 0;
 
   const getActiveFilterCount = () => {
     let count = 0;
-    if (filters.vehicleType !== 'all') count++;
     if (filters.priceRange !== 'all') count++;
     if (filters.seats.length > 0) count++;
     if (filters.fuelTypes.length > 0) count++;
@@ -131,20 +111,6 @@ export default function VehicleFilters({ onFiltersChange, loading = false }: Veh
           {hasActiveFilters && (
             <span className={styles.activeCount}>({getActiveFilterCount()})</span>
           )}
-        </div>
-
-        {/* Center: Vehicle type buttons */}
-        <div className={styles.tagGroup}>
-          {VEHICLE_TYPES.map((type) => (
-            <button
-              key={type.value}
-              className={`${styles.tagButton} ${filters.vehicleType === type.value ? styles.active : ''}`}
-              onClick={() => handleVehicleTypeChange(type.value)}
-              disabled={loading}
-            >
-              {type.label}
-            </button>
-          ))}
         </div>
 
         {/* Right: Price dropdown with actions */}

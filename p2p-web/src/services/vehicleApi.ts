@@ -38,7 +38,10 @@ function transformVehicleResponse(response: VehicleResponse): Vehicle {
     hostInitial,
     trips: response.host?.trips || 0,
     price: Number(response.price) || 0,
-    badges
+    badges,
+    distance: response.distance, // 距离（公里）
+    latitude: response.latitude,
+    longitude: response.longitude
   };
 }
 
@@ -60,9 +63,10 @@ function getFuelTypeLabel(fuelType: string): string {
  */
 export async function searchVehicles(params?: {
   location?: string;
+  latitude?: number;
+  longitude?: number;
   startDate?: string;
   endDate?: string;
-  vehicleType?: string;
   minPrice?: number;
   maxPrice?: number;
   seats?: number | number[];
@@ -78,9 +82,10 @@ export async function searchVehicles(params?: {
     const queryParams = new URLSearchParams();
 
     if (params?.location) queryParams.append('location', params.location);
+    if (params?.latitude !== undefined) queryParams.append('latitude', params.latitude.toString());
+    if (params?.longitude !== undefined) queryParams.append('longitude', params.longitude.toString());
     if (params?.startDate) queryParams.append('startDate', params.startDate);
     if (params?.endDate) queryParams.append('endDate', params.endDate);
-    if (params?.vehicleType) queryParams.append('vehicleType', params.vehicleType);
     if (params?.minPrice !== undefined) queryParams.append('minPrice', params.minPrice.toString());
     if (params?.maxPrice !== undefined) queryParams.append('maxPrice', params.maxPrice.toString());
 
